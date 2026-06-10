@@ -1,0 +1,183 @@
+// оформлення загального контейнера
+.about {
+    padding-bottom: 40px;
+    background-color: #FFF5F6;
+        @media screen and (max-width: 767px) {
+            display: flex;
+            background-image: url(/src/images/about/sectionbg_sm.png);
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position-x: center;
+            background-position-y: 72%;
+
+        @media 
+        (min-device-pixel-ratio:2),
+        (min-resolution: 192dpi),
+        (min-resolution: 2dppx) {
+            background-image: url(/src/images/about/sectionbg_sm@2x.png);
+            }
+        }
+        @media screen and (min-width: 768px) and (max-width: 1199px){
+            padding-bottom: 60px;
+        }
+        @media screen and (min-width: 1200px) {
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position-x: center;
+            background-position-y: 90%;
+            background-image: url(/src/images/about/sectionbg_lg.png);
+            @media 
+            (min-device-pixel-ratio:2),
+            (min-resolution: 192dpi),
+            (min-resolution: 2dppx) {
+                background-image: url(/src/images/about/sectionbg_lg@2x.png);
+            }
+        }
+}
+.info {
+    @media screen and (min-width: 768px) {
+        display: flex;
+    }
+
+    @media screen and (min-width: 1200px) {
+        align-items: center;
+    }
+}
+// оформлення tradition and love
+.section-title__main-text {
+    display: block;
+    text-transform: uppercase;
+    color: $text-color-secondary;
+    font-size: 18px;
+    font-family: $font-secondary;
+    line-height: 1.14em;
+    margin-bottom: 15px;
+    text-align: center;
+    letter-spacing: 0.04em;
+    @media screen and (min-width: 768px) {
+        font-size: 26px;
+    }    @media screen and (min-width: 1200px) {
+        font-size: 30px;
+    }
+}
+// Головний титульний текст
+.section-title__main-title {
+    color: $color-primary;
+    text-transform: uppercase;
+    font-family: $font-secondary;
+    font-size: 34px;
+    line-height: 1.14em;
+    margin-bottom: 32px;
+    text-align: center;
+        @media screen and (min-width: 768px) {
+            font-size: 48px;
+            letter-spacing: 0.04em;
+        }
+        
+        @media screen and (min-width: 1200px) {
+            font-size: 58px;
+            letter-spacing: 0.06em;
+        }
+}
+// контейнер з текстом
+.info-text {
+    max-width: 217px;
+    @media screen and (min-width: 768px) {
+        max-width: 320px;
+        padding-left: 32px;
+    }
+    @media screen and (min-width: 1200px) {
+        max-width: 575px;
+        padding-left: 100px;
+    }
+}
+// Тумба на картинку (корова)
+.info__thumb-img {
+    margin-bottom: 40px;
+    @media screen and (min-width: 768px) {
+        margin-bottom: 0;
+    }
+}
+// Перший текст (чорний)
+.info-text__first-text {
+    color: $text-color-primary;
+    font-family: $font-main;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.62em;
+    margin-bottom: 40px;
+        @media screen and (min-width: 768px) {
+            font-size: 14px;
+            line-height: 1.76em;
+            margin-bottom: 32px;
+        }
+        
+        @media screen and (min-width: 1200px) {
+            font-size: 16px;
+            letter-spacing: 0.04em;
+        }
+}
+// Другий текст (сірий)
+.info-text__second-text {
+    color: $text-color-tertiary;
+    font-family: $font-main;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.62em;
+    margin-bottom: 16px;
+    padding-right: 10px;
+    @media screen and (min-width:768px) {
+        padding-right: 25px;
+        font-size: 14px;
+        letter-spacing: 0.04em;
+    }
+    @media screen and (min-width: 1200px) {
+        font-size: 16px;
+        line-height: 1.94em;
+        padding-right: 0;
+    }
+}
+// Речення
+.info-text__third-text {
+    color: $text-color-tertiary;
+    font-family: $font-main;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.62em;
+    margin-bottom: 20px;
+        @media screen and (min-width:768px) {
+                padding-right: 25px;
+                font-size: 14px;
+                letter-spacing: 0.04em;
+                margin-bottom: 40px;
+        }
+        @media screen and (min-width: 1200px) {
+            font-size: 16px;
+            line-height: 1.94em;
+            padding-right: 0;
+        }
+}
+// Кнопка
+.info-text__btn {
+    color: $color-primary;
+    font-size: 14px;
+    font-family: $font-main;
+    font-weight: 700;
+    line-height: 1.3;
+    border: none;
+    border-radius: 22px;
+    background-color: $background-color-secondary;
+    padding: 0 37px;
+    height: 44px;
+    cursor: pointer;
+        @media screen and (min-width:768px) {
+                font-size: 16px;
+            }
+    &:hover,
+    &:focus {
+        background-color: $accent;
+    }
+}
+.info-text__btn-arrow {
+    margin-left: 14px;
+}

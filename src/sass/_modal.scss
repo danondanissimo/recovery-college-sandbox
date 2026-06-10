@@ -1,0 +1,270 @@
+.backdrop {
+  z-index: 1000;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(248, 140, 165, 0.5);
+  padding: 0 15px;
+
+  &.visually-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+
+.modal {
+  padding: 15px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: 90%;
+  background-color: $background-color-tertiary;
+  border-radius: 24px;
+  overflow-y: scroll;
+  transition: ease-in;
+  z-index: 1010;
+
+  @media screen and (min-width: $breakpoint-tablet) {
+    width: 450px;
+    height: 800px;
+  }
+
+  @media screen and (min-width: $breakpoint-desktop) {
+    width: 528px;
+    height: 90%;
+  }
+
+  &::-webkit-scrollbar {
+    /* chrome based */
+    width: 0px; /* ширина scrollbar'a */
+    background: transparent; /* опционально */
+  }
+}
+
+.modal-text {
+  margin-left: 15px;
+  font-family: $font-secondary;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.modal__title {
+  font-family: $font-secondary;
+  color: $color-primary;
+  margin: 25px 0 35px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  text-transform: uppercase;
+
+  @media screen and (min-width: $breakpoint-tablet) {
+    font-size: 21px;
+  }
+  @media screen and (min-width: 350px) {
+    font-size: 17px;
+  }
+  @media screen and (min-width: 380px) {
+    font-size: 19px;
+  }
+}
+
+.modal__form-product {
+  position: relative;
+  padding: 10px;
+  margin: 20px 0;
+  color: $color-primary;
+  font-family: $font-secondary;
+  font-weight: 700;
+}
+
+.modal__form-product-label {
+  font-family: $font-main;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+}
+
+.modal__form-product-img {
+  width: 70px;
+}
+
+.modal__form-product-input:checked + .modal__form-product-box::before {
+  content: '';
+  border: 2px solid #e17992;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 24px;
+}
+
+.flavors {
+  font-family: $font-main;
+  position: relative;
+  font: $font-secondary;
+  flex-direction: column;
+}
+
+.modal__form-flavors {
+  display: none;
+}
+
+.modal__form-flavorsc {
+  display: none;
+}
+.modal__form-flavorsm {
+  display: none;
+}
+
+.modal__form-flavors-label {
+  color: $text-color-tertiary;
+  font-weight: 700;
+  font-family: $font-main;
+  margin-bottom: 5px;
+  margin-left: 50px;
+}
+
+.modal__form-product-input,
+.modal__form-flavor-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  font: $font-secondary;
+  clip: rect(0 0 0 0);
+  margin-left: 40px;
+}
+
+.modal__form-flavor-input:checked + .modal__form-flavor-box::before {
+  content: '';
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  background-color: $color-primary;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+}
+
+.modal__form-flavors-quantity {
+  font-size: 15px;
+  display: none;
+  position: absolute;
+  margin-left: 20px;
+  width: 35px;
+  height: 20px;
+  border-radius: 4px;
+  border: 2px solid $color-senary;
+  font-family: $font-main;
+  margin-left: 130px;
+  transform: translateY(-95%);
+}
+
+.modal__form-flavor-input:checked ~ .modal__form-flavors-quantity {
+  display: flex;
+}
+
+.modal__form-flavor-box {
+  margin-left: -25px;
+  width: 20px;
+  height: 20px;
+  border: 2px solid $color-senary;
+  position: absolute;
+  border-radius: 50%;
+}
+
+// .modal__form-phone-label {
+//   position: relative;
+//   width: 90%;
+//   height: 100px;
+
+//   border: 1px solid rgba(33, 33, 33, 0.2);
+//   border-radius: 4px;
+//   letter-spacing: 0.01em;
+//   color: #757575;
+//   transition: fill var(--cubic-animation), border-color var(--cubic-animation);
+
+//   &:focus-within {
+//     fill: var(--link-color);
+//     border-color: var(--link-color);
+//   }
+// }
+
+// .modal__form-phone-input {
+//   justify-content: center;
+//   position: relative;
+//   padding: 12px 12px 12px 42px;
+//   width: 90%;
+//   height: 40px;
+//   background-color: transparent;
+//   border: none;
+//   outline: transparent;
+// }
+
+// .modal__form-phone-icon {
+//   justify-content: center;
+//   position: absolute;
+//   margin: 11px 12px;
+//   top: 0%;
+//   left: 0%;
+// }
+
+.modal__button-next {
+  display: flex;
+  width: 160px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background-color: #ffff;
+
+  font-family: $font-main;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.31;
+  color: #d41443;
+  border-radius: 22px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal__button-next:hover,
+.modal__button-next:focus {
+  background-color: $accent;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
+}
+
+.button-span {
+  margin: 30px 0 20px 0;
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.modal__close-svg {
+  margin-left: auto;
+}
+
+.modal__button-close {
+  padding: 5px 5px 0 0;
+  display: flex;
+  margin-left: auto;
+
+  background-color: transparent;
+}

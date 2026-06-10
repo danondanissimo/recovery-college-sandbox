@@ -1,0 +1,138 @@
+<section class="hero" id="hero">
+  <div class="container hero__container">
+    <div class="hero__product">
+      <h1 class="hero__title">
+        ice cream <br />
+        made with <br /><span class="hero__title--red">passion</span>
+      </h1>
+      <div class="shop">
+        <ul class="shop__list list">
+          <li class="shop__item">
+            <p class="shop__description">
+              <span class="shop__item--red">16</span><br />cafes
+            </p>
+            <span class="shop__figure"></span>
+          </li>
+          <li class="shop__item">
+            <p class="shop__description">
+              <span class="shop__item--red">23</span><br />food trucks
+            </p>
+            <span class="shop__figure"></span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <ul class="hero__list list">
+      <li class="hero__item">
+        <a class="hero__button hero__button--red" href="#products">Products</a>
+      </li>
+      <li class="hero__item">
+        <a class="hero__button hero__button--white" href="#about-us"
+          >How it’s made?</a
+        >
+      </li>
+    </ul>
+    <div class="hero__product-description">
+      <picture>
+        <source
+          media="(min-width: 1200px)"
+          srcset="
+            ./images/header/milk_lg.png    1x,
+            ./images/header/milk_lg@2x.png 2x
+          "
+          type="image/png"
+        />
+        <source
+          media="(min-width: 768px)"
+          srcset="
+            ./images/header/milk_md.png    1x,
+            ./images/header/milk_md@2x.png 2x
+          "
+          type="image/png"
+        />
+        <img
+          class="product-description__img"
+          src="./images/header/milk_md.png"
+          alt="jug_of_milk"
+          width="152"
+          height="154"
+        />
+      </picture>
+      <div class="product-description__tumb">
+        <p class="product-description__text">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et
+        </p>
+        <button class="product-description__button" type="button">
+          <svg
+            class="product-description__icon"
+            width="10"
+            height="10"
+            aria-label="more"
+          >
+            <use href="./images/sprite.svg#arrow-right"></use>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <picture>
+      <source
+        media="(min-width: 1200px)"
+        srcset="
+          ./images/header/IceCream_lg.png    1x,
+          ./images/header/IceCream_lg@2x.png 2x
+        "
+        type="image/png"
+      />
+      <source
+        media="(min-width: 768px)"
+        srcset="
+          ./images/header/IceCream_md.png    1x,
+          ./images/header/IceCream_md@2x.png 2x
+        "
+        type="image/png"
+      />
+      <source
+        media="(max-width: 767px)"
+        srcset="
+          ./images/header/IceCream_sm.png    1x,
+          ./images/header/IceCream_sm@2x.png 2x
+        "
+        type="image/png"
+      />
+      <img
+        class="hero__img"
+        src="./images/header/IceCream_sm.png"
+        alt="ice_cream"
+        width="171"
+        height="410"
+      />
+    </picture>
+    <picture>
+      <source
+        media="(min-width: 1200px)"
+        srcset="
+          ./images/header/lady_lg.png    1x,
+          ./images/header/lady_lg@2x.png 2x
+        "
+        type="image/png"
+      />
+      <source
+        media="(min-width: 768px)"
+        srcset="
+          ./images/header/lady_md.png    1x,
+          ./images/header/lady_md@2x.png 2x
+        "
+        type="image/png"
+      />
+      <img
+        class="hero__img--right"
+        src="./images/header/lady_md.png"
+        alt="girl_is_eating_ice_cream"
+        width="190"
+        height="150"
+      />
+    </picture>
+    <div class="hero__figure"></div>
+  </div>
+</section>

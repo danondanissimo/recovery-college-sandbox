@@ -1,0 +1,239 @@
+.header {
+    position: relative;
+    padding-top: 8px;
+
+    @media screen and (min-width: 768px) {
+        padding-top: 32px;
+    }
+
+    @media screen and (min-width: 1200px) {
+        padding-top: 40px;
+    }
+
+    background-color: $background-color-primary;
+}
+
+.header__nav--mobile {
+    display: flex;
+    justify-content: space-between;
+    justify-content: center;
+
+    @media screen and (min-width: 1200px) {
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+
+.logo {
+    display: inline-block;
+    margin-right: auto;
+
+    @media screen and (min-width: 1200px) {
+        margin-right: 0;
+    }
+}
+
+.mobile-menu__btn {
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    margin-top: 15px;
+    margin-left: auto;
+    padding: 0;
+
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+
+    @media screen and (min-width: 768px) {
+        margin-right: 32px;
+    }
+
+    @media screen and (min-width: 1200px) {
+        display: none;
+    }
+}
+
+.mobile-menu__btn.is-open {
+    @media screen and (min-width: 768px) {
+        position: absolute;
+        top: 20px;
+        right: 32px;
+
+        margin-top: 0;
+        margin-right: 0;
+    }
+}
+
+.mobile-menu__burger {
+    opacity: 1;
+
+    transition: opacity var(--transition);
+
+    .mobile-menu__btn.is-open & {
+        opacity: 0;
+    }
+}
+
+.mobile-menu__close {
+    opacity: 0;
+
+    transition: opacity var(--transition);
+
+    .mobile-menu__btn.is-open & {
+        opacity: 1;
+    }
+}
+
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 10;
+
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    height: 100%;
+    padding: 60px 0;
+
+    background-color: #E17992;
+
+    transform: translateX(100%);
+    transition: transform 500ms $cubic-bezier;
+
+    &.is-open {
+        transform: translateX(0);
+        filter: drop-shadow(-8px 0px 20px rgba(0, 0, 0, 0.25));
+    }
+
+    @media screen and (min-width: 768px) {
+        width: 35%;
+    }
+}
+
+.header__btn {
+    display: flex;
+    width: 160px;
+    height: 44px;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+
+    font-family: $font-main;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.31;
+    color: #D41443;
+    background-color: $background-color-secondary;
+
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+
+    transition: background-color 250ms $cubic-bezier ;
+
+    @media screen and (max-width: 767px) {
+        display: none;
+    }
+
+    &:hover, &:focus {
+    background-color: $accent;;
+    }
+}
+
+.header__btn--mobile{
+    display: flex;
+    width: 209px;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.greater-sign__icon {
+    @media screen and (min-width: 768px) {
+        margin-left: 12px;
+    }
+
+    @media screen and (min-width: 1200px) {
+        margin-left: 12px;
+    }
+
+    stroke: currentColor;
+}
+
+.greater-sign__icon--menu {
+    margin-left: 15px;
+
+    @media screen and (min-width: 768px) {
+        margin-left: 14px;
+    }
+}
+
+.mobile-menu__list {
+    padding: 0;
+    margin: 0;
+    margin-top: 20px;
+
+    list-style: none;
+}
+
+.mobile-menu__item {
+    padding: 12px 20px;
+
+    font-family: $font-main;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1.29;
+    color: $background-color-secondary;
+
+    border-bottom: 1px solid #E18298;
+}
+
+.mobile-menu__link {
+    color: $background-color-secondary;
+
+    transition: color 250ms $cubic-bezier;
+
+    &:hover, &:focus {
+        color: #D41443;
+    }
+}
+
+
+.nav {
+    z-index: 10;
+    @media screen and (max-width: 1199px) {
+        display: none;
+    }
+}
+
+.nav__list {
+    display: flex;
+
+    font-family: $font-main;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.31;
+    
+    color: $background-color-secondary;
+}
+
+.nav__item:not(:last-child) {
+    margin-right: 35px;
+}
+
+.nav__link {
+    color: $background-color-secondary;
+
+    transition: color 250ms $cubic-bezier ;
+
+    &:hover, &:focus {
+        color: #D41443;
+    }
+}

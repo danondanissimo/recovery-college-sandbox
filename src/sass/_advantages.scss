@@ -1,0 +1,97 @@
+
+.advantages {
+    padding-top: 0;
+    background-color: $background-color-tertiary;
+    @media screen and (max-width: 767px) {
+            display: flex;
+    }
+}
+// Список продукту
+.advantages-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    @media screen and (min-width: 768px) {
+        display: flex;
+    }
+    @media screen and (min-width: 1200px) {
+        position: relative;
+    }
+}
+// Лішки
+.advantages-list__item {
+max-width: 220px;
+    &::before {
+        display: block;
+        content: "";
+        height: 50px;
+        background-repeat: no-repeat;
+    }
+    @media screen and (min-width: 768px) {
+        width: calc((100% - 6 * 30px) / 3);
+    }
+}
+// Титульний текст
+.advantages-list__title {
+    color: $color-primary;
+    font-family: $font-secondary;
+    font-size: 36px;
+    line-height: 1.14em;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    @media screen and (min-width: 768px) {
+        margin-top: 36px;
+        margin-bottom: 13px;
+        letter-spacing: 0.04em;
+        font-size: 48px;
+    }
+    @media screen and (min-width: 1200px) {
+        margin-top: 40px;
+        margin-bottom: 16px;
+        font-size: 58px;
+    }
+}
+// Текст
+.advantages-list__text {
+    font-family: $font-main;
+    font-size: 12px;
+    line-height: 1.7em;
+    font-weight: 700;
+    margin-bottom: 30px;
+    @media screen and (min-width: 768px) {
+        margin-bottom: 0;
+        font-size: 14px;
+    }
+    @media screen and (min-width: 1200px) {
+        font-size: 16px;
+        letter-spacing: 0.02em;
+    }
+}
+.last-text {
+    margin-bottom: 0;
+}
+// Додавання зображення
+.first-icon::before {
+    background-image: url(/src/images/advantages/milk.sm.png);
+}
+.second-icon::before {
+            background-image: url(/src/images/advantages/apple.sm.png);
+
+}
+.second-icon {
+    @media screen and (min-width:1200px) {
+            position: absolute;
+            left: 35%;
+    }
+}
+
+.third-icon::before {
+    background-image: url(/src/images/advantages/heart.sm.png);
+
+}
+.third-icon {
+    @media screen and (min-width:1200px) {
+             position: absolute;
+             left: 70%;
+     }
+}
