@@ -1,0 +1,44 @@
+.team-text {
+  margin-bottom: 30px;
+}
+
+.team-list {
+  display: flex;
+  @media screen and (max-width: $max-mobile-width) {
+    flex-direction: column;
+    align-items: center;
+  }
+  @media screen and (min-width: $breakpoint-tablet) {
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+  }
+}
+
+.team-list-item {
+  max-width: 200px;
+  border: 2px solid $tertiary-color;
+  border-radius: 5px;
+}
+
+.team-list-item:not(:last-child) {
+  @media screen and (max-width: $max-mobile-width) {
+    margin-bottom: 10px;
+  }
+}
+
+.team-list-item-image {
+  width: 200px;
+  display: block;
+}
+
+.team-list-item-name,
+.team-list-item-position {
+  display: block;
+  text-align: center;
+  margin: auto;
+}
+
+.team-list-item-name {
+  font-weight: bold;
+}

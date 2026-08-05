@@ -1,0 +1,84 @@
+.workshops-counties {
+  display: flex;
+  @media screen and (min-width: $breakpoint-desktop) {
+    justify-content: center;
+    align-items: center;
+    background-color: #9bb4ca;
+  }
+  width: 100%;
+  overflow: hidden;
+  height: 600px;
+  position: relative;
+}
+
+.workshops-counties-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  @media screen and (min-width: $breakpoint-desktop) {
+    display: none;
+  }
+}
+
+.workshops-counties-list-item {
+  flex: 1 1 150px;
+}
+
+.workshops-counties-list-item-button {
+  width: 100%;
+  justify-content: center;
+  padding: 10px 20px;
+  background-color: $main-color;
+  color: $secondary-color;
+  border: solid 1px $secondary-color;
+}
+
+.workshops-counties-list-item:nth-child(even)
+  .workshops-counties-list-item-button {
+  background-color: $secondary-color;
+  color: $main-color;
+  border-color: $main-color;
+}
+
+#ireland-map {
+  transform: scale(3);
+  transform-origin: 65% 75%;
+  @media screen and (max-width: $max-tablet-width) {
+    display: none;
+  }
+}
+
+.enrolment-section {
+  position: relative;
+}
+
+.enrolment-form-container {
+  padding: 20px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 2px 35px 5px rgba(0, 0, 0, 0.16);
+
+  background-color: $secondary-color;
+  z-index: 10000;
+}
+
+.enrolment-form-container::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.enrolment-form-label {
+  display: flex;
+  flex-direction: column;
+}
+
+.calendar {
+  // width: $min-mobile-width;
+
+  // margin: 0 auto;
+  // padding: 20px;
+  // box-shadow: 0px 2px 35px 5px rgba(0, 0, 0, 0.16);
+
+  @media screen and (max-width: $max-mobile-width) {
+    height: 570px;
+  }
+}

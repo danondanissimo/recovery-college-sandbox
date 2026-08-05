@@ -1,0 +1,90 @@
+.news-list {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-direction: column;
+  @media screen and (max-width: $max-mobile-width) {
+  }
+  @media screen and (min-width: $breakpoint-tablet) {
+    // flex-wrap: wrap;
+    gap: 25px;
+  }
+  @media screen and (min-width: $breakpoint-desktop) {
+    gap: 30px;
+  }
+}
+
+.news-list-item {
+  padding: 0px 15px 15px 15px;
+  border: 1px solid #f0f0f0;
+  border-radius: 10px;
+  max-height: 600px;
+  overflow: scroll;
+  box-shadow: 4px 2px 33px 2px rgba(0, 0, 0, 0.16);
+  overflow-x: hidden;
+}
+
+// .news-list-item-article-photo {
+//   max-width: 100%;
+//   display: block;
+//   margin: auto;
+// }
+
+// .news-list-item-article-text {
+//   margin-top: 20px;
+// }
+
+.news-list-item-article {
+  display: flow-root; /* This creates a "block formatting context" */
+  padding-top: 15px;
+}
+
+.news-list-item-article-head {
+  position: sticky;
+  top: 0;
+  background-color: $secondary-color;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.news-list-item-article-head-date {
+  margin-bottom: 0;
+}
+
+.content-group {
+  display: flow-root; /* Force the container to wrap around the floated image */
+  // border-top: 1px solid #f0f0f0;
+  // border-bottom: 1px solid #f0f0f0; /* Optional: adds a subtle line between sections */
+  padding: 15px 0px;
+}
+
+.news-list-item-article-photo {
+  float: left; /* This is what makes the text wrap around it */
+  max-width: 45%; /* Keeps it from taking up the whole width */
+  max-height: 250px; /* Prevents vertical images from being too tall */
+  margin-right: 20px; /* Adds breathing room between photo and text */
+  margin-bottom: 10px;
+  border-radius: 5px;
+  display: block; /* Ensures float works correctly */
+}
+
+.news-list-item-article-photo.is-right {
+  float: right;
+  margin-right: 0; /* Remove right margin */
+  margin-left: 20px; /* Add margin to the left instead */
+}
+
+.news-list-item-article-photo.is-divider {
+  float: none; /* Stop floating! */
+  display: block; /* Makes it sit on its own line */
+  width: 100%; /* Forces it to take up the full width */
+  max-width: 100%; /* Override the 50% max-width of your default class */
+  aspect-ratio: 16 / 9; /* Ensures it keeps the 16x9 shape */
+  object-fit: cover; /* Ensures it looks clean regardless of original size */
+  margin: 20px 0; /* Adds space above and below the image */
+}
+
+.news-list-item-article-text {
+  margin: 0; /* Remove top margin so text starts flush with the top of the photo */
+  text-align: justify; /* Optional: makes it look more like a magazine layout */
+}
