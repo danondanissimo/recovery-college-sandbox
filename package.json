@@ -1,29 +1,19 @@
 {
-  "name": "parcel-project-template",
+  "name": "recovery-college-sandbox",
   "version": "2.0.0",
   "description": "",
   "homepage": "https://danondanissimo.github.io/recovery-college-sandbox",
   "scripts": {
-    "start": "parcel src/*.html",
-    "build": "rm -rf .parcel-cache dist && parcel build src/index.html --public-url /recovery-college-sandbox/"
-  },
-  "targets": {
-    "default": {
-      "outputFormat": "esmodule",
-      "publicUrl": "/recovery-college-sandbox/"
-    },
-    "main": false
+    "start": "vite",
+    "build": "vite build --base=/recovery-college-sandbox/"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/goitacademy/parcel-project-template.git"
+    "url": "git+https://github.com/danondanissimo/recovery-college-sandbox.git"
   },
   "keywords": [],
-  "author": "Alexander Repeta <alexander.repeta@gmail.com>",
+  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/goitacademy/parcel-project-template/issues"
-  },
   "dependencies": {
     "@fullcalendar/daygrid": "^6.1.21",
     "@fullcalendar/google-calendar": "^7.0.2",
@@ -35,10 +25,7 @@
     "swiper": "^14.2.0"
   },
   "devDependencies": {
-    "@parcel/transformer-sass": "^2.6.0",
-    "parcel": "^2.6.0",
-    "parcel-reporter-clean-dist": "^1.0.4",
-    "posthtml-include": "^1.7.4"
+    "vite": "^5.4.0"
   },
   "browserslist": "> 0.5%, last 2 versions, not dead"
 }
