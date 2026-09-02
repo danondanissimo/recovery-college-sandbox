@@ -3,22 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Noticeboard | Recovery College South East</title>
+    <title>Calendar | Recovery College South East</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
       rel="stylesheet"
     />
+
     <link
       rel="icon"
       type="image/svg+xml"
       href="/recovery-college-sandbox/assets/favicon-DSnE4E7D.svg?v=2"
     />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script type="module" crossorigin src="/recovery-college-sandbox/assets/news-DzcsWI5S.js"></script>
-    <link rel="modulepreload" crossorigin href="/recovery-college-sandbox/assets/index-BECU2sAZ.js">
-    <link rel="stylesheet" crossorigin href="/recovery-college-sandbox/assets/index-kV3NTNVm.css">
+    <script type="module" crossorigin src="/recovery-college-sandbox/assets/index-Cavuk4HL.js"></script>
+    <link rel="stylesheet" crossorigin href="/recovery-college-sandbox/assets/index-sK6fbI_q.css">
   </head>
 
   <body>
@@ -64,7 +63,7 @@
         </nav>
       </div>
     </header>
-    <div class="mobile-menu">
+    <div class="mobile-menu is-hidden">
       <button class="menu-button-close">
         <svg class="menu-button-close-icon" viewBox="0 0 800 800">
           <use href="/recovery-college-sandbox/assets/close-IzeRh7C-.svg#cross"></use>
@@ -89,8 +88,9 @@
     </div>
 
     <main>
-      <section class="news container">
-        <ul class="news-list"></ul>
+      <section class="enrolment-section container">
+        <h1 id="calendar-title">Workshops Calendar</h1>
+        <div id="calendar" class="calendar"></div>
       </section>
     </main>
 
