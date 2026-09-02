@@ -9,6 +9,7 @@
 // src/index.js
 import './js/mobile-menu.js';
 import { initCalendar } from './js/calendar.js';
+import mapSvgUrl from './images/ie.svg';
 
 document.addEventListener('DOMContentLoaded', () => {
   initCalendar();
@@ -25,3 +26,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+
+
+const mapElement = document.getElementById('ireland-map');
+if (mapElement) {
+  mapElement.data = mapSvgUrl;
+}
