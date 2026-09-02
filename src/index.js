@@ -9,7 +9,7 @@
 // src/index.js
 import './js/mobile-menu.js';
 import { initCalendar } from './js/calendar.js';
-import mapSvgUrl from './images/ie.svg';
+import mapSvgUrl from './images/icons/ie.svg';
 
 document.addEventListener('DOMContentLoaded', () => {
   initCalendar();
