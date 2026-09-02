@@ -1,8 +1,8 @@
 
 // src/js/calendar.js
-import { Calendar } from 'https://esm.sh/fullcalendar@6.1.21';
-import dayGridPlugin from 'https://esm.sh/@fullcalendar/daygrid@6.1.21';
-import googleCalendarPlugin from 'https://esm.sh/@fullcalendar/google-calendar@6.1.21';
+import { Calendar } from 'fullcalendar';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import googleCalendarPlugin from '@fullcalendar/google-calendar';
 
 // Your public Google Calendar IDs (found in calendar integration settings)
  const calendarIds = {
