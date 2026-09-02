@@ -39,7 +39,7 @@ body {
       rgba(255, 255, 255, 0.5),
       /* White tint with 50% opacity */ rgba(255, 255, 255, 0.5)
     ),
-    url('./src/images/icons/background.svg');
+    url('../src/images/icons/background.svg');
   background-size: cover; /* Ensures the image fills the entire area */
   background-position: center; /* Keeps the image centered */
   background-attachment: fixed; /* Optional: prevents the background from scrolling with the page */
