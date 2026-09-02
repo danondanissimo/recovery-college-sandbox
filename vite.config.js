@@ -4,6 +4,7 @@ import { defineConfig } from 'vite'
 export default defineConfig({
   base: '/recovery-college-sandbox/',
   build: {
+    outDir: 'dist',
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'src/index.html'),
