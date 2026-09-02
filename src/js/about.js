@@ -1,5 +1,8 @@
-import Swiper from 'swiper/bundle';
-import 'swiper/css/bundle';
+import Swiper from 'swiper';
+import { Navigation } from 'swiper/modules';
+
+import 'swiper/css';
+import 'swiper/css/navigation';
 
 function getYouTubeEmbedUrl(url) {
   if (!url) return '';
@@ -17,7 +20,6 @@ function getYouTubeEmbedUrl(url) {
   if (!aboutSection) return;
 
   // 1. Show a clean global spinner centered in the section while fetching
-  // (We hide the child elements temporarily so no black box or empty text shows)
   if (videoContainer) videoContainer.style.display = 'none';
   if (textEl) textEl.style.display = 'none';
   if (sliderContainer) sliderContainer.style.display = 'none';
@@ -81,6 +83,7 @@ function getYouTubeEmbedUrl(url) {
       `).join('');
 
       new Swiper(sliderContainer, {
+        modules: [Navigation],
         loop: true,
         navigation: {
           nextEl: '.swiper-button-next',
