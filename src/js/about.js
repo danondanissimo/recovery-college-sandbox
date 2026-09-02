@@ -1,8 +1,5 @@
-import Swiper from 'swiper';
-import { Navigation } from 'swiper/modules';
-
-import 'swiper/swiper.min.css';
-import 'swiper/modules/navigation.min.css';
+import Swiper from 'swiper/bundle';
+import 'swiper/css/bundle';
 
 function getYouTubeEmbedUrl(url) {
   if (!url) return '';
@@ -84,7 +81,6 @@ function getYouTubeEmbedUrl(url) {
       `).join('');
 
       new Swiper(sliderContainer, {
-        modules: [Navigation],
         loop: true,
         navigation: {
           nextEl: '.swiper-button-next',
