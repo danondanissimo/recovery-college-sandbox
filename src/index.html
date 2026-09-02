@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Recovery College South East</title>
+    <title>Home | Recovery College South East</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -12,7 +12,19 @@
     />
     <link rel="stylesheet" href="../css/index.css" />
     <!-- <link rel="icon" type="img/png" href="./images/icons/favicon.png" /> -->
-    <!-- <script type="module" src="./index.js"></script> -->
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="./images/icons/favicon.svg?v=2"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.21/index.global.min.js"></script>
+    <script type="module" src="./index.js"></script>
+    <script type="module" src="./js/about.js"></script>
+    <link rel="stylesheet" href="https://esm.sh/swiper@11/swiper.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://esm.sh/swiper@11/modules/navigation.min.css"
+    />
   </head>
 
   <body data-body>
@@ -44,7 +56,7 @@
               ></use>
             </svg>
           </a>
-          <button class="menu-button-open">
+          <button class="menu-button-open" id="menu-button-open">
             <svg class="menu-button-open-icon" viewBox="0 0 24 24">
               <use href="./images/icons/menu.svg#hamburger"></use>
             </svg>
@@ -54,7 +66,9 @@
               <a class="desktop-menu-item-link" href="./index.html">Home</a>
             </li>
             <li class="desktop-menu-item">
-              <a class="desktop-menu-item-link" href="./news.html">News</a>
+              <a class="desktop-menu-item-link" href="./news.html"
+                >Noticeboard</a
+              >
             </li>
             <li class="desktop-menu-item">
               <a class="desktop-menu-item-link" href="./meet-the-team.html"
@@ -81,7 +95,7 @@
           <a class="mobile-menu-item-link" href="./index.html">Home</a>
         </li>
         <li class="mobile-menu-item">
-          <a class="mobile-menu-item-link" href="./news.html">News</a>
+          <a class="mobile-menu-item-link" href="./news.html">Noticeboard</a>
         </li>
         <li class="mobile-menu-item">
           <a class="mobile-menu-item-link" href="./meet-the-team.html"
@@ -99,12 +113,20 @@
         <h1 class="hero-welcome">Welcome</h1>
         <ul class="hero-list">
           <li class="hero-list-item">
-            <a
+            <!-- <a
               class="hero-list-item-link-enroll hero-list-item-link"
               href="https://www.recoverycollegesoutheast.com/uploads/1/1/2/8/112831751/enrolment_form_-_march_2026.pdf"
               target="_blank"
               >How to enroll</a
+            > -->
+            <button
+              class="hero-list-item-button"
+              onclick="
+                document.getElementById('enrollment-instructions').showModal()
+              "
             >
+              How to enroll
+            </button>
           </li>
           <li class="hero-list-item">
             <a
@@ -115,21 +137,30 @@
           </li>
         </ul>
       </section>
-      <dialogue class="enrollment-instructions">
-        <button>Close</button>
+      <dialog class="enrollment-instructions" id="enrollment-instructions">
         <div class="enrollment-instructions-container">
+          <button
+            onclick="document.getElementById('enrollment-instructions').close()"
+            class="enrollment-instructions-container-button-close"
+          >
+            <svg class="menu-button-close-icon" viewBox="0 0 800 800">
+              <use href="./images/icons/close.svg#cross"></use>
+            </svg>
+          </button>
+
           <h1 class="enrollment-instructions-container-header">
             How to enroll:
           </h1>
           <ul class="enrollment-instructions-container-list">
             <li class="enrollment-instructions-container-list-item">
               <p class="enrollment-instructions-container-list-item-text">
-                1. Click on the Enroll button on the front page.
+                1. Click on the Workshops button on the front page.
               </p>
             </li>
             <li class="enrollment-instructions-container-list-item">
               <p class="enrollment-instructions-container-list-item-text">
-                2. Select your county.
+                2. Click on your county for in-person workshops or click on the
+                Online button for online workshops.
               </p>
             </li>
             <li class="enrollment-instructions-container-list-item">
@@ -144,39 +175,24 @@
             </li>
           </ul>
         </div>
-      </dialogue>
-      <section class="about container">
+      </dialog>
+      <section class="about">
         <h2>About Us</h2>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus quo ad
-          molestias porro inventore perspiciatis nihil veritatis aut quos,
-          tempora eius iusto quasi odit. Nihil totam magni obcaecati
-          accusantium? Esse, vel ut officiis animi quasi deserunt omnis. Eaque
-          aliquam dolor quidem obcaecati labore dicta, neque dolorem atque
-          consectetur debitis nam, omnis eum repellendus ex nostrum temporibus,
-          alias numquam autem quas deleniti quasi voluptatibus. Corporis nisi
-          asperiores quisquam sequi veniam repellat ratione quis enim id facere
-          deleniti debitis explicabo molestias eos rerum error sed nulla non
-          quas voluptatum facilis, obcaecati alias temporibus reprehenderit?
-          Veniam nihil, accusantium placeat nisi voluptates commodi hic
-          perferendis dolor impedit quos tempora amet quae. Maxime similique,
-          blanditiis laboriosam, obcaecati illo illum doloremque neque
-          consectetur enim odit labore facilis totam, ex reprehenderit nostrum
-          velit at voluptatem eaque? Laborum, corrupti. Officiis, dolorem hic?
-          Assumenda amet tenetur, quam molestiae quisquam iusto nesciunt
-          asperiores ratione velit dicta, quis deleniti eligendi doloremque eum
-          animi eius libero voluptate natus minima! Delectus veniam placeat ad
-          aut dolorem officiis voluptatem error, vitae porro et rem odit
-          laboriosam ratione. Magni minus quas quia error, consequatur in
-          veritatis hic molestias corrupti quibusdam optio dolor accusamus
-          quidem, quos provident voluptatum adipisci quo ipsum ex deleniti iure
-          fuga nulla velit. Sint minus distinctio facere maxime nam pariatur
-          dolorem necessitatibus. Reiciendis dolor vitae esse ea, fugiat
-          repellendus nesciunt error dicta totam, dolore quibusdam ducimus nemo
-          quam labore, corrupti doloribus repellat nostrum libero facilis sequi
-          ipsam incidunt unde omnis! Aliquid tempore rem animi quae dolorum
-          mollitia magnam amet voluptatibus quis ea?
-        </p>
+
+        <!-- YouTube Video Embed -->
+        <div id="about-video-container" class="about-video-wrapper"></div>
+
+        <!-- Text Paragraph -->
+        <p id="about-text" class="about-description"></p>
+
+        <!-- Swiper Slider Container -->
+        <div class="about-slider swiper">
+          <div id="about-slider-wrapper" class="swiper-wrapper">
+            <!-- Slides will be injected here dynamically -->
+          </div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+        </div>
       </section>
     </main>
 
@@ -208,6 +224,7 @@
                 class="social-list-item-link"
                 href="https://www.facebook.com/RecoveryCollegeSouthEast"
                 target="_blank"
+                rel="noreferrer noopener"
               >
                 <svg
                   class="social-list-item-link-icon social-list-item-link-icon-facebook"
@@ -224,6 +241,7 @@
                 class="social-list-item-link"
                 href="https://www.instagram.com/recoverycollegesoutheast/"
                 target="_blank"
+                rel="noreferrer noopener"
               >
                 <svg
                   class="social-list-item-link-icon-insta social-list-item-link-icon"
@@ -240,6 +258,7 @@
                 class="social-list-item-link"
                 href="https://x.com/RecoverySe"
                 target="_blank"
+                rel="noreferrer noopener"
               >
                 <svg
                   class="social-list-item-link-icon-twitter social-list-item-link-icon"
@@ -267,6 +286,7 @@
                 class="footer-list-location-item-link"
                 href="https://www.google.com/maps/place/Green's+Hill,+Kilkenny/@52.6622865,-7.255686,17z"
                 target="_blank"
+                rel="noreferrer noopener"
                 >Open on maps</a
               >
             </li>

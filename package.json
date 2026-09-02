@@ -18,7 +18,11 @@
     "url": "https://github.com/goitacademy/parcel-project-template/issues"
   },
   "dependencies": {
+    "@fullcalendar/google-calendar": "^7.0.2",
+    "@fullcalendar/icalendar": "^7.0.2",
     "fullcalendar": "^6.1.21",
+    "ical.js": "^2.2.1",
+    "ldrs": "^1.1.9",
     "modern-normalize": "^1.1.0"
   },
   "devDependencies": {

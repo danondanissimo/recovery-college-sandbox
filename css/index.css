@@ -99,6 +99,7 @@ button,
 a {
   display: inline-block;
   transition: transform cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
 }
 
 button:hover,
@@ -126,6 +127,41 @@ textarea {
   opacity: 0;
   pointer-events: none;
   display: none;
+}
+
+.menu-button-open svg,
+.menu-button-open use {
+  pointer-events: none;
+}
+
+.news-spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 0;
+  width: 100%;
+}
+
+.news-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: #2a7b9b; /* Bright red temporarily so it's impossible to miss */
+  border-radius: 50%;
+  animation: news-spin 0.8s linear infinite;
+}
+
+@keyframes news-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+header nav a.is-active,
+.header a.is-active,
+.mobile-menu-item-link.is-active {
+  color: #3b82f6;
+  text-decoration: underline;
+  text-underline-offset: 6px;
 }
 
 .header {
@@ -248,6 +284,11 @@ textarea {
   flex-direction: column;
   padding: 20px 20px 0px 20px;
   width: 170px;
+  transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.mobile-menu.is-open {
+  transform: translateX(0);
 }
 @media screen and (min-width: 1200px) {
   .mobile-menu {
@@ -324,7 +365,8 @@ textarea {
   margin-right: auto;
 }
 
-.hero-list-item-link {
+.hero-list-item-link,
+.hero-list-item-button {
   display: flex;
   border: solid gray 1px;
   border-radius: 20px;
@@ -333,13 +375,35 @@ textarea {
   line-height: 1.4;
 }
 @media screen and (min-width: 768px) {
-  .hero-list-item-link {
+  .hero-list-item-link,
+  .hero-list-item-button {
     border-radius: 25px;
   }
 }
 @media screen and (min-width: 768px) and (max-width: 1199px) {
-  .hero-list-item-link {
+  .hero-list-item-link,
+  .hero-list-item-button {
     padding: 12px 18px;
+  }
+}
+
+.hero-list-item-button {
+  font-family: "Lexend", sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #2a7b9b;
+  font-weight: 400;
+}
+@media screen and (min-width: 768px) {
+  .hero-list-item-button {
+    font-size: 18px;
+    line-height: 1.6;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .hero-list-item-button {
+    font-size: 20px;
+    line-height: 1.5;
   }
 }
 
@@ -367,13 +431,123 @@ textarea {
   border-color: white;
 }
 
+.about {
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 40px 20px;
+}
+@media screen and (min-width: 768px) {
+  .about {
+    padding: 50px 32px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .about {
+    max-width: 1600px;
+    padding: 60px 38px;
+  }
+}
+.about h2 {
+  text-align: center;
+  margin-bottom: 24px;
+  color: #2a7b9b;
+}
+.about .about-video-wrapper {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto 24px auto;
+  aspect-ratio: 16/9;
+  background: #000;
+  border-radius: 8px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.about .about-video-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.about .about-description {
+  font-size: 16px;
+  line-height: 1.6;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  text-align: justify;
+  text-indent: 2em;
+  margin: 30px auto;
+  max-width: 1000px;
+}
+@media screen and (min-width: 768px) {
+  .about .about-description {
+    font-size: 18px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .about .about-description {
+    font-size: 20px;
+  }
+}
+.about .about-slider {
+  width: 100%;
+  max-width: 1000px;
+  min-height: 300px;
+  margin: 0 auto;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+.about .about-slider .swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  background: #000;
+}
+.about .about-slider .swiper-slide img {
+  width: 100%;
+  height: auto;
+  max-height: 500px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
 .enrollment-instructions {
+  position: fixed;
+  inset: 0; /* Stretches it to the edges so margin: auto works */
+  margin: auto;
   padding: 20px;
   border: none;
   border-radius: 5px;
   box-shadow: 0px 2px 35px 5px rgba(0, 0, 0, 0.16);
   background-color: white;
-  z-index: 10000;
+  z-index: 1000;
+}
+
+.enrollment-instructions::backdrop {
+  background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5));
+}
+
+.enrollment-instructions-container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.enrollment-instructions-container-button-close {
+  align-self: end;
+  border: none;
+  background-color: transparent;
+  padding: 0;
+}
+
+.enrollment-instructions-container-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 25px;
 }
 
 .footer {
@@ -528,6 +702,11 @@ textarea {
 
 .team-list-item-image {
   width: 200px;
+  height: 200px; /* Forces a fixed square height */
+  -o-object-fit: cover;
+     object-fit: cover; /* Crops excess and centers the image automatically */
+  -o-object-position: center;
+     object-position: center; /* Ensures the focal point stays centered */
   display: block;
 }
 
@@ -550,6 +729,7 @@ textarea {
     justify-content: center;
     align-items: center;
     background-color: #9bb4ca;
+    padding: 0;
   }
 }
 .workshops-counties {
@@ -566,7 +746,15 @@ textarea {
 }
 @media screen and (min-width: 1200px) {
   .workshops-counties-list {
-    display: none;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
   }
 }
 
@@ -574,7 +762,7 @@ textarea {
   flex: 1 1 150px;
 }
 
-.workshops-counties-list-item-button {
+.workshops-counties-list-item-link {
   width: 100%;
   justify-content: center;
   padding: 10px 20px;
@@ -583,7 +771,29 @@ textarea {
   border: solid 1px white;
 }
 
-.workshops-counties-list-item:nth-child(even) .workshops-counties-list-item-button {
+.workshop-counties-list-item-link-online {
+  display: block;
+  position: relative;
+  margin-top: 10px;
+  text-align: center;
+}
+@media screen and (min-width: 1200px) {
+  .workshop-counties-list-item-link-online {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 0;
+    z-index: 10;
+    width: 250px;
+  }
+}
+
+.workshop-counties-list-item-link-online:hover {
+  transform: translateX(-50%) scale(1.05); /* Adjust the scale value as needed */
+}
+
+.workshops-counties-list-item:nth-child(even) .workshops-counties-list-item-link {
   background-color: white;
   color: #2a7b9b;
   border-color: #2a7b9b;
@@ -627,6 +837,41 @@ textarea {
   }
 }
 
+/* 1. Force FullCalendar to respect inline background colors from Google Calendar */
+.fc-daygrid-event[style*=background-color] {
+  background-color: inherit !important;
+  border: none !important;
+}
+
+/* Base event pill layout & padding */
+.fc-daygrid-event {
+  border: none !important;
+  padding: 3px 6px !important;
+  border-radius: 4px !important;
+  margin-bottom: 3px !important;
+}
+
+/* Text truncation */
+.fc-daygrid-event .fc-event-title {
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  font-weight: 600 !important;
+}
+
+/* White text with crisp black outline */
+.fc-daygrid-event .fc-event-title,
+.fc-daygrid-event .fc-event-time,
+.fc-timegrid-event .fc-event-title,
+.fc-timegrid-event .fc-timegrid-time {
+  color: #ffffff !important;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+.fc-daygrid-day-frame {
+  min-height: 110px !important;
+}
+
 .news-list {
   display: flex;
   gap: 15px;
@@ -648,14 +893,14 @@ textarea {
   padding: 0px 15px 15px 15px;
   border: 1px solid #f0f0f0;
   border-radius: 10px;
-  max-height: 600px;
+  max-height: 850px;
   overflow: scroll;
   box-shadow: 4px 2px 33px 2px rgba(0, 0, 0, 0.16);
   overflow-x: hidden;
 }
 
 .news-list-item-article {
-  display: flow-root; /* This creates a "block formatting context" */
+  display: flow-root;
   padding-top: 15px;
 }
 
@@ -672,38 +917,54 @@ textarea {
 }
 
 .content-group {
-  display: flow-root; /* Force the container to wrap around the floated image */
-  padding: 15px 0px;
+  display: flow-root;
+  margin-bottom: 25px;
+}
+
+.news-list-item-article-poster {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 650px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  border-radius: 8px;
+  margin-bottom: 20px;
 }
 
 .news-list-item-article-photo {
-  float: left; /* This is what makes the text wrap around it */
-  max-width: 45%; /* Keeps it from taking up the whole width */
-  max-height: 250px; /* Prevents vertical images from being too tall */
-  margin-right: 20px; /* Adds breathing room between photo and text */
+  float: left;
+  max-width: 34%; /* Reduced by ~30% from 48% */
+  height: auto;
+  max-height: 350px; /* Reduced by 30% from 500px */
+  -o-object-fit: contain;
+     object-fit: contain;
+  margin-right: 20px;
   margin-bottom: 10px;
   border-radius: 5px;
-  display: block; /* Ensures float works correctly */
+  display: block;
 }
 
 .news-list-item-article-photo.is-right {
   float: right;
-  margin-right: 0; /* Remove right margin */
-  margin-left: 20px; /* Add margin to the left instead */
+  margin-right: 0;
+  margin-left: 20px;
 }
 
 .news-list-item-article-photo.is-divider {
-  float: none; /* Stop floating! */
-  display: block; /* Makes it sit on its own line */
-  width: 100%; /* Forces it to take up the full width */
-  max-width: 100%; /* Override the 50% max-width of your default class */
-  aspect-ratio: 16/9; /* Ensures it keeps the 16x9 shape */
-  -o-object-fit: cover;
-     object-fit: cover; /* Ensures it looks clean regardless of original size */
-  margin: 20px 0; /* Adds space above and below the image */
+  float: none;
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  max-height: 800px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  border-radius: 8px;
+  margin: 20px 0;
 }
 
 .news-list-item-article-text {
-  margin: 0; /* Remove top margin so text starts flush with the top of the photo */
-  text-align: justify; /* Optional: makes it look more like a magazine layout */
+  margin: 0;
+  text-align: justify;
 }/*# sourceMappingURL=index.css.map */

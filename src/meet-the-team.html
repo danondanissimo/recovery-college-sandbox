@@ -3,14 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Meet the team</title>
+    <title>Meet the team | Recovery College South East</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="./images/icons/favicon.svg?v=2"
+    />
     <link rel="stylesheet" href="../css/index.css" />
+    <script type="module" src="./index.js"></script>
+    <script type="module" src="./js/meet-the-team.js"></script>
   </head>
   <body>
     <header class="header">
@@ -27,7 +34,7 @@
               ></use>
             </svg>
           </a>
-          <button class="menu-button-open">
+          <button class="menu-button-open" id="menu-button-open">
             <svg class="menu-button-open-icon" viewBox="0 0 24 24">
               <use href="./images/icons/menu.svg#hamburger"></use>
             </svg>
@@ -37,7 +44,9 @@
               <a class="desktop-menu-item-link" href="./index.html">Home</a>
             </li>
             <li class="desktop-menu-item">
-              <a class="desktop-menu-item-link" href="./news.html">News</a>
+              <a class="desktop-menu-item-link" href="./news.html"
+                >Noticeboard</a
+              >
             </li>
             <li class="desktop-menu-item">
               <a class="desktop-menu-item-link" href="./meet-the-team.html"
@@ -64,7 +73,7 @@
           <a class="mobile-menu-item-link" href="./index.html">Home</a>
         </li>
         <li class="mobile-menu-item">
-          <a class="mobile-menu-item-link" href="./news.html">News</a>
+          <a class="mobile-menu-item-link" href="./news.html">Noticeboard</a>
         </li>
         <li class="mobile-menu-item">
           <a class="mobile-menu-item-link" href="./meet-the-team.html"
@@ -87,98 +96,7 @@
           reprehenderit, tempore, ab nobis quo a magnam modi. Delectus, iusto
           facere.
         </p>
-        <ul class="team-list">
-          <li class="team-list-item">
-            <img
-              src="https://images.pexels.com/photos/6942776/pexels-photo-6942776.jpeg?_gl=1*hfx0bg*_ga*NDMyMzA1MzMzLjE3NzM2NjA3Njk.*_ga_8JE65Q40S6*czE3ODIxMjM5MzkkbzcwJGcxJHQxNzgyMTI0MTAyJGo1OSRsMCRoMA.."
-              alt=""
-              class="team-list-item-image"
-            />
-            <p class="team-list-item-name">Name Surname</p>
-            <p class="team-list-item-position">Position</p>
-          </li>
-          <li class="team-list-item">
-            <img
-              src="https://images.pexels.com/photos/6942776/pexels-photo-6942776.jpeg?_gl=1*hfx0bg*_ga*NDMyMzA1MzMzLjE3NzM2NjA3Njk.*_ga_8JE65Q40S6*czE3ODIxMjM5MzkkbzcwJGcxJHQxNzgyMTI0MTAyJGo1OSRsMCRoMA.."
-              alt=""
-              class="team-list-item-image"
-            />
-            <p class="team-list-item-name">Name Surname</p>
-            <p class="team-list-item-position">Position</p>
-          </li>
-          <li class="team-list-item">
-            <img
-              src="https://images.pexels.com/photos/6942776/pexels-photo-6942776.jpeg?_gl=1*hfx0bg*_ga*NDMyMzA1MzMzLjE3NzM2NjA3Njk.*_ga_8JE65Q40S6*czE3ODIxMjM5MzkkbzcwJGcxJHQxNzgyMTI0MTAyJGo1OSRsMCRoMA.."
-              alt=""
-              class="team-list-item-image"
-            />
-            <p class="team-list-item-name">Name Surname</p>
-            <p class="team-list-item-position">Position</p>
-          </li>
-          <li class="team-list-item">
-            <img
-              src="https://images.pexels.com/photos/6942776/pexels-photo-6942776.jpeg?_gl=1*hfx0bg*_ga*NDMyMzA1MzMzLjE3NzM2NjA3Njk.*_ga_8JE65Q40S6*czE3ODIxMjM5MzkkbzcwJGcxJHQxNzgyMTI0MTAyJGo1OSRsMCRoMA.."
-              alt=""
-              class="team-list-item-image"
-            />
-            <p class="team-list-item-name">Name Surname</p>
-            <p class="team-list-item-position">Position</p>
-          </li>
-          <li class="team-list-item">
-            <img
-              src="https://images.pexels.com/photos/6942776/pexels-photo-6942776.jpeg?_gl=1*hfx0bg*_ga*NDMyMzA1MzMzLjE3NzM2NjA3Njk.*_ga_8JE65Q40S6*czE3ODIxMjM5MzkkbzcwJGcxJHQxNzgyMTI0MTAyJGo1OSRsMCRoMA.."
-              alt=""
-              class="team-list-item-image"
-            />
-            <p class="team-list-item-name">Name Surname</p>
-            <p class="team-list-item-position">Position</p>
-          </li>
-          <li class="team-list-item">
-            <img
-              src="https://images.pexels.com/photos/6942776/pexels-photo-6942776.jpeg?_gl=1*hfx0bg*_ga*NDMyMzA1MzMzLjE3NzM2NjA3Njk.*_ga_8JE65Q40S6*czE3ODIxMjM5MzkkbzcwJGcxJHQxNzgyMTI0MTAyJGo1OSRsMCRoMA.."
-              alt=""
-              class="team-list-item-image"
-            />
-            <p class="team-list-item-name">Name Surname</p>
-            <p class="team-list-item-position">Position</p>
-          </li>
-          <li class="team-list-item">
-            <img
-              src="https://images.pexels.com/photos/6942776/pexels-photo-6942776.jpeg?_gl=1*hfx0bg*_ga*NDMyMzA1MzMzLjE3NzM2NjA3Njk.*_ga_8JE65Q40S6*czE3ODIxMjM5MzkkbzcwJGcxJHQxNzgyMTI0MTAyJGo1OSRsMCRoMA.."
-              alt=""
-              class="team-list-item-image"
-            />
-            <p class="team-list-item-name">Name Surname</p>
-            <p class="team-list-item-position">Position</p>
-          </li>
-          <li class="team-list-item">
-            <img
-              src="https://images.pexels.com/photos/6942776/pexels-photo-6942776.jpeg?_gl=1*hfx0bg*_ga*NDMyMzA1MzMzLjE3NzM2NjA3Njk.*_ga_8JE65Q40S6*czE3ODIxMjM5MzkkbzcwJGcxJHQxNzgyMTI0MTAyJGo1OSRsMCRoMA.."
-              alt=""
-              class="team-list-item-image"
-            />
-            <p class="team-list-item-name">Name Surname</p>
-            <p class="team-list-item-position">Position</p>
-          </li>
-          <li class="team-list-item">
-            <img
-              src="https://images.pexels.com/photos/6942776/pexels-photo-6942776.jpeg?_gl=1*hfx0bg*_ga*NDMyMzA1MzMzLjE3NzM2NjA3Njk.*_ga_8JE65Q40S6*czE3ODIxMjM5MzkkbzcwJGcxJHQxNzgyMTI0MTAyJGo1OSRsMCRoMA.."
-              alt=""
-              class="team-list-item-image"
-            />
-            <p class="team-list-item-name">Name Surname</p>
-            <p class="team-list-item-position">Position</p>
-          </li>
-          <li class="team-list-item">
-            <img
-              src="https://images.pexels.com/photos/6942776/pexels-photo-6942776.jpeg?_gl=1*hfx0bg*_ga*NDMyMzA1MzMzLjE3NzM2NjA3Njk.*_ga_8JE65Q40S6*czE3ODIxMjM5MzkkbzcwJGcxJHQxNzgyMTI0MTAyJGo1OSRsMCRoMA.."
-              alt=""
-              class="team-list-item-image"
-            />
-            <p class="team-list-item-name">Name Surname</p>
-            <p class="team-list-item-position">Position</p>
-          </li>
-        </ul>
+        <ul class="team-list" id="team-list"></ul>
       </section>
     </main>
 
@@ -210,6 +128,7 @@
                 class="social-list-item-link"
                 href="https://www.facebook.com/RecoveryCollegeSouthEast"
                 target="_blank"
+                rel="noreferrer noopener"
               >
                 <svg
                   class="social-list-item-link-icon social-list-item-link-icon-facebook"
@@ -226,6 +145,7 @@
                 class="social-list-item-link"
                 href="https://www.instagram.com/recoverycollegesoutheast/"
                 target="_blank"
+                rel="noreferrer noopener"
               >
                 <svg
                   class="social-list-item-link-icon-insta social-list-item-link-icon"
@@ -242,6 +162,7 @@
                 class="social-list-item-link"
                 href="https://x.com/RecoverySe"
                 target="_blank"
+                rel="noreferrer noopener"
               >
                 <svg
                   class="social-list-item-link-icon-twitter social-list-item-link-icon"
@@ -269,6 +190,7 @@
                 class="footer-list-location-item-link"
                 href="https://www.google.com/maps/place/Green's+Hill,+Kilkenny/@52.6622865,-7.255686,17z"
                 target="_blank"
+                rel="noreferrer noopener"
                 >Open on maps</a
               >
             </li>

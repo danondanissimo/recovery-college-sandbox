@@ -3,14 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>News</title>
+    <title>Noticeboard | Recovery College South East</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="./images/icons/favicon.svg?v=2"
+    />
     <link rel="stylesheet" href="../css/index.css" />
+    <script type="module" src="./index.js"></script>
+    <script type="module" src="./js/news.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
 
   <body>
@@ -28,7 +36,7 @@
               ></use>
             </svg>
           </a>
-          <button class="menu-button-open">
+          <button class="menu-button-open" id="menu-button-open">
             <svg class="menu-button-open-icon" viewBox="0 0 24 24">
               <use href="./images/icons/menu.svg#hamburger"></use>
             </svg>
@@ -38,7 +46,9 @@
               <a class="desktop-menu-item-link" href="./index.html">Home</a>
             </li>
             <li class="desktop-menu-item">
-              <a class="desktop-menu-item-link" href="./news.html">News</a>
+              <a class="desktop-menu-item-link" href="./news.html"
+                >Noticeboard</a
+              >
             </li>
             <li class="desktop-menu-item">
               <a class="desktop-menu-item-link" href="./meet-the-team.html"
@@ -65,7 +75,7 @@
           <a class="mobile-menu-item-link" href="./index.html">Home</a>
         </li>
         <li class="mobile-menu-item">
-          <a class="mobile-menu-item-link" href="./news.html">News</a>
+          <a class="mobile-menu-item-link" href="./news.html">Noticeboard</a>
         </li>
         <li class="mobile-menu-item">
           <a class="mobile-menu-item-link" href="./meet-the-team.html"
@@ -80,234 +90,7 @@
 
     <main>
       <section class="news container">
-        <ul class="news-list">
-          <li class="news-list-item">
-            <article class="news-list-item-article">
-              <div class="news-list-item-article-head">
-                <h2 class="news-list-item-article-head-header">
-                  Lorem, ipsum.
-                </h2>
-                <p class="news-list-item-article-head-date">
-                  Published on: <time datetime="2026-06-26">June 26, 2026</time>
-                </p>
-              </div>
-              <div class="content-group">
-                <img
-                  src="https://picsum.photos/400/300"
-                  alt=""
-                  class="news-list-item-article-photo"
-                />
-                <p class="news-list-item-article-text">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed
-                  laudantium cupiditate libero voluptatibus earum excepturi vel?
-                  Doloribus distinctio corrupti sint, unde aut itaque quia at
-                  obcaecati velit eos non, voluptatibus ea eius explicabo
-                  aliquid commodi, natus modi excepturi odio magnam. Lorem ipsum
-                  dolor sit amet consectetur adipisicing elit. Repellat sed
-                  culpa cum quo magnam amet quam quae necessitatibus esse iste
-                  nulla fugiat officia repellendus, eaque consectetur
-                  consequatur ducimus, natus labore numquam commodi tempora.
-                  Veritatis natus provident recusandae veniam soluta optio.
-                </p>
-              </div>
-              <p class="news-list-item-article-text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla,
-                inventore fuga in sapiente quaerat provident labore nobis itaque
-                amet nisi. Lorem ipsum dolor sit amet consectetur adipisicing
-                elit. Amet cum beatae consequuntur reiciendis voluptatem, id
-                assumenda eligendi ullam molestiae iusto molestias neque omnis
-                voluptatum! Praesentium earum at recusandae cumque autem.
-              </p>
-              <div class="content-group">
-                <img
-                  src="https://picsum.photos/700/400"
-                  alt=""
-                  class="news-list-item-article-photo is-right"
-                />
-                <p class="news-list-item-article-text">
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Architecto natus quibusdam, nam laudantium est, praesentium
-                  quasi corrupti cupiditate provident accusantium voluptatem
-                  possimus tempora hic minus dolores suscipit debitis odit.
-                  Minima molestias quae voluptas doloremque repudiandae nisi
-                  reprehenderit perferendis vitae incidunt, molestiae repellat
-                  ea modi eum eligendi, sed quasi laborum eaque! Lorem ipsum
-                  dolor sit amet consectetur adipisicing elit. Vel ea error
-                  doloremque. Quasi maiores earum error, nobis beatae vel
-                  impedit repudiandae iure adipisci quos? Sit blanditiis
-                  consectetur eos aliquid rem soluta quo laudantium? Provident
-                  exercitationem cumque ut sequi temporibus quod ab voluptates,
-                  quo blanditiis? Aperiam itaque suscipit quis ipsam quasi
-                  placeat nemo enim expedita fugiat laudantium, error vero
-                  aliquam minus voluptates amet reiciendis omnis molestiae
-                  deleniti? Sint nam ipsam a ullam expedita libero iste, ea aut
-                  saepe, rerum amet at nobis dolore, harum cum dignissimos.
-                  Repellat, autem, velit delectus esse ab sequi dicta officiis
-                  cupiditate amet asperiores impedit earum ratione sint commodi!
-                  Quo quae, natus, quam alias eos autem aliquam quibusdam esse
-                  rem quas illo dolore unde nobis ullam. Quo unde impedit in
-                  voluptas! Placeat obcaecati nihil commodi excepturi maxime
-                  expedita illo quia minima laudantium vero quibusdam, vitae
-                  optio tempora blanditiis! Natus fuga vero sunt perferendis
-                  necessitatibus eum adipisci, architecto recusandae incidunt
-                  omnis rerum vel non delectus ad odit corporis. A similique
-                  obcaecati totam optio aspernatur, doloremque alias fugiat
-                  incidunt illum, vitae accusamus reprehenderit dolorem tenetur
-                  modi. Suscipit quo porro culpa iste exercitationem in neque
-                  fuga impedit nobis, sit aspernatur, dicta laborum dolorum!
-                  Iste, perferendis minima! Consectetur repellendus corporis
-                  officiis!
-                </p>
-              </div>
-
-              <p class="news-list-item-article-text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro
-                enim blanditiis eius commodi nihil? Voluptatum, odit tempora
-                quaerat modi, recusandae corporis animi provident eum officiis
-                reprehenderit fugiat? Iste ut, exercitationem architecto,
-                aperiam eaque nesciunt fugiat doloremque quo rem nemo
-                consequuntur animi? Labore, veritatis officiis hic ipsam iusto
-                exercitationem rem dicta. Ut mollitia modi minus nobis expedita
-                facere dolor quod assumenda eos non! Mollitia qui, ipsa quia et
-                animi impedit explicabo eaque esse fuga facere unde doloremque
-                velit molestias officiis libero, non deleniti maxime, atque sunt
-                quod debitis! Perferendis reiciendis cum voluptatem dolor
-                voluptate, similique, explicabo fuga molestias temporibus, nam
-                architecto!
-              </p>
-              <img
-                src="https://picsum.photos/1080/1920"
-                alt=""
-                class="news-list-item-article-photo is-divider"
-              />
-              <p class="news-list-item-article-text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro
-                enim blanditiis eius commodi nihil? Voluptatum, odit tempora
-                quaerat modi, recusandae corporis animi provident eum officiis
-                reprehenderit fugiat? Iste ut, exercitationem architecto,
-                aperiam eaque nesciunt fugiat doloremque quo rem nemo
-                consequuntur animi? Labore, veritatis officiis hic ipsam iusto
-                exercitationem rem dicta. Ut mollitia modi minus nobis expedita
-                facere dolor quod assumenda eos non! Mollitia qui, ipsa quia et
-                animi impedit explicabo eaque esse fuga facere unde doloremque
-                velit molestias officiis libero, non deleniti maxime, atque sunt
-                quod debitis! Perferendis reiciendis cum voluptatem dolor
-                voluptate, similique, explicabo fuga molestias temporibus, nam
-                architecto!
-              </p>
-            </article>
-          </li>
-          <li class="news-list-item">
-            <article class="news-list-item-article">
-              <h2 class="news-list-item-article-header">Lorem, ipsum.</h2>
-              <p class="news-list-item-article-date">
-                Published on: <time datetime="2026-06-26">June 26, 2026</time>
-              </p>
-              <img
-                src="https://picsum.photos/400/300"
-                alt=""
-                class="news-list-item-article-photo"
-              />
-              <p class="news-list-item-article-text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Facilis, voluptatum? Quam inventore porro similique, distinctio
-                excepturi minima corporis quidem iusto deserunt hic nemo non ab
-                voluptates, fugit ipsum! Consequatur eius repudiandae recusandae
-                earum deserunt similique expedita debitis quas quod quasi
-                soluta, asperiores enim qui, temporibus deleniti sunt distinctio
-                perspiciatis placeat.
-              </p>
-            </article>
-          </li>
-          <li class="news-list-item">
-            <article class="news-list-item-article">
-              <h2 class="news-list-item-article-header">Lorem, ipsum.</h2>
-              <p class="news-list-item-article-date">
-                Published on: <time datetime="2026-06-26">June 26, 2026</time>
-              </p>
-              <img
-                src="https://picsum.photos/400/300"
-                alt=""
-                class="news-list-item-article-photo"
-              />
-              <p class="news-list-item-article-text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Facilis, voluptatum? Quam inventore porro similique, distinctio
-                excepturi minima corporis quidem iusto deserunt hic nemo non ab
-                voluptates, fugit ipsum! Consequatur eius repudiandae recusandae
-                earum deserunt similique expedita debitis quas quod quasi
-                soluta, asperiores enim qui, temporibus deleniti sunt distinctio
-                perspiciatis placeat.
-              </p>
-            </article>
-          </li>
-          <li class="news-list-item">
-            <article class="news-list-item-article">
-              <h2 class="news-list-item-article-header">Lorem, ipsum.</h2>
-              <p class="news-list-item-article-date">
-                Published on: <time datetime="2026-06-26">June 26, 2026</time>
-              </p>
-              <img
-                src="https://picsum.photos/400/300"
-                alt=""
-                class="news-list-item-article-photo"
-              />
-              <p class="news-list-item-article-text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Facilis, voluptatum? Quam inventore porro similique, distinctio
-                excepturi minima corporis quidem iusto deserunt hic nemo non ab
-                voluptates, fugit ipsum! Consequatur eius repudiandae recusandae
-                earum deserunt similique expedita debitis quas quod quasi
-                soluta, asperiores enim qui, temporibus deleniti sunt distinctio
-                perspiciatis placeat.
-              </p>
-            </article>
-          </li>
-          <li class="news-list-item">
-            <article class="news-list-item-article">
-              <h2 class="news-list-item-article-header">Lorem, ipsum.</h2>
-              <p class="news-list-item-article-date">
-                Published on: <time datetime="2026-06-26">June 26, 2026</time>
-              </p>
-              <img
-                src="https://picsum.photos/400/300"
-                alt=""
-                class="news-list-item-article-photo"
-              />
-              <p class="news-list-item-article-text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Facilis, voluptatum? Quam inventore porro similique, distinctio
-                excepturi minima corporis quidem iusto deserunt hic nemo non ab
-                voluptates, fugit ipsum! Consequatur eius repudiandae recusandae
-                earum deserunt similique expedita debitis quas quod quasi
-                soluta, asperiores enim qui, temporibus deleniti sunt distinctio
-                perspiciatis placeat.
-              </p>
-            </article>
-          </li>
-          <li class="news-list-item">
-            <article class="news-list-item-article">
-              <h2 class="news-list-item-article-header">Lorem, ipsum.</h2>
-              <p class="news-list-item-article-date">
-                Published on: <time datetime="2026-06-26">June 26, 2026</time>
-              </p>
-              <img
-                src="https://picsum.photos/400/300"
-                alt=""
-                class="news-list-item-article-photo"
-              />
-              <p class="news-list-item-article-text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Facilis, voluptatum? Quam inventore porro similique, distinctio
-                excepturi minima corporis quidem iusto deserunt hic nemo non ab
-                voluptates, fugit ipsum! Consequatur eius repudiandae recusandae
-                earum deserunt similique expedita debitis quas quod quasi
-                soluta, asperiores enim qui, temporibus deleniti sunt distinctio
-                perspiciatis placeat.
-              </p>
-            </article>
-          </li>
-        </ul>
+        <ul class="news-list"></ul>
       </section>
     </main>
 
@@ -339,6 +122,7 @@
                 class="social-list-item-link"
                 href="https://www.facebook.com/RecoveryCollegeSouthEast"
                 target="_blank"
+                rel="noreferrer noopener"
               >
                 <svg
                   class="social-list-item-link-icon social-list-item-link-icon-facebook"
@@ -355,6 +139,7 @@
                 class="social-list-item-link"
                 href="https://www.instagram.com/recoverycollegesoutheast/"
                 target="_blank"
+                rel="noreferrer noopener"
               >
                 <svg
                   class="social-list-item-link-icon-insta social-list-item-link-icon"
@@ -371,6 +156,7 @@
                 class="social-list-item-link"
                 href="https://x.com/RecoverySe"
                 target="_blank"
+                rel="noreferrer noopener"
               >
                 <svg
                   class="social-list-item-link-icon-twitter social-list-item-link-icon"
@@ -398,6 +184,7 @@
                 class="footer-list-location-item-link"
                 href="https://www.google.com/maps/place/Green's+Hill,+Kilkenny/@52.6622865,-7.255686,17z"
                 target="_blank"
+                rel="noreferrer noopener"
                 >Open on maps</a
               >
             </li>

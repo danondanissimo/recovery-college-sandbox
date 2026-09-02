@@ -4,6 +4,7 @@
     justify-content: center;
     align-items: center;
     background-color: #9bb4ca;
+    padding: 0;
   }
   width: 100%;
   overflow: hidden;
@@ -16,7 +17,15 @@
   flex-wrap: wrap;
   gap: 10px;
   @media screen and (min-width: $breakpoint-desktop) {
-    display: none;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
   }
 }
 
@@ -24,7 +33,7 @@
   flex: 1 1 150px;
 }
 
-.workshops-counties-list-item-button {
+.workshops-counties-list-item-link {
   width: 100%;
   justify-content: center;
   padding: 10px 20px;
@@ -33,8 +42,30 @@
   border: solid 1px $secondary-color;
 }
 
+.workshop-counties-list-item-link-online {
+  display: block;
+
+  position: relative;
+
+  margin-top: 10px;
+  text-align: center;
+  @media screen and (min-width: $breakpoint-desktop) {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 0;
+    z-index: 10;
+    width: 250px;
+  }
+}
+
+.workshop-counties-list-item-link-online:hover {
+  transform: translateX(-50%) scale(1.05); /* Adjust the scale value as needed */
+}
+
 .workshops-counties-list-item:nth-child(even)
-  .workshops-counties-list-item-button {
+  .workshops-counties-list-item-link {
   background-color: $secondary-color;
   color: $main-color;
   border-color: $main-color;
@@ -81,4 +112,42 @@
   @media screen and (max-width: $max-mobile-width) {
     height: 570px;
   }
+}
+/* 1. Force FullCalendar to respect inline background colors from Google Calendar */
+.fc-daygrid-event[style*='background-color'] {
+  background-color: inherit !important;
+  border: none !important;
+}
+
+/* Base event pill layout & padding */
+.fc-daygrid-event {
+  border: none !important;
+  padding: 3px 6px !important;
+  border-radius: 4px !important;
+  margin-bottom: 3px !important;
+}
+
+/* Text truncation */
+.fc-daygrid-event .fc-event-title {
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  font-weight: 600 !important;
+}
+
+/* White text with crisp black outline */
+.fc-daygrid-event .fc-event-title,
+.fc-daygrid-event .fc-event-time,
+.fc-timegrid-event .fc-event-title,
+.fc-timegrid-event .fc-timegrid-time {
+  color: #ffffff !important;
+  text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+
+.fc-daygrid-day-frame {
+  min-height: 110px !important;
 }

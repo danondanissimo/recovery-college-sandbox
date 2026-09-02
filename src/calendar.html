@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Calendar</title>
+    <title>Calendar | Recovery College South East</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -12,32 +12,12 @@
     />
     <link rel="stylesheet" href="../css/index.css" />
 
-    <!-- <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.21/index.global.min.js"></script> -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/google-calendar@6.1.15/index.global.min.js"></script> -->
-    <!-- <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        var calendarEl = document.getElementById('calendar');
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-          initialView: 'dayGridMonth',
-        });
-        calendar.render();
-      });
-    </script> -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/google-calendar@6.1.15/index.global.min.js"></script> -->
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.21/index.global.min.js"></script>
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        var calendarEl = document.getElementById('calendar');
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-          initialView: 'dayGridMonth',
-        });
-        calendar.render();
-      });
-    </script>
-    <script src="./index.js"></script>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="./images/icons/favicon.svg?v=2"
+    />
+    <script type="module" src="./index.js"></script>
   </head>
 
   <body>
@@ -55,7 +35,7 @@
               ></use>
             </svg>
           </a>
-          <button class="menu-button-open">
+          <button class="menu-button-open" id="menu-button-open">
             <svg class="menu-button-open-icon" viewBox="0 0 24 24">
               <use href="./images/icons/menu.svg#hamburger"></use>
             </svg>
@@ -65,7 +45,9 @@
               <a class="desktop-menu-item-link" href="./index.html">Home</a>
             </li>
             <li class="desktop-menu-item">
-              <a class="desktop-menu-item-link" href="./news.html">News</a>
+              <a class="desktop-menu-item-link" href="./news.html"
+                >Noticeboard</a
+              >
             </li>
             <li class="desktop-menu-item">
               <a class="desktop-menu-item-link" href="./meet-the-team.html"
@@ -92,7 +74,7 @@
           <a class="mobile-menu-item-link" href="./index.html">Home</a>
         </li>
         <li class="mobile-menu-item">
-          <a class="mobile-menu-item-link" href="./news.html">News</a>
+          <a class="mobile-menu-item-link" href="./news.html">Noticeboard</a>
         </li>
         <li class="mobile-menu-item">
           <a class="mobile-menu-item-link" href="./meet-the-team.html"
@@ -107,47 +89,7 @@
 
     <main>
       <section class="enrolment-section container">
-        <dialog class="enrolment-form-container">
-          <h2>Enrolment Form</h2>
-          <form name="signup_form" autocomplete="on" novalidate method="dialog">
-            <button>Close</button>
-            <fieldset>
-              <legend>Personal Details</legend>
-              <label class="enrolment-form-label"
-                >Workshop Title<input type="text"
-              /></label>
-              <label class="enrolment-form-label"
-                >First Name<input type="text" name="firstName"
-              /></label>
-              <label class="enrolment-form-label"
-                >Last Name<input type="text" name="lastName"
-              /></label>
-              <label class="enrolment-form-label"
-                >Phone<input type="tel" name="phone"
-              /></label>
-              <label class="enrolment-form-label"
-                >Address<input type="text" name="address"
-              /></label>
-              <label class="enrolment-form-label"
-                >Email
-                <input type="email" name="email" />
-              </label>
-            </fieldset>
-            <fieldset>
-              <legend>Emergency Contact</legend>
-              <label class="enrolment-form-label"
-                >Name<input type="text" name="emergencyName"
-              /></label>
-              <label class="enrolment-form-label"
-                >Phone<input type="tel" name="emergencyPhone"
-              /></label>
-            </fieldset>
-
-            <label>Consent<input type="checkbox" /></label>
-            <label>Date<input type="date" name="date" /></label>
-            <button type="submit">Submit</button>
-          </form>
-        </dialog>
+        <h1 id="calendar-title">Workshops Calendar</h1>
         <div id="calendar" class="calendar"></div>
       </section>
     </main>
@@ -180,6 +122,7 @@
                 class="social-list-item-link"
                 href="https://www.facebook.com/RecoveryCollegeSouthEast"
                 target="_blank"
+                rel="noreferrer noopener"
               >
                 <svg
                   class="social-list-item-link-icon social-list-item-link-icon-facebook"
@@ -196,6 +139,7 @@
                 class="social-list-item-link"
                 href="https://www.instagram.com/recoverycollegesoutheast/"
                 target="_blank"
+                rel="noreferrer noopener"
               >
                 <svg
                   class="social-list-item-link-icon-insta social-list-item-link-icon"
@@ -212,6 +156,7 @@
                 class="social-list-item-link"
                 href="https://x.com/RecoverySe"
                 target="_blank"
+                rel="noreferrer noopener"
               >
                 <svg
                   class="social-list-item-link-icon-twitter social-list-item-link-icon"
@@ -239,6 +184,7 @@
                 class="footer-list-location-item-link"
                 href="https://www.google.com/maps/place/Green's+Hill,+Kilkenny/@52.6622865,-7.255686,17z"
                 target="_blank"
+                rel="noreferrer noopener"
                 >Open on maps</a
               >
             </li>

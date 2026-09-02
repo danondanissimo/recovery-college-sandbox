@@ -44,7 +44,8 @@
   margin-right: auto;
 }
 
-.hero-list-item-link {
+.hero-list-item-link,
+.hero-list-item-button {
   display: flex;
   border: solid $tertiary-color 1px;
   border-radius: 20px;
@@ -57,6 +58,22 @@
   }
   @media screen and (min-width: $breakpoint-tablet) and (max-width: $max-tablet-width) {
     padding: 12px 18px;
+  }
+}
+
+.hero-list-item-button {
+  font-family: 'Lexend', sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: $main-color;
+  font-weight: 400;
+  @media screen and (min-width: $breakpoint-tablet) {
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  @media screen and (min-width: $breakpoint-desktop) {
+    font-size: 20px;
+    line-height: 1.5;
   }
 }
 
@@ -86,4 +103,88 @@
   color: $secondary-color;
   background-color: $main-color;
   border-color: $secondary-color;
+}
+
+.about {
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 40px 20px;
+
+  @media screen and (min-width: $breakpoint-tablet) {
+    padding: 50px 32px;
+  }
+
+  @media screen and (min-width: $breakpoint-desktop) {
+    max-width: 1600px; // Matches your hero container's desktop width perfectly
+    padding: 60px 38px;
+  }
+
+  h2 {
+    text-align: center;
+    margin-bottom: 24px;
+    color: $main-color;
+  }
+
+  .about-video-wrapper {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto 24px auto;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    border-radius: 8px;
+    overflow: hidden;
+    box-sizing: border-box;
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+  }
+
+  .about-description {
+    font-size: 16px;
+    line-height: 1.6;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    text-align: justify;
+    text-indent: 2em;
+    margin: 30px auto;
+    max-width: 1000px;
+
+    @media screen and (min-width: $breakpoint-tablet) {
+      font-size: 18px;
+    }
+    @media screen and (min-width: $breakpoint-desktop) {
+      font-size: 20px;
+    }
+  }
+
+  .about-slider {
+    width: 100%;
+    max-width: 1000px;
+    min-height: 300px;
+    margin: 0 auto;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+
+    .swiper-slide {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: auto;
+      background: #000;
+
+      img {
+        width: 100%;
+        height: auto;
+        max-height: 500px;
+        object-fit: contain;
+      }
+    }
+  }
 }

@@ -3,24 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Workshops</title>
+    <title>Workshops | Recovery College South East</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="./images/icons/favicon.svg?v=2"
+    />
     <link rel="stylesheet" href="../css/index.css" />
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.21/index.global.min.js"></script>
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        var calendarEl = document.getElementById('calendar');
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-          initialView: 'dayGridMonth',
-        });
-        calendar.render();
-      });
-    </script>
+    <script type="module" src="./index.js"></script>
   </head>
 
   <body>
@@ -38,17 +34,19 @@
               ></use>
             </svg>
           </a>
-          <button class="menu-button-open">
+          <button class="menu-button-open" id="menu-button-open">
             <svg class="menu-button-open-icon" viewBox="0 0 24 24">
               <use href="./images/icons/menu.svg#hamburger"></use>
             </svg>
           </button>
           <ul class="desktop-menu-list">
             <li class="desktop-menu-item">
-              <a class="desktop-menu-item-link" href="./calendar.html">Home</a>
+              <a class="desktop-menu-item-link" href="./index.html">Home</a>
             </li>
             <li class="desktop-menu-item">
-              <a class="desktop-menu-item-link" href="./news.html">News</a>
+              <a class="desktop-menu-item-link" href="./news.html"
+                >Noticeboard</a
+              >
             </li>
             <li class="desktop-menu-item">
               <a class="desktop-menu-item-link" href="./meet-the-team.html"
@@ -72,10 +70,10 @@
       </button>
       <ul class="mobile-menu-list">
         <li class="mobile-menu-item">
-          <a class="mobile-menu-item-link" href="./calendar.html">Home</a>
+          <a class="mobile-menu-item-link" href="./index.html">Home</a>
         </li>
         <li class="mobile-menu-item">
-          <a class="mobile-menu-item-link" href="./news.html">News</a>
+          <a class="mobile-menu-item-link" href="./news.html">Noticeboard</a>
         </li>
         <li class="mobile-menu-item">
           <a class="mobile-menu-item-link" href="./meet-the-team.html"
@@ -92,25 +90,39 @@
       <section class="workshops-counties container">
         <ul class="workshops-counties-list">
           <li class="workshops-counties-list-item">
-            <button class="workshops-counties-list-item-button">Carlow</button>
+            <a
+              href="calendar.html?county=carlow"
+              class="workshops-counties-list-item-link"
+              >Carlow</a
+            >
           </li>
           <li class="workshops-counties-list-item">
-            <button class="workshops-counties-list-item-button">
-              Kilkenny
-            </button>
+            <a
+              href="calendar.html?county=kilkenny"
+              class="workshops-counties-list-item-link"
+              >Kilkenny</a
+            >
           </li>
           <li class="workshops-counties-list-item">
-            <button class="workshops-counties-list-item-button">Wexford</button>
+            <a
+              href="calendar.html?county=wexford"
+              class="workshops-counties-list-item-link"
+              >Wexford</a
+            >
           </li>
           <li class="workshops-counties-list-item">
-            <button class="workshops-counties-list-item-button">
-              South Tipperary
-            </button>
+            <a
+              href="calendar.html?county=south-tipperary"
+              class="workshops-counties-list-item-link"
+              >South Tipperary</a
+            >
           </li>
           <li class="workshops-counties-list-item">
-            <button class="workshops-counties-list-item-button">
-              Waterford
-            </button>
+            <a
+              href="calendar.html?county=waterford"
+              class="workshops-counties-list-item-link"
+              >Waterford</a
+            >
           </li>
         </ul>
         <object
@@ -120,6 +132,11 @@
         >
           Your browser does not support SVG embedding.
         </object>
+        <a
+          href="calendar.html?county=online"
+          class="workshops-counties-list-item-link workshop-counties-list-item-link-online"
+          >Online</a
+        >
       </section>
     </main>
 
@@ -151,6 +168,7 @@
                 class="social-list-item-link"
                 href="https://www.facebook.com/RecoveryCollegeSouthEast"
                 target="_blank"
+                rel="noreferrer noopener"
               >
                 <svg
                   class="social-list-item-link-icon social-list-item-link-icon-facebook"
@@ -167,6 +185,7 @@
                 class="social-list-item-link"
                 href="https://www.instagram.com/recoverycollegesoutheast/"
                 target="_blank"
+                rel="noreferrer noopener"
               >
                 <svg
                   class="social-list-item-link-icon-insta social-list-item-link-icon"
@@ -183,6 +202,7 @@
                 class="social-list-item-link"
                 href="https://x.com/RecoverySe"
                 target="_blank"
+                rel="noreferrer noopener"
               >
                 <svg
                   class="social-list-item-link-icon-twitter social-list-item-link-icon"
@@ -210,6 +230,7 @@
                 class="footer-list-location-item-link"
                 href="https://www.google.com/maps/place/Green's+Hill,+Kilkenny/@52.6622865,-7.255686,17z"
                 target="_blank"
+                rel="noreferrer noopener"
                 >Open on maps</a
               >
             </li>

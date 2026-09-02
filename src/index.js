@@ -5,22 +5,23 @@
 // import './js/menu-close.js';
 // import './js/scroll.js';
 
+// src/index.js
+// src/index.js
+import './js/mobile-menu.js';
+import { initCalendar } from './js/calendar.js';
 
+document.addEventListener('DOMContentLoaded', () => {
+  initCalendar();
+});
 
-//       document.addEventListener('DOMContentLoaded', function() {
-//   const calendarEl = document.getElementById('calendar');
-
-//   const calendar = new FullCalendar.Calendar(calendarEl, {
-//     initialView: 'dayGridMonth',
-//     // You MUST include the plugin in the array for the options to be recognized
-//     plugins: [ FullCalendar.dayGridPlugin, FullCalendar.googleCalendarPlugin ],
-    
-//     // Now these options will be recognized
-//     googleCalendarApiKey: 'AIzaSyDMflHOLDHtHGBT0tKjbfFinChkcHx5PgI',
-//     events: {
-//       googleCalendarId: 'd3f770d364fe159140b1ff3d3465a77c7b302db99bec8df260b82d9e37281928@group.calendar.google.com'
-//     }
-//   });
-
-//   calendar.render();
-// });
+document.addEventListener('DOMContentLoaded', () => {
+  const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+  
+  // Selects links in both main navigation and mobile menu
+  document.querySelectorAll('header nav a, .header a, .mobile-menu-item-link').forEach(link => {
+    const linkPath = link.getAttribute('href')?.split('/').pop();
+    if (linkPath === currentPath) {
+      link.classList.add('is-active');
+    }
+  });
+});

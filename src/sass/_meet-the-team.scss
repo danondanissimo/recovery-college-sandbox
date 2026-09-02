@@ -29,6 +29,9 @@
 
 .team-list-item-image {
   width: 200px;
+  height: 200px; /* Forces a fixed square height */
+  object-fit: cover; /* Crops excess and centers the image automatically */
+  object-position: center; /* Ensures the focal point stays centered */
   display: block;
 }
 
