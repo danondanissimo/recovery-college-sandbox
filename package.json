@@ -23,7 +23,8 @@
     "fullcalendar": "^6.1.21",
     "ical.js": "^2.2.1",
     "ldrs": "^1.1.9",
-    "modern-normalize": "^1.1.0"
+    "modern-normalize": "^1.1.0",
+    "swiper": "^14.2.0"
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.6.0",

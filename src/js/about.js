@@ -1,5 +1,7 @@
-import Swiper from 'https://esm.sh/swiper@11';
-import { Navigation } from 'https://esm.sh/swiper@11/modules';
+import Swiper from 'swiper';
+import { Navigation } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
 
 function getYouTubeEmbedUrl(url) {
   if (!url) return '';
