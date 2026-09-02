@@ -5,7 +5,7 @@
   "homepage": "https://danondanissimo.github.io/recovery-college-sandbox",
   "scripts": {
     "start": "parcel src/*.html",
-    "build": "parcel build src/index.html src/calendar.html src/new.html src/meet-the-team.html src/workshops.html --public-url /recovery-college-sandbox/"
+    "build": "parcel build src/index.html src/calendar.html src/news.html src/meet-the-team.html src/workshops.html --public-url /recovery-college-sandbox/"
   },
   "repository": {
     "type": "git",
