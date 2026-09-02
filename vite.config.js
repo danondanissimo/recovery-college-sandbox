@@ -1,10 +1,12 @@
-import { resolve } from 'path'
-import { defineConfig } from 'vite'
+import { resolve } from 'path';
+import { defineConfig } from 'vite';
 
 export default defineConfig({
+  root: 'src',
   base: '/recovery-college-sandbox/',
   build: {
-    outDir: 'dist',
+    outDir: '../dist',
+    emptyOutDir: true,
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'src/index.html'),
@@ -15,4 +17,4 @@ export default defineConfig({
       },
     },
   },
-})
+});
