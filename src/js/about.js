@@ -1,7 +1,8 @@
 import Swiper from 'swiper';
 import { Navigation } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/navigation';
+
+import 'swiper/swiper.min.css';
+import 'swiper/modules/navigation.min.css';
 
 function getYouTubeEmbedUrl(url) {
   if (!url) return '';
