@@ -1,0 +1,9 @@
+import"./index-BECU2sAZ.js";function f(c){if(!c)return"";const i=/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/,t=c.trim().match(i);return t?`https://www.youtube.com/embed/${t[1]}`:""}(async function(){const i=document.querySelector(".about"),t=document.getElementById("about-video-container"),n=document.getElementById("about-text"),s=document.querySelector(".about-slider");if(!i)return;t&&(t.style.display="none"),n&&(n.style.display="none"),s&&(s.style.display="none");let r=document.createElement("div");r.className="about-loader-wrapper",r.innerHTML=`
+    <div class="news-spinner-container">
+      <div class="news-spinner"></div>
+    </div>
+  `,i.appendChild(r);const p="https://script.google.com/macros/s/AKfycbz6HRX3T88PGyl9mqBhTzElrcfVh-tEKD0a4eTZZmvZzfHfJkSOqhWiFaEQ9dTTzFbMfA/exec?sheet=AboutUs";try{const b=await(await fetch(p)).json(),o={};b.forEach(e=>{if(e.Key&&e.Value){const m=String(e.Key).toLowerCase().replace(/[\s\r\n]+/g,""),y=String(e.Value).trim();o[m]=y}}),r.remove();const d=f(o.youtube_link);t&&d&&(t.style.display="block",t.innerHTML=`<iframe src="${d}" title="About Us Video" allowfullscreen></iframe>`),n&&o.description_text&&(n.style.display="block",n.textContent=o.description_text);const a=[];Object.keys(o).forEach(e=>{e.startsWith("photo_")&&o[e]&&a.push(o[e])});const u=document.getElementById("about-slider-wrapper");u&&s&&a.length>0&&(s.style.display="block",u.innerHTML=a.map(e=>`
+        <div class="swiper-slide">
+          <img src="${e}" alt="About Us photo">
+        </div>
+      `).join(""),new Swiper(s,{loop:!0,navigation:{nextEl:".swiper-button-next",prevEl:".swiper-button-prev"},observer:!0,observeParents:!0}))}catch(l){console.error("Failed to load About Us content:",l),r.innerHTML='<p class="news-error">Could not load About Us section.</p>'}})();

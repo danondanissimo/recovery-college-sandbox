@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home | Recovery College South East</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+      rel="stylesheet"
+    />
+    <!-- <link rel="icon" type="img/png" href="./images/icons/favicon.png" /> -->
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="/recovery-college-sandbox/assets/favicon-DSnE4E7D.svg?v=2"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.21/index.global.min.js"></script>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script type="module" crossorigin src="/recovery-college-sandbox/assets/main-khKh3wbL.js"></script>
+    <link rel="modulepreload" crossorigin href="/recovery-college-sandbox/assets/index-BECU2sAZ.js">
+    <link rel="stylesheet" crossorigin href="/recovery-college-sandbox/assets/index-kV3NTNVm.css">
+  </head>
+
+  <body data-body>
+    <!-- ❗️❗️❗️ Add partials like so for every page
+    <include src="./partials/header.html"></include>
+    <include src="./partials/hero.html"></include>
+    <include src="./partials/products.html"></include>
+    <include src="./partials/about.html"></include>
+    <include src="./partials/advantages.html"></include>
+    <include src="./partials/collage.html"></include>
+    <include src="./partials/testimonials.html"></include>
+    <include src="./partials/contacts.html"></include>
+    <include src="./partials/footer.html"></include>
+    <include src="./partials/modal.html"></includde> -->
+    <!-- <include src="./partials/header.html"></include>
+    <include src="./partials/mobile-menu.html"></include> -->
+
+    <header class="header">
+      <div class="container header-container">
+        <nav class="header-navigation">
+          <a href="./index.html" class="logo"
+            ><svg
+              class="logo-icon"
+              aria-label="Sprout Logo"
+              viewBox="0 0 512.001 512.001"
+            >
+              <use
+                href="/recovery-college-sandbox/assets/sprout-tree-svgrepo-com-D2dhc05M.svg#sprout-icon"
+              ></use>
+            </svg>
+          </a>
+          <button class="menu-button-open" id="menu-button-open">
+            <svg class="menu-button-open-icon" viewBox="0 0 24 24">
+              <use href="/recovery-college-sandbox/assets/menu-DJDJvtJo.svg#hamburger"></use>
+            </svg>
+          </button>
+          <ul class="desktop-menu-list">
+            <li class="desktop-menu-item">
+              <a class="desktop-menu-item-link" href="./index.html">Home</a>
+            </li>
+            <li class="desktop-menu-item">
+              <a class="desktop-menu-item-link" href="./news.html"
+                >Noticeboard</a
+              >
+            </li>
+            <li class="desktop-menu-item">
+              <a class="desktop-menu-item-link" href="./meet-the-team.html"
+                >Meet the team</a
+              >
+            </li>
+            <li class="desktop-menu-item">
+              <a class="desktop-menu-item-link" href="./workshops.html"
+                >Workshops</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <div class="mobile-menu">
+      <button class="menu-button-close">
+        <svg class="menu-button-close-icon" viewBox="0 0 800 800">
+          <use href="/recovery-college-sandbox/assets/close-IzeRh7C-.svg#cross"></use>
+        </svg>
+      </button>
+      <ul class="mobile-menu-list">
+        <li class="mobile-menu-item">
+          <a class="mobile-menu-item-link" href="./index.html">Home</a>
+        </li>
+        <li class="mobile-menu-item">
+          <a class="mobile-menu-item-link" href="./news.html">Noticeboard</a>
+        </li>
+        <li class="mobile-menu-item">
+          <a class="mobile-menu-item-link" href="./meet-the-team.html"
+            >Meet the team</a
+          >
+        </li>
+        <li class="mobile-menu-item">
+          <a class="mobile-menu-item-link" href="./workshops.html">Workshops</a>
+        </li>
+      </ul>
+    </div>
+
+    <main>
+      <section class="hero container">
+        <h1 class="hero-welcome">Welcome</h1>
+        <ul class="hero-list">
+          <li class="hero-list-item">
+            <!-- <a
+              class="hero-list-item-link-enroll hero-list-item-link"
+              href="https://www.recoverycollegesoutheast.com/uploads/1/1/2/8/112831751/enrolment_form_-_march_2026.pdf"
+              target="_blank"
+              >How to enroll</a
+            > -->
+            <button
+              class="hero-list-item-button"
+              onclick="
+                document.getElementById('enrollment-instructions').showModal()
+              "
+            >
+              How to enroll
+            </button>
+          </li>
+          <li class="hero-list-item">
+            <a
+              class="hero-list-item-link-workshops hero-list-item-link"
+              href="./workshops.html"
+              >Workshops</a
+            >
+          </li>
+        </ul>
+      </section>
+      <dialog class="enrollment-instructions" id="enrollment-instructions">
+        <div class="enrollment-instructions-container">
+          <button
+            onclick="document.getElementById('enrollment-instructions').close()"
+            class="enrollment-instructions-container-button-close"
+          >
+            <svg class="menu-button-close-icon" viewBox="0 0 800 800">
+              <use href="/recovery-college-sandbox/assets/close-IzeRh7C-.svg#cross"></use>
+            </svg>
+          </button>
+
+          <h1 class="enrollment-instructions-container-header">
+            How to enroll:
+          </h1>
+          <ul class="enrollment-instructions-container-list">
+            <li class="enrollment-instructions-container-list-item">
+              <p class="enrollment-instructions-container-list-item-text">
+                1. Click on the Workshops button on the front page.
+              </p>
+            </li>
+            <li class="enrollment-instructions-container-list-item">
+              <p class="enrollment-instructions-container-list-item-text">
+                2. Click on your county for in-person workshops or click on the
+                Online button for online workshops.
+              </p>
+            </li>
+            <li class="enrollment-instructions-container-list-item">
+              <p class="enrollment-instructions-container-list-item-text">
+                3. Choose the workshop from a calendar.
+              </p>
+            </li>
+            <li class="enrollment-instructions-container-list-item">
+              <p class="enrollment-instructions-container-list-item-text">
+                4. Fill in and submit the form.
+              </p>
+            </li>
+          </ul>
+        </div>
+      </dialog>
+      <section class="about">
+        <h2>About Us</h2>
+
+        <!-- YouTube Video Embed -->
+        <div id="about-video-container" class="about-video-wrapper"></div>
+
+        <!-- Text Paragraph -->
+        <p id="about-text" class="about-description"></p>
+
+        <!-- Swiper Slider Container -->
+        <div class="about-slider swiper">
+          <div id="about-slider-wrapper" class="swiper-wrapper">
+            <!-- Slides will be injected here dynamically -->
+          </div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-container container">
+        <div class="footer-contacts">
+          <h2 class="footer-header">Contact</h2>
+          <ul class="footer-list footer-list-contacts">
+            <li class="footer-list-item footer-list-contacts-item">
+              <a
+                class="footer-list-contacts-item-link"
+                href="mailto:info@recoverycollegesoutheast.com"
+                >info@recoverycollegesoutheast.com</a
+              >
+            </li>
+            <li class="footer-list-item footer-list-contacts-item">
+              <a class="footer-list-contacts-item-link" href="tel:086 1746330"
+                >086 1746330</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer-social">
+          <h2 class="footer-header">Follow Us</h2>
+          <ul class="social-list">
+            <li class="social-list-item">
+              <a
+                class="social-list-item-link"
+                href="https://www.facebook.com/RecoveryCollegeSouthEast"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                <svg
+                  class="social-list-item-link-icon social-list-item-link-icon-facebook"
+                  viewBox="0 0 455.73 455.73"
+                >
+                  <use
+                    href="/recovery-college-sandbox/assets/facebook-svgrepo-com-DVk8Uz00.svg#facebook"
+                  ></use>
+                </svg>
+              </a>
+            </li>
+            <li class="social-list-item">
+              <a
+                class="social-list-item-link"
+                href="https://www.instagram.com/recoverycollegesoutheast/"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                <svg
+                  class="social-list-item-link-icon-insta social-list-item-link-icon"
+                  viewBox="0 0 32 32"
+                >
+                  <use
+                    href="/recovery-college-sandbox/assets/instagram-logo-facebook-svgrepo-com-higLzgp4.svg#instagram"
+                  ></use>
+                </svg>
+              </a>
+            </li>
+            <li class="social-list-item">
+              <a
+                class="social-list-item-link"
+                href="https://x.com/RecoverySe"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                <svg
+                  class="social-list-item-link-icon-twitter social-list-item-link-icon"
+                  viewBox="0 0 16 16"
+                >
+                  <use
+                    href="/recovery-college-sandbox/assets/Twitter-X--Streamline-Bootstrap-D_ctInC9.svg#twitter"
+                  ></use>
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer-location">
+          <h2 class="footer-header">Main office</h2>
+          <ul class="footer-list footer-list-location">
+            <li class="footer-list-item footer-list-location-item">
+              <p class="footer-list-location-item-text">
+                Greenshill, Kilkenny R95 YYC0
+              </p>
+            </li>
+            <li class="footer-list-item footer-list-location-item">
+              <a
+                class="footer-list-location-item-link"
+                href="https://www.google.com/maps/place/Green's+Hill,+Kilkenny/@52.6622865,-7.255686,17z"
+                target="_blank"
+                rel="noreferrer noopener"
+                >Open on maps</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
