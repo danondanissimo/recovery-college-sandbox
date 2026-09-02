@@ -3,7 +3,7 @@
   "version": "2.0.0",
   "description": "",
   "homepage": "https://danondanissimo.github.io/recovery-college-sandbox",
-"scripts": {
+  "scripts": {
     "start": "parcel src/*.html",
     "build": "rm -rf .parcel-cache dist && parcel build src/index.html --public-url /recovery-college-sandbox/"
   },
@@ -11,7 +11,8 @@
     "default": {
       "outputFormat": "esmodule",
       "publicUrl": "/recovery-college-sandbox/"
-    }
+    },
+    "main": false
   },
   "repository": {
     "type": "git",
