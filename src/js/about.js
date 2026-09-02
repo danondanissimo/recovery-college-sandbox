@@ -1,7 +1,4 @@
-import Swiper from 'swiper';
-import { Navigation } from 'swiper/modules';
-
-
+// No npm/bundler imports needed here anymore!
 
 function getYouTubeEmbedUrl(url) {
   if (!url) return '';
@@ -81,8 +78,8 @@ function getYouTubeEmbedUrl(url) {
         </div>
       `).join('');
 
+      // Uses the global Swiper bundle loaded via CDN script tag
       new Swiper(sliderContainer, {
-        modules: [Navigation],
         loop: true,
         navigation: {
           nextEl: '.swiper-button-next',
