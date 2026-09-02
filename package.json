@@ -3,9 +3,9 @@
   "version": "2.0.0",
   "description": "",
   "homepage": "https://danondanissimo.github.io/recovery-college-sandbox",
-  "scripts": {
+"scripts": {
     "start": "parcel src/*.html",
-    "build": "rm -rf .parcel-cache dist && parcel build src/index.html src/calendar.html src/news.html src/meet-the-team.html src/workshops.html --public-url /recovery-college-sandbox/"
+    "build": "rm -rf .parcel-cache dist && parcel build src/index.html --public-url /recovery-college-sandbox/ && parcel build src/calendar.html --public-url /recovery-college-sandbox/ && parcel build src/news.html --public-url /recovery-college-sandbox/ && parcel build src/meet-the-team.html --public-url /recovery-college-sandbox/ && parcel build src/workshops.html --public-url /recovery-college-sandbox/"
   },
   "targets": {
     "default": {
