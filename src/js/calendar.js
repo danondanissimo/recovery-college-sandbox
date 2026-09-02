@@ -27,24 +27,27 @@ export function initCalendar() {
 
   if (calendarEl) {
     const urlParams = new URLSearchParams(window.location.search);
-    const currentSelection = urlParams.get('county') || 'carlow';
+    const rawCounty = urlParams.get('county');
     
-    // Safely fallback if an unmapped query param is passed
-    const safeSelection = calendarIds[currentSelection] ? currentSelection : 'carlow';
+    // Explicitly validate county parameter, fallback safely to carlow
+    const currentSelection = (rawCounty && calendarIds[rawCounty]) ? rawCounty : 'carlow';
 
     if (titleEl) {
-      titleEl.textContent = `${calendarTitles[safeSelection] || 'Carlow'} Workshops`;
+      titleEl.textContent = `${calendarTitles[currentSelection]} Workshops`;
     }
 
-    const calendarId = calendarIds[safeSelection];
+    const calendarId = calendarIds[currentSelection];
 
     const calendar = new Calendar(calendarEl, {
       initialView: 'dayGridMonth',
       plugins: [dayGridPlugin, googleCalendarPlugin],
       googleCalendarApiKey: 'AIzaSyBLI7yESEMGFmGHwC6n8GG_DZ3V-TULNpY',
-      events: {
-        googleCalendarId: calendarId
-      },
+      // Pass events as an array to satisfy FullCalendar's iterable expectation
+      events: [
+        {
+          googleCalendarId: calendarId
+        }
+      ],
       dayMaxEvents: 3, 
       
       eventDidMount: function(info) {
