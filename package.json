@@ -14,12 +14,12 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
+"dependencies": {
     "@fullcalendar/daygrid": "^6.1.21",
-    "@fullcalendar/google-calendar": "^7.0.2",
-    "@fullcalendar/icalendar": "^7.0.2",
+    "@fullcalendar/google-calendar": "^6.1.21",
+    "@fullcalendar/icalendar": "^6.1.21",
     "fullcalendar": "^6.1.21",
-    "ical.js": "^2.2.1",
+    "ical.js": "^1.5.0",
     "ldrs": "^1.1.9",
     "modern-normalize": "^1.1.0",
     "swiper": "^14.2.0"
