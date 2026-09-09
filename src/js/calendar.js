@@ -42,12 +42,10 @@ export function initCalendar() {
       initialView: 'dayGridMonth',
       plugins: [dayGridPlugin, googleCalendarPlugin],
       googleCalendarApiKey: 'AIzaSyBLI7yESEMGFmGHwC6n8GG_DZ3V-TULNpY',
-      // Pass events as an array to satisfy FullCalendar's iterable expectation
-      events: [
-        {
-          googleCalendarId: calendarId
-        }
-      ],
+      // Pass events as a single object (not an array) for the Google Calendar plugin
+      events: {
+        googleCalendarId: calendarId
+      },
       dayMaxEvents: 3, 
       
       eventDidMount: function(info) {
