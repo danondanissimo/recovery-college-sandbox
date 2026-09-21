@@ -1,8 +1,8 @@
 async function loadTeam() {
   const listElement = document.getElementById('team-list');
+  const introElement = document.getElementById('team-intro-text');
   if (!listElement) return;
 
-  // Reusing your global spinner classes
   listElement.innerHTML = `
     <div class="news-spinner-container">
       <div class="news-spinner"></div>
@@ -17,7 +17,15 @@ async function loadTeam() {
 
     listElement.innerHTML = '';
 
+    // Set the intro text from column D (using the first row's value)
+    if (data.length > 0 && introElement && data[0].team_intro) {
+      introElement.textContent = data[0].team_intro;
+    }
+
     data.forEach(person => {
+      // Skip empty rows if any exist
+      if (!person.Name) return;
+
       const li = document.createElement('li');
       li.className = 'team-list-item';
       li.innerHTML = `
