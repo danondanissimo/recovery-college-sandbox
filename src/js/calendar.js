@@ -66,8 +66,19 @@ export function initCalendar() {
       },
 
       eventClick: function (info) {
-        if (info.event.url) {
-          info.jsEvent.preventDefault();
+        info.jsEvent.preventDefault(); // Stop default calendar behavior
+
+        // Extract description text from extendedProps
+        const description = info.event.extendedProps.description || '';
+
+        // Find the first URL inside the description text (your Google Form link)
+        const urlMatch = description.match(/(https?:\/\/[^\s]+)/);
+
+        if (urlMatch && urlMatch[0]) {
+          // Open the extracted Google Form link in a new tab
+          window.open(urlMatch[0], '_blank');
+        } else {
+          // Fallback just in case
           window.open(info.event.url, '_blank');
         }
       },
