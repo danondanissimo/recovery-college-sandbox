@@ -1,3 +1,157 @@
+// .workshops-counties {
+//   display: flex;
+//   @media screen and (min-width: $breakpoint-desktop) {
+//     justify-content: center;
+//     align-items: center;
+//     background-color: #9bb4ca;
+//     padding: 0;
+//   }
+//   width: 100%;
+//   overflow: hidden;
+//   height: 600px;
+//   position: relative;
+// }
+
+// .workshops-counties-list {
+//   display: flex;
+//   flex-wrap: wrap;
+//   gap: 10px;
+//   @media screen and (min-width: $breakpoint-desktop) {
+//     position: absolute;
+//     width: 1px;
+//     height: 1px;
+//     padding: 0;
+//     margin: -1px;
+//     overflow: hidden;
+//     clip: rect(0, 0, 0, 0);
+//     white-space: nowrap;
+//     border: 0;
+//   }
+// }
+
+// .workshops-counties-list-item {
+//   flex: 1 1 150px;
+// }
+
+// .workshops-counties-list-item-link {
+//   width: 100%;
+//   justify-content: center;
+//   padding: 10px 20px;
+//   background-color: $main-color;
+//   color: $secondary-color;
+//   border: solid 1px $secondary-color;
+// }
+
+// .workshop-counties-list-item-link-online {
+//   display: block;
+
+//   position: relative;
+
+//   margin-top: 10px;
+//   text-align: center;
+//   @media screen and (min-width: $breakpoint-desktop) {
+//     position: absolute;
+//     bottom: 30px;
+//     left: 50%;
+//     transform: translateX(-50%);
+//     margin-top: 0;
+//     z-index: 10;
+//     width: 250px;
+//   }
+// }
+
+// .workshop-counties-list-item-link-online:hover {
+//   transform: translateX(-50%) scale(1.05); /* Adjust the scale value as needed */
+// }
+
+// .workshops-counties-list-item:nth-child(even)
+//   .workshops-counties-list-item-link {
+//   background-color: $secondary-color;
+//   color: $main-color;
+//   border-color: $main-color;
+// }
+
+// #ireland-map {
+//   transform: scale(3);
+//   transform-origin: 65% 75%;
+//   @media screen and (max-width: $max-tablet-width) {
+//     display: none;
+//   }
+// }
+
+// .enrolment-section {
+//   position: relative;
+// }
+
+// .enrolment-form-container {
+//   padding: 20px;
+//   border: none;
+//   border-radius: 5px;
+//   box-shadow: 0px 2px 35px 5px rgba(0, 0, 0, 0.16);
+
+//   background-color: $secondary-color;
+//   z-index: 10000;
+// }
+
+// .enrolment-form-container::backdrop {
+//   background-color: rgba(0, 0, 0, 0.5);
+// }
+
+// .enrolment-form-label {
+//   display: flex;
+//   flex-direction: column;
+// }
+
+// .calendar {
+//   // width: $min-mobile-width;
+
+//   // margin: 0 auto;
+//   // padding: 20px;
+//   // box-shadow: 0px 2px 35px 5px rgba(0, 0, 0, 0.16);
+
+//   @media screen and (max-width: $max-mobile-width) {
+//     height: 570px;
+//   }
+// }
+// /* 1. Force FullCalendar to respect inline background colors from Google Calendar */
+// .fc-daygrid-event[style*='background-color'] {
+//   background-color: inherit !important;
+//   border: none !important;
+// }
+
+// /* Base event pill layout & padding */
+// .fc-daygrid-event {
+//   border: none !important;
+//   padding: 3px 6px !important;
+//   border-radius: 4px !important;
+//   margin-bottom: 3px !important;
+// }
+
+// /* Text truncation */
+// .fc-daygrid-event .fc-event-title {
+//   white-space: nowrap !important;
+//   overflow: hidden !important;
+//   text-overflow: ellipsis !important;
+//   font-weight: 600 !important;
+// }
+
+// /* White text with crisp black outline */
+// .fc-daygrid-event .fc-event-title,
+// .fc-daygrid-event .fc-event-time,
+// .fc-timegrid-event .fc-event-title,
+// .fc-timegrid-event .fc-timegrid-time {
+//   color: #ffffff !important;
+//   text-shadow:
+//     -1px -1px 0 #000,
+//     1px -1px 0 #000,
+//     -1px 1px 0 #000,
+//     1px 1px 0 #000;
+// }
+
+// .fc-daygrid-day-frame {
+//   min-height: 110px !important;
+// }
+
 .workshops-counties {
   display: flex;
   @media screen and (min-width: $breakpoint-desktop) {
@@ -113,21 +267,36 @@
     height: 570px;
   }
 }
+
 /* 1. Force FullCalendar to respect inline background colors from Google Calendar */
 .fc-daygrid-event[style*='background-color'] {
   background-color: inherit !important;
   border: none !important;
 }
 
-/* Base event pill layout & padding */
+/* Base event pill layout & padding (Merged with hover & transition properties) */
 .fc-daygrid-event {
   border: none !important;
   padding: 3px 6px !important;
   border-radius: 4px !important;
   margin-bottom: 3px !important;
+  position: relative;
+  z-index: 1;
+  transition:
+    width 0.2s ease,
+    z-index 0.2s ease;
 }
 
-/* Text truncation */
+/* On hover, expand the event width to the right over neighboring cells */
+.fc-daygrid-event:hover {
+  width: 220px !important; /* Adjust this width as needed for your longest titles */
+  max-width: none !important;
+  z-index: 999; /* Bring it to the very front so it floats over everything else */
+  white-space: normal !important; /* Overrides truncation on hover so text wraps cleanly */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Adds a nice shadow layer */
+}
+
+/* Default text truncation */
 .fc-daygrid-event .fc-event-title {
   white-space: nowrap !important;
   overflow: hidden !important;
@@ -148,6 +317,13 @@
     1px 1px 0 #000;
 }
 
+/* Allow the day cell and frame to overflow so expanded event pills don't get clipped */
+.fc-daygrid-day {
+  position: relative;
+  overflow: visible !important;
+}
+
 .fc-daygrid-day-frame {
   min-height: 110px !important;
+  overflow: visible !important;
 }
