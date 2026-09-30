@@ -279,24 +279,11 @@
   padding: 3px 6px !important;
   border-radius: 4px !important;
   margin-bottom: 3px !important;
-  position: relative;
-  z-index: 1;
-  transition:
-    transform 0.2s ease,
-    z-index 0.2s ease;
 }
 
-/* On hover, pop it out using absolute positioning and max-content to avoid table constraints */
-.fc-daygrid-event:hover {
-  position: absolute !important;
-  left: 0 !important;
-  right: auto !important;
-  width: max-content !important;
-  max-width: 250px !important;
-  z-index: 99999 !important;
+/* On hover, let the event text wrap so it fits nicely inside the expanded cell */
+.fc-daygrid-event:hover .fc-event-title {
   white-space: normal !important;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3) !important;
-  transform: scale(1.02);
 }
 
 /* Default text truncation */
@@ -320,17 +307,38 @@
     1px 1px 0 #000;
 }
 
-/* Force the entire calendar view hierarchy to allow overflow */
+/* Force the calendar view hierarchy to allow overflow */
 .fc-view,
 .fc-view-harness,
 .fc-daygrid-body,
-.fc-scrollgrid-sync-table,
-.fc-daygrid-day,
-.fc-daygrid-day-frame {
+.fc-scrollgrid-sync-table {
   overflow: visible !important;
 }
 
 .fc-daygrid-day-frame {
   min-height: 110px !important;
+}
+
+/* CELL ZOOM ON HOVER: Makes the entire day cell pop forward and expand */
+.fc-daygrid-day {
   position: relative !important;
+  transition:
+    transform 0.2s ease,
+    z-index 0.2s ease;
+}
+
+.fc-daygrid-day:hover {
+  z-index: 9999 !important;
+  transform: scale(1.15); /* Zooms up the cell by 15% */
+  transform-origin: center center;
+  background-color: var(
+    --fc-page-bg-color,
+    #ffffff
+  ); /* Ensures background stays solid */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.fc-daygrid-day:hover .fc-daygrid-day-frame {
+  overflow: visible !important;
 }
