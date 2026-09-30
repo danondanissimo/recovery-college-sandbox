@@ -1,4 +1,4 @@
-import"./index-gJhNqOgf.js";async function b(){const t=document.querySelector(".news-list");if(t){t.innerHTML=`
+import"./index-CNRM1EhD.js";async function b(){const t=document.querySelector(".news-list");if(t){t.innerHTML=`
     <div class="news-spinner-container">
       <div class="news-spinner"></div>
     </div>
