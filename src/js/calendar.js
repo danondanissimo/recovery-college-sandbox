@@ -138,19 +138,18 @@ export function initCalendar() {
       initialView: 'dayGridMonth',
       plugins: [dayGridPlugin, googleCalendarPlugin],
       googleCalendarApiKey: 'AIzaSyBLI7yESEMGFmGHwC6n8GG_DZ3V-TULNpY',
-      // Pass events as a single object (not an array) for the Google Calendar plugin
       events: {
         googleCalendarId: calendarId,
       },
 
-      // --- Popover configuration changes ---
-      dayMaxEvents: 3, // Limits visible events per cell to 3, wrapping the rest into a "+X more" link
-      dayMaxEventRows: true, // Ensures row calculations handle heights cleanly
-      moreLinkClick: 'popover', // Explicitly forces the "+ more" action to open a clean floating popover card
+      // Overrides FullCalendar's internal rendering to force multi-line text wrapping
+      eventContent: function (info) {
+        return {
+          html: `<div style="white-space: normal !important; overflow: visible !important; word-break: break-word; line-height: 1.2; font-weight: 600;">${info.event.title}</div>`,
+        };
+      },
 
       eventDidMount: function (info) {
-        // Removed native browser tooltip (info.el.title) since popovers handle full titles now
-
         if (info.event.backgroundColor) {
           info.el.style.backgroundColor = info.event.backgroundColor;
         } else if (info.event.color) {
