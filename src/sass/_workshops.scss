@@ -151,7 +151,6 @@
 // .fc-daygrid-day-frame {
 //   min-height: 110px !important;
 // }
-
 .workshops-counties {
   display: flex;
   @media screen and (min-width: $breakpoint-desktop) {
@@ -274,7 +273,7 @@
   border: none !important;
 }
 
-/* Base event pill layout & padding (Merged with hover & transition properties) */
+/* Base event pill layout & padding */
 .fc-daygrid-event {
   border: none !important;
   padding: 3px 6px !important;
@@ -289,11 +288,11 @@
 
 /* On hover, expand the event width to the right over neighboring cells */
 .fc-daygrid-event:hover {
-  width: 220px !important; /* Adjust this width as needed for your longest titles */
+  width: 220px !important;
   max-width: none !important;
-  z-index: 999; /* Bring it to the very front so it floats over everything else */
-  white-space: normal !important; /* Overrides truncation on hover so text wraps cleanly */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Adds a nice shadow layer */
+  z-index: 9999 !important;
+  white-space: normal !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
 }
 
 /* Default text truncation */
@@ -317,13 +316,17 @@
     1px 1px 0 #000;
 }
 
-/* Allow the day cell and frame to overflow so expanded event pills don't get clipped */
-.fc-daygrid-day {
-  position: relative;
+/* Force the entire calendar view hierarchy to allow overflow */
+.fc-view,
+.fc-view-harness,
+.fc-daygrid-body,
+.fc-scrollgrid-sync-table,
+.fc-daygrid-day,
+.fc-daygrid-day-frame {
   overflow: visible !important;
 }
 
 .fc-daygrid-day-frame {
   min-height: 110px !important;
-  overflow: visible !important;
+  position: relative !important;
 }
