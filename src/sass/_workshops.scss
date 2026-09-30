@@ -267,25 +267,37 @@
     height: 570px;
   }
 }
+
 /* 1. Force FullCalendar to respect inline background colors from Google Calendar */
 .fc-daygrid-event[style*='background-color'] {
   background-color: inherit !important;
   border: none !important;
 }
 
-/* Base event pill layout & padding */
+/* Base event pill layout & padding with wrapping support */
 .fc-daygrid-event {
   border: none !important;
   padding: 3px 6px !important;
   border-radius: 4px !important;
   margin-bottom: 3px !important;
+  white-space: normal !important;
+  align-items: flex-start !important;
 }
 
-/* Allow event titles to wrap cleanly onto multiple lines */
+/* Override FullCalendar's inner flex wrappers to permit multi-line content */
+.fc-event-main,
+.fc-event-main-frame {
+  white-space: normal !important;
+  overflow: visible !important;
+  display: block !important;
+}
+
+/* Allow event titles to wrap cleanly across lines */
 .fc-daygrid-event .fc-event-title {
   white-space: normal !important;
   overflow: visible !important;
   text-overflow: clip !important;
+  word-break: break-word !important;
   font-weight: 600 !important;
   line-height: 1.2 !important;
 }
