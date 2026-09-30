@@ -282,17 +282,21 @@
   position: relative;
   z-index: 1;
   transition:
-    width 0.2s ease,
+    transform 0.2s ease,
     z-index 0.2s ease;
 }
 
-/* On hover, expand the event width to the right over neighboring cells */
+/* On hover, pop it out using absolute positioning and max-content to avoid table constraints */
 .fc-daygrid-event:hover {
-  width: 220px !important;
-  max-width: none !important;
-  z-index: 9999 !important;
+  position: absolute !important;
+  left: 0 !important;
+  right: auto !important;
+  width: max-content !important;
+  max-width: 250px !important;
+  z-index: 99999 !important;
   white-space: normal !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3) !important;
+  transform: scale(1.02);
 }
 
 /* Default text truncation */
