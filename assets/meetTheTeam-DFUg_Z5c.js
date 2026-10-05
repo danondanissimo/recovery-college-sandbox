@@ -1,4 +1,4 @@
-import"./index-C_GcZQdA.js";async function m(){const e=document.getElementById("team-list"),i=document.getElementById("team-intro-text");if(!e)return;e.innerHTML=`
+import"./index-CC0iBkM1.js";async function m(){const e=document.getElementById("team-list"),i=document.getElementById("team-intro-text");if(!e)return;e.innerHTML=`
     <div class="news-spinner-container">
       <div class="news-spinner"></div>
     </div>
