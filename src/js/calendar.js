@@ -49,15 +49,18 @@
 //       initialView: 'dayGridMonth',
 //       plugins: [dayGridPlugin, googleCalendarPlugin],
 //       googleCalendarApiKey: 'AIzaSyBLI7yESEMGFmGHwC6n8GG_DZ3V-TULNpY',
-//       // Pass events as a single object (not an array) for the Google Calendar plugin
 //       events: {
 //         googleCalendarId: calendarId,
 //       },
-//       dayMaxEvents: 3,
+
+//       // Overrides FullCalendar's internal rendering to force multi-line text wrapping
+//       eventContent: function (info) {
+//         return {
+//           html: `<div style="white-space: normal !important; overflow: visible !important; word-break: break-word; line-height: 1.2; font-weight: 600;">${info.event.title}</div>`,
+//         };
+//       },
 
 //       eventDidMount: function (info) {
-//         info.el.title = info.event.title;
-
 //         if (info.event.backgroundColor) {
 //           info.el.style.backgroundColor = info.event.backgroundColor;
 //         } else if (info.event.color) {
@@ -142,10 +145,23 @@ export function initCalendar() {
         googleCalendarId: calendarId,
       },
 
-      // Overrides FullCalendar's internal rendering to force multi-line text wrapping
+      // Overrides FullCalendar's rendering to include the start time and force text wrapping
       eventContent: function (info) {
+        let timeText = '';
+
+        if (info.event.start && !info.event.allDay) {
+          const hours = info.event.start.getHours();
+          const minutes = info.event.start.getMinutes();
+
+          const formattedHours = String(hours).padStart(2, '0');
+          const formattedMinutes = String(minutes).padStart(2, '0');
+          timeText = `${formattedHours}:${formattedMinutes} `;
+        }
+
         return {
-          html: `<div style="white-space: normal !important; overflow: visible !important; word-break: break-word; line-height: 1.2; font-weight: 600;">${info.event.title}</div>`,
+          html: `<div style="white-space: normal !important; overflow: visible !important; word-break: break-word; line-height: 1.2; font-weight: 600;">
+                  <span style="font-weight: 700; margin-right: 4px;">${timeText}</span>${info.event.title}
+                 </div>`,
         };
       },
 
