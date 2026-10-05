@@ -171,23 +171,39 @@ export function initCalendar() {
         } else if (info.event.color) {
           info.el.style.backgroundColor = info.event.color;
         }
+
+        // Force the underlying element's href to be empty or point to our target
+        // so browser/plugin defaults don't override eventClick behavior
+        const targetUrl = info.event.url || info.event.extendedProps.location;
+        if (targetUrl) {
+          info.el.href = targetUrl;
+        }
       },
 
       eventClick: function (info) {
-        info.jsEvent.preventDefault(); // Stop default calendar behavior
+        // Stop default behavior and bubbling immediately
+        info.jsEvent.preventDefault();
+        info.jsEvent.stopPropagation();
 
-        // 1. Check if the event has a direct URL (from Google Calendar's location/URL field)
-        if (info.event.url) {
-          window.open(info.event.url, '_blank');
-          return;
+        // 1. Check event.url (which maps from Google Calendar source data)
+        let targetUrl = info.event.url;
+
+        // 2. Check extendedProps.location if url isn't directly bound
+        if (!targetUrl && info.event.extendedProps.location) {
+          targetUrl = info.event.extendedProps.location;
         }
 
-        // 2. Fallback to extracting the URL from the description text if needed
-        const description = info.event.extendedProps.description || '';
-        const urlMatch = description.match(/(https?:\/\/[^\s]+)/);
+        // 3. Fallback to extracting the first URL from the description text
+        if (!targetUrl) {
+          const description = info.event.extendedProps.description || '';
+          const urlMatch = description.match(/(https?:\/\/[^\s]+)/);
+          if (urlMatch && urlMatch[0]) {
+            targetUrl = urlMatch[0];
+          }
+        }
 
-        if (urlMatch && urlMatch[0]) {
-          window.open(urlMatch[0], '_blank');
+        if (targetUrl) {
+          window.open(targetUrl, '_blank');
         }
       },
     });
