@@ -11,11 +11,11 @@
 
 //   try {
 //     const endpointUrl = 'https://script.google.com/macros/s/AKfycbz6HRX3T88PGyl9mqBhTzElrcfVh-tEKD0a4eTZZmvZzfHfJkSOqhWiFaEQ9dTTzFbMfA/exec?sheet=Noticeboard';
-    
-//     const response = await fetch(endpointUrl); 
+
+//     const response = await fetch(endpointUrl);
 //     const data = await response.json();
 
-//     newsListContainer.innerHTML = ''; 
+//     newsListContainer.innerHTML = '';
 
 //     data.forEach(row => {
 //       const li = document.createElement('li');
@@ -40,7 +40,7 @@
 //       // 2. Build Header
 //       const headerDiv = document.createElement('div');
 //       headerDiv.className = 'news-list-item-article-head';
-      
+
 //       const h2 = document.createElement('h2');
 //       h2.className = 'news-list-item-article-head-header';
 //       h2.textContent = row.title;
@@ -95,7 +95,7 @@
 //         const img = document.createElement('img');
 //         img.src = photoUrl.trim();
 //         img.alt = '';
-        
+
 //         applySmartImageStyling(img, index);
 //         article.appendChild(img);
 
@@ -137,7 +137,7 @@
 
 //   img.onload = () => {
 //     const aspectRatio = img.naturalWidth / img.naturalHeight;
-    
+
 //     if (aspectRatio < 0.5 || aspectRatio > 2.0) {
 //       img.className = 'news-list-item-article-photo is-divider';
 //     } else if (index % 2 === 1) {
@@ -146,24 +146,25 @@
 //       img.className = 'news-list-item-article-photo';
 //     }
 //   };
-  
+
 //   img.className = 'news-list-item-article-photo';
 // }
 
 // loadNoticeboard();
 
-// No npm/bundler imports needed here anymore!
+// src/js/news.js
 
 async function loadNoticeboard() {
   const newsListContainer = document.querySelector('.news-list');
   if (!newsListContainer) return;
 
   const cacheKey = 'recovery_college_noticeboard_cache';
-  const endpointUrl = 'https://script.google.com/macros/s/AKfycbz6HRX3T88PGyl9mqBhTzElrcfVh-tEKD0a4eTZZmvZzfHfJkSOqhWiFaEQ9dTTzFbMfA/exec?sheet=Noticeboard';
+  const endpointUrl =
+    'https://script.google.com/macros/s/AKfycbz6HRX3T88PGyl9mqBhTzElrcfVh-tEKD0a4eTZZmvZzfHfJkSOqhWiFaEQ9dTTzFbMfA/exec?sheet=Noticeboard';
 
   // Helper function to render data into the DOM
   function renderNoticeboard(data) {
-    newsListContainer.innerHTML = ''; 
+    newsListContainer.innerHTML = '';
 
     data.forEach(row => {
       const li = document.createElement('li');
@@ -180,7 +181,7 @@ async function loadNoticeboard() {
           formattedDate = dateObj.toLocaleDateString('en-US', {
             year: 'numeric',
             month: 'long',
-            day: 'numeric'
+            day: 'numeric',
           });
         }
       }
@@ -188,7 +189,7 @@ async function loadNoticeboard() {
       // 2. Build Header
       const headerDiv = document.createElement('div');
       headerDiv.className = 'news-list-item-article-head';
-      
+
       const h2 = document.createElement('h2');
       h2.className = 'news-list-item-article-head-header';
       h2.textContent = row.title;
@@ -226,7 +227,10 @@ async function loadNoticeboard() {
 
       let paragraphIndex = 0;
       const chunksCount = photos.length > 0 ? photos.length + 1 : 1;
-      const chunkSize = Math.max(1, Math.ceil(allParagraphs.length / chunksCount));
+      const chunkSize = Math.max(
+        1,
+        Math.ceil(allParagraphs.length / chunksCount)
+      );
 
       if (allParagraphs.length > 0) {
         const initialChunk = allParagraphs.slice(0, chunkSize).join(' ');
@@ -243,11 +247,13 @@ async function loadNoticeboard() {
         const img = document.createElement('img');
         img.src = photoUrl.trim();
         img.alt = '';
-        
+
         applySmartImageStyling(img, index);
         article.appendChild(img);
 
-        const nextChunk = allParagraphs.slice(paragraphIndex, paragraphIndex + chunkSize).join(' ');
+        const nextChunk = allParagraphs
+          .slice(paragraphIndex, paragraphIndex + chunkSize)
+          .join(' ');
         paragraphIndex += chunkSize;
 
         if (nextChunk.trim()) {
@@ -298,10 +304,49 @@ async function loadNoticeboard() {
 
   // Fetch fresh data in the background (or foreground if no cache was found)
   try {
-    const response = await fetch(endpointUrl); 
+    const response = await fetch(endpointUrl);
     const data = await response.json();
 
-    // Save fresh data to localStorage for next time
-    localStorage.setItem(cacheKey, JSON.stringify(data));
+    // Safely save to localStorage with quota error handling
+    try {
+      localStorage.setItem(cacheKey, JSON.stringify(data));
+    } catch (storageError) {
+      console.warn(
+        'Noticeboard data too large for localStorage cache:',
+        storageError
+      );
+    }
 
     // Render the fresh data to keep the view updated
+    renderNoticeboard(data);
+  } catch (error) {
+    console.error('Error loading noticeboard data:', error);
+    // Only show the error state if we didn't have a cache to fall back on
+    if (!hasDisplayedCache) {
+      newsListContainer.innerHTML =
+        '<p class="news-error">Noticeboard temporarily unavailable.</p>';
+    }
+  }
+}
+
+function applySmartImageStyling(img, index) {
+  if (!img.getAttribute('alt')) {
+    img.setAttribute('alt', 'Noticeboard graphic');
+  }
+
+  img.onload = () => {
+    const aspectRatio = img.naturalWidth / img.naturalHeight;
+
+    if (aspectRatio < 0.5 || aspectRatio > 2.0) {
+      img.className = 'news-list-item-article-photo is-divider';
+    } else if (index % 2 === 1) {
+      img.className = 'news-list-item-article-photo is-right';
+    } else {
+      img.className = 'news-list-item-article-photo';
+    }
+  };
+
+  img.className = 'news-list-item-article-photo';
+}
+
+loadNoticeboard();
