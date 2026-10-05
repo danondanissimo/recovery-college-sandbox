@@ -176,18 +176,18 @@ export function initCalendar() {
       eventClick: function (info) {
         info.jsEvent.preventDefault(); // Stop default calendar behavior
 
-        // Extract description text from extendedProps
-        const description = info.event.extendedProps.description || '';
+        // 1. Check if the event has a direct URL (from Google Calendar's location/URL field)
+        if (info.event.url) {
+          window.open(info.event.url, '_blank');
+          return;
+        }
 
-        // Find the first URL inside the description text (your Google Form link)
+        // 2. Fallback to extracting the URL from the description text if needed
+        const description = info.event.extendedProps.description || '';
         const urlMatch = description.match(/(https?:\/\/[^\s]+)/);
 
         if (urlMatch && urlMatch[0]) {
-          // Open the extracted Google Form link in a new tab
           window.open(urlMatch[0], '_blank');
-        } else {
-          // Fallback just in case
-          window.open(info.event.url, '_blank');
         }
       },
     });
