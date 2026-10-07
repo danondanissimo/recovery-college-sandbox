@@ -791,6 +791,28 @@ header nav a.is-active,
   }
 }
 
+.workshops-counties-text {
+  display: flex;
+  width: 300px;
+  justify-content: space-evenly;
+  color: black;
+  background-color: #fcf6b3;
+  border-radius: 5px;
+  padding: 10px;
+}
+@media screen and (max-width: 1200px) {
+  .workshops-counties-text {
+    margin: 0 auto;
+    margin-top: 20px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .workshops-counties-text {
+    position: absolute;
+    right: 30px;
+  }
+}
+
 .workshop-counties-list-item-link-online:hover {
   transform: translateX(-50%) scale(1.05); /* Adjust the scale value as needed */
 }
