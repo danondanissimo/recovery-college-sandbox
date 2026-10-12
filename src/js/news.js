@@ -206,6 +206,22 @@ async function loadNoticeboard() {
     'https://script.google.com/macros/s/AKfycbz6HRX3T88PGyl9mqBhTzElrcfVh-tEKD0a4eTZZmvZzfHfJkSOqhWiFaEQ9dTTzFbMfA/exec?sheet=Noticeboard';
 
   // Helper function to safely escape HTML special characters
+  // function escapeHtml(text) {
+  //   const div = document.createElement('div');
+  //   div.textContent = text;
+  //   return div.innerHTML;
+  // }
+
+  // // Helper function to convert plain URLs into safe, clickable <a> tags
+  // function linkifyText(text) {
+  //   const escapedText = escapeHtml(text);
+  //   const urlRegex = /(https?:\/\/[^\s<]+)/g;
+  //   return escapedText.replace(
+  //     urlRegex,
+  //     url =>
+  //       `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`
+  //   );
+  // }
   function escapeHtml(text) {
     const div = document.createElement('div');
     div.textContent = text;
@@ -214,8 +230,15 @@ async function loadNoticeboard() {
 
   // Helper function to convert plain URLs into safe, clickable <a> tags
   function linkifyText(text) {
-    const escapedText = escapeHtml(text);
-    const urlRegex = /(https?:\/\/[^\s<]+)/g;
+    // 1. Replace non-breaking spaces (\u00A0) from Google Sheets with standard spaces
+    const cleanText = text.replace(/\u00A0/g, ' ');
+
+    // 2. Safely escape HTML characters
+    const escapedText = escapeHtml(cleanText);
+
+    // 3. Regex that matches http/https URLs while ignoring trailing punctuation like . , ! ?
+    const urlRegex = /(https?:\/\/[^\s<]+?)(?=[.,!?:;]?(?:\s|$|<))/g;
+
     return escapedText.replace(
       urlRegex,
       url =>
