@@ -206,22 +206,6 @@ async function loadNoticeboard() {
     'https://script.google.com/macros/s/AKfycbz6HRX3T88PGyl9mqBhTzElrcfVh-tEKD0a4eTZZmvZzfHfJkSOqhWiFaEQ9dTTzFbMfA/exec?sheet=Noticeboard';
 
   // Helper function to safely escape HTML special characters
-  // function escapeHtml(text) {
-  //   const div = document.createElement('div');
-  //   div.textContent = text;
-  //   return div.innerHTML;
-  // }
-
-  // // Helper function to convert plain URLs into safe, clickable <a> tags
-  // function linkifyText(text) {
-  //   const escapedText = escapeHtml(text);
-  //   const urlRegex = /(https?:\/\/[^\s<]+)/g;
-  //   return escapedText.replace(
-  //     urlRegex,
-  //     url =>
-  //       `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`
-  //   );
-  // }
   function escapeHtml(text) {
     const div = document.createElement('div');
     div.textContent = text;
@@ -230,13 +214,13 @@ async function loadNoticeboard() {
 
   // Helper function to convert plain URLs into safe, clickable <a> tags
   function linkifyText(text) {
-    // 1. Replace non-breaking spaces (\u00A0) from Google Sheets with standard spaces
+    // 1. Clean non-breaking spaces
     const cleanText = text.replace(/\u00A0/g, ' ');
 
-    // 2. Safely escape HTML characters
+    // 2. Escape HTML characters
     const escapedText = escapeHtml(cleanText);
 
-    // 3. Regex that matches http/https URLs while ignoring trailing punctuation like . , ! ?
+    // 3. Regex that matches full http/https URLs accurately
     const urlRegex = /(https?:\/\/[^\s<]+?)(?=[.,!?:;]?(?:\s|$|<))/g;
 
     return escapedText.replace(
@@ -311,10 +295,17 @@ async function loadNoticeboard() {
         }
       });
 
-      // 5. Intelligent Text Distribution
-      let allParagraphs = row.text ? row.text.split(/\r?\n\s*\r?\n/) : [];
-      if (allParagraphs.length <= 1 && row.text) {
-        allParagraphs = row.text.match(/[^.!?]+[.!?]+/g) || [row.text];
+      // 5. Intelligent Text Distribution (URL-Safe)
+      let rawText = row.text ? row.text.replace(/\r/g, '') : '';
+
+      let allParagraphs = rawText ? rawText.split(/\n\s*\n/) : [];
+
+      // If no double newlines, split by sentence endings while protecting URLs
+      if (allParagraphs.length <= 1 && rawText) {
+        // Regex splits on punctuation ONLY followed by a space and uppercase letter/emoji (prevents splitting domain names)
+        allParagraphs = rawText.match(
+          /(?:[^.!?]|\.(?!\s+[A-Z\u00C0-\u024F\u1F60-\u1F64]))+[.!?]*/g
+        ) || [rawText];
       }
 
       let paragraphIndex = 0;
