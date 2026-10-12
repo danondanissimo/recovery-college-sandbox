@@ -93,15 +93,16 @@ export function initCalendar() {
               2,
               '0'
             );
-            timeText = `${startHours}:${startMinutes}-${endHours}:${endMinutes} `;
+            timeText = `${startHours}:${startMinutes}-${endHours}:${endMinutes}`;
           } else {
-            timeText = `${startHours}:${startMinutes} `;
+            timeText = `${startHours}:${startMinutes}`;
           }
         }
 
         return {
           html: `<div style="white-space: normal !important; overflow: visible !important; word-break: break-word; line-height: 1.2; font-weight: 600;">
-                  <span style="font-weight: 700; margin-right: 4px;">${timeText}</span>${info.event.title}
+                  <div style="font-weight: 700; margin-bottom: 2px;">${timeText}</div>
+                  <div>${info.event.title}</div>
                  </div>`,
         };
       },
