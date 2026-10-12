@@ -54,16 +54,49 @@ export function initCalendar() {
       },
 
       // Overrides FullCalendar's rendering to include the start time and force text wrapping
+      // eventContent: function (info) {
+      //   let timeText = '';
+
+      //   if (info.event.start && !info.event.allDay) {
+      //     const hours = info.event.start.getHours();
+      //     const minutes = info.event.start.getMinutes();
+
+      //     const formattedHours = String(hours).padStart(2, '0');
+      //     const formattedMinutes = String(minutes).padStart(2, '0');
+      //     timeText = `${formattedHours}:${formattedMinutes} `;
+      //   }
+
+      //   return {
+      //     html: `<div style="white-space: normal !important; overflow: visible !important; word-break: break-word; line-height: 1.2; font-weight: 600;">
+      //             <span style="font-weight: 700; margin-right: 4px;">${timeText}</span>${info.event.title}
+      //            </div>`,
+      //   };
+      // },
       eventContent: function (info) {
         let timeText = '';
 
         if (info.event.start && !info.event.allDay) {
-          const hours = info.event.start.getHours();
-          const minutes = info.event.start.getMinutes();
+          // Format Start Time
+          const startHours = String(info.event.start.getHours()).padStart(
+            2,
+            '0'
+          );
+          const startMinutes = String(info.event.start.getMinutes()).padStart(
+            2,
+            '0'
+          );
 
-          const formattedHours = String(hours).padStart(2, '0');
-          const formattedMinutes = String(minutes).padStart(2, '0');
-          timeText = `${formattedHours}:${formattedMinutes} `;
+          // Format End Time (if available)
+          if (info.event.end) {
+            const endHours = String(info.event.end.getHours()).padStart(2, '0');
+            const endMinutes = String(info.event.end.getMinutes()).padStart(
+              2,
+              '0'
+            );
+            timeText = `${startHours}:${startMinutes}-${endHours}:${endMinutes} `;
+          } else {
+            timeText = `${startHours}:${startMinutes} `;
+          }
         }
 
         return {
