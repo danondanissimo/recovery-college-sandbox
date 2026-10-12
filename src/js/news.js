@@ -2,19 +2,12 @@
 //   const newsListContainer = document.querySelector('.news-list');
 //   if (!newsListContainer) return;
 
-//   // Show the loading spinner before fetching
-//   newsListContainer.innerHTML = `
-//     <div class="news-spinner-container">
-//       <div class="news-spinner"></div>
-//     </div>
-//   `;
+//   const cacheKey = 'recovery_college_noticeboard_cache';
+//   const endpointUrl =
+//     'https://script.google.com/macros/s/AKfycbz6HRX3T88PGyl9mqBhTzElrcfVh-tEKD0a4eTZZmvZzfHfJkSOqhWiFaEQ9dTTzFbMfA/exec?sheet=Noticeboard';
 
-//   try {
-//     const endpointUrl = 'https://script.google.com/macros/s/AKfycbz6HRX3T88PGyl9mqBhTzElrcfVh-tEKD0a4eTZZmvZzfHfJkSOqhWiFaEQ9dTTzFbMfA/exec?sheet=Noticeboard';
-
-//     const response = await fetch(endpointUrl);
-//     const data = await response.json();
-
+//   // Helper function to render data into the DOM
+//   function renderNoticeboard(data) {
 //     newsListContainer.innerHTML = '';
 
 //     data.forEach(row => {
@@ -32,7 +25,7 @@
 //           formattedDate = dateObj.toLocaleDateString('en-US', {
 //             year: 'numeric',
 //             month: 'long',
-//             day: 'numeric'
+//             day: 'numeric',
 //           });
 //         }
 //       }
@@ -78,7 +71,10 @@
 
 //       let paragraphIndex = 0;
 //       const chunksCount = photos.length > 0 ? photos.length + 1 : 1;
-//       const chunkSize = Math.max(1, Math.ceil(allParagraphs.length / chunksCount));
+//       const chunkSize = Math.max(
+//         1,
+//         Math.ceil(allParagraphs.length / chunksCount)
+//       );
 
 //       if (allParagraphs.length > 0) {
 //         const initialChunk = allParagraphs.slice(0, chunkSize).join(' ');
@@ -99,7 +95,9 @@
 //         applySmartImageStyling(img, index);
 //         article.appendChild(img);
 
-//         const nextChunk = allParagraphs.slice(paragraphIndex, paragraphIndex + chunkSize).join(' ');
+//         const nextChunk = allParagraphs
+//           .slice(paragraphIndex, paragraphIndex + chunkSize)
+//           .join(' ');
 //         paragraphIndex += chunkSize;
 
 //         if (nextChunk.trim()) {
@@ -123,10 +121,55 @@
 //       li.appendChild(article);
 //       newsListContainer.appendChild(li);
 //     });
+//   }
 
+//   // Check if we have cached data to display *instantly*
+//   const cachedData = localStorage.getItem(cacheKey);
+//   let hasDisplayedCache = false;
+
+//   if (cachedData) {
+//     try {
+//       const parsedCache = JSON.parse(cachedData);
+//       renderNoticeboard(parsedCache);
+//       hasDisplayedCache = true;
+//     } catch (e) {
+//       console.error('Failed to parse noticeboard cache:', e);
+//     }
+//   }
+
+//   // If no cache exists yet, show the loading spinner
+//   if (!hasDisplayedCache) {
+//     newsListContainer.innerHTML = `
+//       <div class="news-spinner-container">
+//         <div class="news-spinner"></div>
+//       </div>
+//     `;
+//   }
+
+//   // Fetch fresh data in the background (or foreground if no cache was found)
+//   try {
+//     const response = await fetch(endpointUrl);
+//     const data = await response.json();
+
+//     // Safely save to localStorage with quota error handling
+//     try {
+//       localStorage.setItem(cacheKey, JSON.stringify(data));
+//     } catch (storageError) {
+//       console.warn(
+//         'Noticeboard data too large for localStorage cache:',
+//         storageError
+//       );
+//     }
+
+//     // Render the fresh data to keep the view updated
+//     renderNoticeboard(data);
 //   } catch (error) {
 //     console.error('Error loading noticeboard data:', error);
-//     newsListContainer.innerHTML = '<p class="news-error">Noticeboard temporarily unavailable.</p>';
+//     // Only show the error state if we didn't have a cache to fall back on
+//     if (!hasDisplayedCache) {
+//       newsListContainer.innerHTML =
+//         '<p class="news-error">Noticeboard temporarily unavailable.</p>';
+//     }
 //   }
 // }
 
@@ -161,6 +204,32 @@ async function loadNoticeboard() {
   const cacheKey = 'recovery_college_noticeboard_cache';
   const endpointUrl =
     'https://script.google.com/macros/s/AKfycbz6HRX3T88PGyl9mqBhTzElrcfVh-tEKD0a4eTZZmvZzfHfJkSOqhWiFaEQ9dTTzFbMfA/exec?sheet=Noticeboard';
+
+  // Helper function to safely escape HTML special characters
+  function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+
+  // Helper function to convert plain URLs into safe, clickable <a> tags
+  function linkifyText(text) {
+    const escapedText = escapeHtml(text);
+    const urlRegex = /(https?:\/\/[^\s<]+)/g;
+    return escapedText.replace(
+      urlRegex,
+      url =>
+        `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`
+    );
+  }
+
+  // Helper function to create text paragraphs with active links
+  function createParagraph(text) {
+    const p = document.createElement('p');
+    p.className = 'news-list-item-article-text';
+    p.innerHTML = linkifyText(text);
+    return p;
+  }
 
   // Helper function to render data into the DOM
   function renderNoticeboard(data) {
@@ -235,10 +304,7 @@ async function loadNoticeboard() {
       if (allParagraphs.length > 0) {
         const initialChunk = allParagraphs.slice(0, chunkSize).join(' ');
         if (initialChunk.trim()) {
-          const p = document.createElement('p');
-          p.className = 'news-list-item-article-text';
-          p.textContent = initialChunk;
-          article.appendChild(p);
+          article.appendChild(createParagraph(initialChunk));
         }
         paragraphIndex = chunkSize;
       }
@@ -257,20 +323,14 @@ async function loadNoticeboard() {
         paragraphIndex += chunkSize;
 
         if (nextChunk.trim()) {
-          const p = document.createElement('p');
-          p.className = 'news-list-item-article-text';
-          p.textContent = nextChunk;
-          article.appendChild(p);
+          article.appendChild(createParagraph(nextChunk));
         }
       });
 
       if (paragraphIndex < allParagraphs.length) {
         const remainingChunk = allParagraphs.slice(paragraphIndex).join(' ');
         if (remainingChunk.trim()) {
-          const p = document.createElement('p');
-          p.className = 'news-list-item-article-text';
-          p.textContent = remainingChunk;
-          article.appendChild(p);
+          article.appendChild(createParagraph(remainingChunk));
         }
       }
 
