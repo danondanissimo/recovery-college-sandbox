@@ -100,9 +100,13 @@ export function initCalendar() {
         }
 
         return {
-          html: `<div style="display: block !important; white-space: normal !important; overflow: visible !important; word-break: break-word; line-height: 1.25; font-weight: 600;">
-                  <span style="font-weight: 700; display: block; margin-bottom: 2px;">${timeText}</span>
-                  <span>${info.event.title}</span>
+          html: `<div style="display: block !important; white-space: normal !important; overflow: visible !important; word-break: break-word; line-height: 1.35; font-weight: 600;">
+                  ${
+                    timeText
+                      ? `<span style="display: inline-block; background-color: #6b21a8; color: #ffffff; font-weight: 700; font-size: 0.85em; padding: 2px 6px; border-radius: 4px; margin-bottom: 4px;">${timeText}</span>`
+                      : ''
+                  }
+                  <div style="color: #1e1b4b;">${info.event.title}</div>
                  </div>`,
         };
       },
