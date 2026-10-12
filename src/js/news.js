@@ -212,15 +212,26 @@ async function loadNoticeboard() {
     return div.innerHTML;
   }
 
-  // Helper function to convert plain URLs into safe, clickable <a> tags
   function linkifyText(text) {
     // 1. Clean non-breaking spaces
-    const cleanText = text.replace(/\u00A0/g, ' ');
+    let cleanText = text.replace(/\u00A0/g, ' ');
 
-    // 2. Escape HTML characters
+    // 2. Fix URLs broken by cell wrapping spaces (e.g. "https://maps. app. goo. gl/...")
+    cleanText = cleanText.replace(
+      /(https?:\/\/[^\s]+?)(?=\s+(?:app|goo|gl|com|org|net|io|co|uk|ie|link|page|page\.link)\b)/gi,
+      '$1'
+    );
+
+    // Specifically repair maps.app.goo.gl fragments broken by spaces
+    cleanText = cleanText.replace(
+      /https?:\/\/\s*maps\.\s*app\.\s*goo\.\s*gl\/([^\s]+)/gi,
+      'https://maps.app.goo.gl/$1'
+    );
+
+    // 3. Escape HTML
     const escapedText = escapeHtml(cleanText);
 
-    // 3. Regex that matches full http/https URLs accurately
+    // 4. Match full http/https URLs accurately
     const urlRegex = /(https?:\/\/[^\s<]+?)(?=[.,!?:;]?(?:\s|$|<))/g;
 
     return escapedText.replace(
