@@ -3,7 +3,7 @@ import { defineConfig } from 'vite';
 
 export default defineConfig({
   root: 'src',
-  base: '/recovery-college-sandbox/',
+  base: '/',
   build: {
     outDir: '../dist',
     emptyOutDir: true,
