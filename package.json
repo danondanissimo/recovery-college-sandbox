@@ -5,7 +5,7 @@
   "homepage": "https://danondanissimo.github.io/recovery-college-sandbox",
   "scripts": {
     "start": "vite",
-    "build": "vite build --base=/recovery-college-sandbox/"
+    "build": "vite build"
   },
   "repository": {
     "type": "git",
