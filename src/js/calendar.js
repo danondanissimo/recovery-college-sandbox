@@ -210,7 +210,49 @@ export function initCalendar() {
         }
       },
 
+      // eventContent: function (info) {
+      //   let timeText = '';
+
+      //   if (info.event.start && !info.event.allDay) {
+      //     // Format Start Time
+      //     const startHours = String(info.event.start.getHours()).padStart(
+      //       2,
+      //       '0'
+      //     );
+      //     const startMinutes = String(info.event.start.getMinutes()).padStart(
+      //       2,
+      //       '0'
+      //     );
+
+      //     // Format End Time (if available)
+      //     if (info.event.end) {
+      //       const endHours = String(info.event.end.getHours()).padStart(2, '0');
+      //       const endMinutes = String(info.event.end.getMinutes()).padStart(
+      //         2,
+      //         '0'
+      //       );
+      //       timeText = `${startHours}:${startMinutes}-${endHours}:${endMinutes}`;
+      //     } else {
+      //       timeText = `${startHours}:${startMinutes}`;
+      //     }
+      //   }
+
+      //   return {
+      //     html: `<div style="display: block !important; white-space: normal !important; overflow: visible !important; word-break: break-word; line-height: 1.35; font-weight: 600;">
+      //             ${
+      //               timeText
+      //                 ? `<span style="display: inline-block; background-color: #6b21a8; color: #ffffff; font-weight: 700; font-size: 0.85em; padding: 2px 6px; border-radius: 4px; margin-bottom: 4px;">${timeText}</span>`
+      //                 : ''
+      //             }
+      //             <div style="color: #1e1b4b;">${info.event.title}</div>
+      //            </div>`,
+      //   };
+      // },
+
       eventContent: function (info) {
+        // Check if we are currently rendering a List View
+        const isListView = info.view.type.startsWith('list');
+
         let timeText = '';
 
         if (info.event.start && !info.event.allDay) {
@@ -237,6 +279,16 @@ export function initCalendar() {
           }
         }
 
+        // On List View: Don't show the purple time badge (FullCalendar lists time on the left)
+        if (isListView) {
+          return {
+            html: `<div style="display: block !important; white-space: normal !important; line-height: 1.35; font-weight: 600; color: #1e1b4b;">
+                    ${info.event.title}
+                   </div>`,
+          };
+        }
+
+        // On Grid View (Desktop): Keep the purple time pill
         return {
           html: `<div style="display: block !important; white-space: normal !important; overflow: visible !important; word-break: break-word; line-height: 1.35; font-weight: 600;">
                   ${
