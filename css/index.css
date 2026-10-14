@@ -896,6 +896,11 @@ header nav a.is-active,
   min-height: 110px !important;
 }
 
+#calendar {
+  isolation: isolate;
+  z-index: 1;
+}
+
 .news-list {
   display: flex;
   gap: 15px;
