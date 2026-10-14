@@ -1,7 +1,8 @@
-// src/js/calendar.js
+// // src/js/calendar.js
 // import { Calendar } from 'fullcalendar';
 // import dayGridPlugin from '@fullcalendar/daygrid';
 // import googleCalendarPlugin from '@fullcalendar/google-calendar';
+// import listPlugin from '@fullcalendar/list'; // 1. Added List Plugin import
 
 // const calendarIds = {
 //   carlow:
@@ -45,33 +46,30 @@
 
 //     const calendarId = calendarIds[currentSelection];
 
+//     // Helper check for mobile/tablet screens (< 768px)
+//     const isMobile = window.innerWidth < 768;
+
 //     const calendar = new Calendar(calendarEl, {
-//       initialView: 'dayGridMonth',
-//       plugins: [dayGridPlugin, googleCalendarPlugin],
+//       // Switches to list view on mobile/tablets, stays month grid on desktop
+//       initialView: isMobile ? 'listMonth' : 'dayGridMonth',
+//       plugins: [dayGridPlugin, googleCalendarPlugin, listPlugin],
 //       googleCalendarApiKey: 'AIzaSyBLI7yESEMGFmGHwC6n8GG_DZ3V-TULNpY',
 //       events: {
 //         googleCalendarId: calendarId,
 //       },
 
-//       // Overrides FullCalendar's rendering to include the start time and force text wrapping
-//       // eventContent: function (info) {
-//       //   let timeText = '';
+//       // Automatically adjusts views if a user rotates their device or resizes
+//       windowResize: function (arg) {
+//         if (window.innerWidth < 768 && calendar.view.type !== 'listMonth') {
+//           calendar.changeView('listMonth');
+//         } else if (
+//           window.innerWidth >= 768 &&
+//           calendar.view.type !== 'dayGridMonth'
+//         ) {
+//           calendar.changeView('dayGridMonth');
+//         }
+//       },
 
-//       //   if (info.event.start && !info.event.allDay) {
-//       //     const hours = info.event.start.getHours();
-//       //     const minutes = info.event.start.getMinutes();
-
-//       //     const formattedHours = String(hours).padStart(2, '0');
-//       //     const formattedMinutes = String(minutes).padStart(2, '0');
-//       //     timeText = `${formattedHours}:${formattedMinutes} `;
-//       //   }
-
-//       //   return {
-//       //     html: `<div style="white-space: normal !important; overflow: visible !important; word-break: break-word; line-height: 1.2; font-weight: 600;">
-//       //             <span style="font-weight: 700; margin-right: 4px;">${timeText}</span>${info.event.title}
-//       //            </div>`,
-//       //   };
-//       // },
 //       eventContent: function (info) {
 //         let timeText = '';
 
@@ -99,6 +97,58 @@
 //           }
 //         }
 
+//         return {
+//           html: `<div style="display: block !important; white-space: normal !important; overflow: visible !important; word-break: break-word; line-height: 1.35; font-weight: 600;">
+//                   ${
+//                     timeText
+//                       ? `<span style="display: inline-block; background-color: #6b21a8; color: #ffffff; font-weight: 700; font-size: 0.85em; padding: 2px 6px; border-radius: 4px; margin-bottom: 4px;">${timeText}</span>`
+//                       : ''
+//                   }
+//                   <div style="color: #1e1b4b;">${info.event.title}</div>
+//                  </div>`,
+//         };
+//       },
+
+//       eventContent: function (info) {
+//         // Check if we are currently rendering a List View
+//         const isListView = info.view.type.startsWith('list');
+
+//         let timeText = '';
+
+//         if (info.event.start && !info.event.allDay) {
+//           // Format Start Time
+//           const startHours = String(info.event.start.getHours()).padStart(
+//             2,
+//             '0'
+//           );
+//           const startMinutes = String(info.event.start.getMinutes()).padStart(
+//             2,
+//             '0'
+//           );
+
+//           // Format End Time (if available)
+//           if (info.event.end) {
+//             const endHours = String(info.event.end.getHours()).padStart(2, '0');
+//             const endMinutes = String(info.event.end.getMinutes()).padStart(
+//               2,
+//               '0'
+//             );
+//             timeText = `${startHours}:${startMinutes}-${endHours}:${endMinutes}`;
+//           } else {
+//             timeText = `${startHours}:${startMinutes}`;
+//           }
+//         }
+
+//         // On List View: Don't show the purple time badge (FullCalendar lists time on the left)
+//         if (isListView) {
+//           return {
+//             html: `<div style="display: block !important; white-space: normal !important; line-height: 1.35; font-weight: 600; color: #1e1b4b;">
+//                     ${info.event.title}
+//                    </div>`,
+//           };
+//         }
+
+//         // On Grid View (Desktop): Keep the purple time pill
 //         return {
 //           html: `<div style="display: block !important; white-space: normal !important; overflow: visible !important; word-break: break-word; line-height: 1.35; font-weight: 600;">
 //                   ${
@@ -142,7 +192,7 @@
 import { Calendar } from 'fullcalendar';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import googleCalendarPlugin from '@fullcalendar/google-calendar';
-import listPlugin from '@fullcalendar/list'; // 1. Added List Plugin import
+import listPlugin from '@fullcalendar/list';
 
 const calendarIds = {
   carlow:
@@ -210,45 +260,6 @@ export function initCalendar() {
         }
       },
 
-      // eventContent: function (info) {
-      //   let timeText = '';
-
-      //   if (info.event.start && !info.event.allDay) {
-      //     // Format Start Time
-      //     const startHours = String(info.event.start.getHours()).padStart(
-      //       2,
-      //       '0'
-      //     );
-      //     const startMinutes = String(info.event.start.getMinutes()).padStart(
-      //       2,
-      //       '0'
-      //     );
-
-      //     // Format End Time (if available)
-      //     if (info.event.end) {
-      //       const endHours = String(info.event.end.getHours()).padStart(2, '0');
-      //       const endMinutes = String(info.event.end.getMinutes()).padStart(
-      //         2,
-      //         '0'
-      //       );
-      //       timeText = `${startHours}:${startMinutes}-${endHours}:${endMinutes}`;
-      //     } else {
-      //       timeText = `${startHours}:${startMinutes}`;
-      //     }
-      //   }
-
-      //   return {
-      //     html: `<div style="display: block !important; white-space: normal !important; overflow: visible !important; word-break: break-word; line-height: 1.35; font-weight: 600;">
-      //             ${
-      //               timeText
-      //                 ? `<span style="display: inline-block; background-color: #6b21a8; color: #ffffff; font-weight: 700; font-size: 0.85em; padding: 2px 6px; border-radius: 4px; margin-bottom: 4px;">${timeText}</span>`
-      //                 : ''
-      //             }
-      //             <div style="color: #1e1b4b;">${info.event.title}</div>
-      //            </div>`,
-      //   };
-      // },
-
       eventContent: function (info) {
         // Check if we are currently rendering a List View
         const isListView = info.view.type.startsWith('list');
@@ -301,6 +312,20 @@ export function initCalendar() {
         };
       },
 
+      // Fix for Mobile/List view click crash
+      eventClick: function (info) {
+        const description = info.event.extendedProps.description || '';
+        const urlMatch = description.match(/(https?:\/\/[^\s]+)/);
+
+        if (urlMatch && urlMatch[0]) {
+          const targetUrl = urlMatch[0].replace(/["'<>\)]/g, '');
+          window.open(targetUrl, '_blank');
+
+          // Prevents FullCalendar's internal default click handler from looking for href on non-A tags
+          info.jsEvent.preventDefault();
+        }
+      },
+
       eventDidMount: function (info) {
         if (info.event.backgroundColor) {
           info.el.style.backgroundColor = info.event.backgroundColor;
@@ -317,10 +342,15 @@ export function initCalendar() {
           targetUrl = urlMatch[0].replace(/["'<>\)]/g, '');
         }
 
-        // 2. Override the element's href so hovering and clicking go straight to your link
+        // 2. Apply targetUrl safely depending on element type
         if (targetUrl) {
-          info.el.href = targetUrl;
-          info.el.setAttribute('target', '_blank');
+          if (info.el.tagName === 'A') {
+            info.el.href = targetUrl;
+            info.el.setAttribute('target', '_blank');
+          } else {
+            // For List View rows (<tr> or <div>), make sure mouse/tap indicates clickability
+            info.el.style.cursor = 'pointer';
+          }
         }
       },
     });
