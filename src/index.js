@@ -36,13 +36,14 @@ import { initCalendar } from './js/calendar.js';
 import mapSvgUrl from './images/icons/ie.svg';
 
 document.addEventListener('DOMContentLoaded', () => {
-  initMobileMenu(); // Initialize mobile menu safely after DOM is ready
-  initCalendar(); // Initialize calendar
-});
+  // 1. Initialize mobile menu
+  initMobileMenu();
 
-document.addEventListener('DOMContentLoaded', () => {
+  // 2. Initialize calendar (if on calendar page)
+  initCalendar();
+
+  // 3. Highlight active menu links
   const currentPath = window.location.pathname.split('/').pop() || 'index.html';
-
   document
     .querySelectorAll('header nav a, .header a, .mobile-menu-item-link')
     .forEach(link => {
@@ -51,9 +52,10 @@ document.addEventListener('DOMContentLoaded', () => {
         link.classList.add('is-active');
       }
     });
-});
 
-const mapElement = document.getElementById('ireland-map');
-if (mapElement) {
-  mapElement.data = mapSvgUrl;
-}
+  // 4. Safely load SVG map if element exists on current page
+  const mapElement = document.getElementById('ireland-map');
+  if (mapElement) {
+    mapElement.data = mapSvgUrl;
+  }
+});

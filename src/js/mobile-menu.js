@@ -24,18 +24,28 @@ export function initMobileMenu() {
   const openMenuBtn = document.querySelector('#menu-button-open');
   const closeMenuBtn = document.querySelector('.menu-button-close');
 
-  const toggleMenu = () => {
-    if (mobileMenu) {
-      mobileMenu.classList.toggle('is-open');
+  if (!mobileMenu) return;
+
+  // Set initial state: closed menu should be inert (un-focusable via Tab key)
+  if (!mobileMenu.classList.contains('is-open')) {
+    mobileMenu.setAttribute('inert', '');
+  }
+
+  const toggleMenu = e => {
+    if (e) e.preventDefault();
+
+    const isOpen = mobileMenu.classList.toggle('is-open');
+
+    if (isOpen) {
+      mobileMenu.removeAttribute('inert'); // Enable keyboard focus when open
+    } else {
+      mobileMenu.setAttribute('inert', ''); // Disable keyboard focus when closed
     }
   };
 
   if (openMenuBtn) {
-    openMenuBtn.removeEventListener('click', toggleMenu); // Prevent duplicate listeners
+    openMenuBtn.removeEventListener('click', toggleMenu);
     openMenuBtn.addEventListener('click', toggleMenu);
-    console.log('Mobile menu initialized successfully!');
-  } else {
-    console.warn('Open menu button not found in DOM.');
   }
 
   if (closeMenuBtn) {
