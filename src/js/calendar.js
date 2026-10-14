@@ -226,7 +226,6 @@ export function initCalendar() {
     const urlParams = new URLSearchParams(window.location.search);
     const rawCounty = urlParams.get('county');
 
-    // Explicitly validate county parameter, fallback safely to carlow
     const currentSelection =
       rawCounty && calendarIds[rawCounty] ? rawCounty : 'carlow';
 
@@ -235,12 +234,9 @@ export function initCalendar() {
     }
 
     const calendarId = calendarIds[currentSelection];
-
-    // Helper check for mobile/tablet screens (< 768px)
     const isMobile = window.innerWidth < 768;
 
     const calendar = new Calendar(calendarEl, {
-      // Switches to list view on mobile/tablets, stays month grid on desktop
       initialView: isMobile ? 'listMonth' : 'dayGridMonth',
       plugins: [dayGridPlugin, googleCalendarPlugin, listPlugin],
       googleCalendarApiKey: 'AIzaSyBLI7yESEMGFmGHwC6n8GG_DZ3V-TULNpY',
@@ -248,7 +244,6 @@ export function initCalendar() {
         googleCalendarId: calendarId,
       },
 
-      // Automatically adjusts views if a user rotates their device or resizes
       windowResize: function (arg) {
         if (window.innerWidth < 768 && calendar.view.type !== 'listMonth') {
           calendar.changeView('listMonth');
@@ -261,13 +256,18 @@ export function initCalendar() {
       },
 
       eventContent: function (info) {
-        // Check if we are currently rendering a List View
         const isListView = info.view.type.startsWith('list');
 
-        let timeText = '';
+        // Extract URL from description so we can put it directly in the <a> tag
+        let targetUrl = '#';
+        const description = info.event.extendedProps.description || '';
+        const urlMatch = description.match(/(https?:\/\/[^\s]+)/);
+        if (urlMatch && urlMatch[0]) {
+          targetUrl = urlMatch[0].replace(/["'<>\)]/g, '');
+        }
 
+        let timeText = '';
         if (info.event.start && !info.event.allDay) {
-          // Format Start Time
           const startHours = String(info.event.start.getHours()).padStart(
             2,
             '0'
@@ -277,7 +277,6 @@ export function initCalendar() {
             '0'
           );
 
-          // Format End Time (if available)
           if (info.event.end) {
             const endHours = String(info.event.end.getHours()).padStart(2, '0');
             const endMinutes = String(info.event.end.getMinutes()).padStart(
@@ -290,40 +289,26 @@ export function initCalendar() {
           }
         }
 
-        // On List View: Don't show the purple time badge (FullCalendar lists time on the left)
+        // On List View: Return an <a> tag so FullCalendar's querySelector('a') finds it successfully
         if (isListView) {
           return {
-            html: `<div style="display: block !important; white-space: normal !important; line-height: 1.35; font-weight: 600; color: #1e1b4b;">
+            html: `<a href="${targetUrl}" target="_blank" style="display: block !important; white-space: normal !important; line-height: 1.35; font-weight: 600; color: #1e1b4b; text-decoration: none;">
                     ${info.event.title}
-                   </div>`,
+                   </a>`,
           };
         }
 
-        // On Grid View (Desktop): Keep the purple time pill
+        // On Grid View (Desktop): Return an <a> tag with the time pill
         return {
-          html: `<div style="display: block !important; white-space: normal !important; overflow: visible !important; word-break: break-word; line-height: 1.35; font-weight: 600;">
+          html: `<a href="${targetUrl}" target="_blank" style="display: block !important; white-space: normal !important; overflow: visible !important; word-break: break-word; line-height: 1.35; font-weight: 600; text-decoration: none;">
                   ${
                     timeText
                       ? `<span style="display: inline-block; background-color: #6b21a8; color: #ffffff; font-weight: 700; font-size: 0.85em; padding: 2px 6px; border-radius: 4px; margin-bottom: 4px;">${timeText}</span>`
                       : ''
                   }
                   <div style="color: #1e1b4b;">${info.event.title}</div>
-                 </div>`,
+                 </a>`,
         };
-      },
-
-      // Fix for Mobile/List view click crash
-      eventClick: function (info) {
-        const description = info.event.extendedProps.description || '';
-        const urlMatch = description.match(/(https?:\/\/[^\s]+)/);
-
-        if (urlMatch && urlMatch[0]) {
-          const targetUrl = urlMatch[0].replace(/["'<>\)]/g, '');
-          window.open(targetUrl, '_blank');
-
-          // Prevents FullCalendar's internal default click handler from looking for href on non-A tags
-          info.jsEvent.preventDefault();
-        }
       },
 
       eventDidMount: function (info) {
@@ -331,26 +316,6 @@ export function initCalendar() {
           info.el.style.backgroundColor = info.event.backgroundColor;
         } else if (info.event.color) {
           info.el.style.backgroundColor = info.event.color;
-        }
-
-        // 1. Extract the URL from the event description
-        let targetUrl = null;
-        const description = info.event.extendedProps.description || '';
-        const urlMatch = description.match(/(https?:\/\/[^\s]+)/);
-
-        if (urlMatch && urlMatch[0]) {
-          targetUrl = urlMatch[0].replace(/["'<>\)]/g, '');
-        }
-
-        // 2. Apply targetUrl safely depending on element type
-        if (targetUrl) {
-          if (info.el.tagName === 'A') {
-            info.el.href = targetUrl;
-            info.el.setAttribute('target', '_blank');
-          } else {
-            // For List View rows (<tr> or <div>), make sure mouse/tap indicates clickability
-            info.el.style.cursor = 'pointer';
-          }
         }
       },
     });
