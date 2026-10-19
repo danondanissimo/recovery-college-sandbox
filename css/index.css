@@ -993,7 +993,9 @@ header nav a.is-active,
   margin: 20px 0;
 }
 
+/* UPDATED: Left alignment prevents awkward gaps when rendering long links or short lines */
 .news-list-item-article-text {
   margin: 0;
-  text-align: justify;
+  text-align: left;
+  word-break: break-word;
 }/*# sourceMappingURL=index.css.map */
