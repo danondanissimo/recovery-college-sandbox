@@ -1,3 +1,5 @@
+// // src/js/news.js
+
 // async function loadNoticeboard() {
 //   const newsListContainer = document.querySelector('.news-list');
 //   if (!newsListContainer) return;
@@ -5,6 +7,50 @@
 //   const cacheKey = 'recovery_college_noticeboard_cache';
 //   const endpointUrl =
 //     'https://script.google.com/macros/s/AKfycbz6HRX3T88PGyl9mqBhTzElrcfVh-tEKD0a4eTZZmvZzfHfJkSOqhWiFaEQ9dTTzFbMfA/exec?sheet=Noticeboard';
+
+//   // Helper function to safely escape HTML special characters
+//   function escapeHtml(text) {
+//     const div = document.createElement('div');
+//     div.textContent = text;
+//     return div.innerHTML;
+//   }
+
+//   function linkifyText(text) {
+//     // 1. Clean non-breaking spaces
+//     let cleanText = text.replace(/\u00A0/g, ' ');
+
+//     // 2. Fix URLs broken by cell wrapping spaces (e.g. "https://maps. app. goo. gl/...")
+//     cleanText = cleanText.replace(
+//       /(https?:\/\/[^\s]+?)(?=\s+(?:app|goo|gl|com|org|net|io|co|uk|ie|link|page|page\.link)\b)/gi,
+//       '$1'
+//     );
+
+//     // Specifically repair maps.app.goo.gl fragments broken by spaces
+//     cleanText = cleanText.replace(
+//       /https?:\/\/\s*maps\.\s*app\.\s*goo\.\s*gl\/([^\s]+)/gi,
+//       'https://maps.app.goo.gl/$1'
+//     );
+
+//     // 3. Escape HTML
+//     const escapedText = escapeHtml(cleanText);
+
+//     // 4. Match full http/https URLs accurately
+//     const urlRegex = /(https?:\/\/[^\s<]+?)(?=[.,!?:;]?(?:\s|$|<))/g;
+
+//     return escapedText.replace(
+//       urlRegex,
+//       url =>
+//         `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`
+//     );
+//   }
+
+//   // Helper function to create text paragraphs with active links
+//   function createParagraph(text) {
+//     const p = document.createElement('p');
+//     p.className = 'news-list-item-article-text';
+//     p.innerHTML = linkifyText(text);
+//     return p;
+//   }
 
 //   // Helper function to render data into the DOM
 //   function renderNoticeboard(data) {
@@ -63,10 +109,17 @@
 //         }
 //       });
 
-//       // 5. Intelligent Text Distribution
-//       let allParagraphs = row.text ? row.text.split(/\r?\n\s*\r?\n/) : [];
-//       if (allParagraphs.length <= 1 && row.text) {
-//         allParagraphs = row.text.match(/[^.!?]+[.!?]+/g) || [row.text];
+//       // 5. Intelligent Text Distribution (URL-Safe)
+//       let rawText = row.text ? row.text.replace(/\r/g, '') : '';
+
+//       let allParagraphs = rawText ? rawText.split(/\n\s*\n/) : [];
+
+//       // If no double newlines, split by sentence endings while protecting URLs
+//       if (allParagraphs.length <= 1 && rawText) {
+//         // Regex splits on punctuation ONLY followed by a space and uppercase letter/emoji (prevents splitting domain names)
+//         allParagraphs = rawText.match(
+//           /(?:[^.!?]|\.(?!\s+[A-Z\u00C0-\u024F\u1F60-\u1F64]))+[.!?]*/g
+//         ) || [rawText];
 //       }
 
 //       let paragraphIndex = 0;
@@ -79,10 +132,7 @@
 //       if (allParagraphs.length > 0) {
 //         const initialChunk = allParagraphs.slice(0, chunkSize).join(' ');
 //         if (initialChunk.trim()) {
-//           const p = document.createElement('p');
-//           p.className = 'news-list-item-article-text';
-//           p.textContent = initialChunk;
-//           article.appendChild(p);
+//           article.appendChild(createParagraph(initialChunk));
 //         }
 //         paragraphIndex = chunkSize;
 //       }
@@ -101,20 +151,14 @@
 //         paragraphIndex += chunkSize;
 
 //         if (nextChunk.trim()) {
-//           const p = document.createElement('p');
-//           p.className = 'news-list-item-article-text';
-//           p.textContent = nextChunk;
-//           article.appendChild(p);
+//           article.appendChild(createParagraph(nextChunk));
 //         }
 //       });
 
 //       if (paragraphIndex < allParagraphs.length) {
 //         const remainingChunk = allParagraphs.slice(paragraphIndex).join(' ');
 //         if (remainingChunk.trim()) {
-//           const p = document.createElement('p');
-//           p.className = 'news-list-item-article-text';
-//           p.textContent = remainingChunk;
-//           article.appendChild(p);
+//           article.appendChild(createParagraph(remainingChunk));
 //         }
 //       }
 
@@ -241,11 +285,14 @@ async function loadNoticeboard() {
     );
   }
 
-  // Helper function to create text paragraphs with active links
+  // Helper function to create text paragraphs with active links AND preserved line breaks
   function createParagraph(text) {
     const p = document.createElement('p');
     p.className = 'news-list-item-article-text';
-    p.innerHTML = linkifyText(text);
+
+    // Convert single/double newlines into <br> tags while maintaining linkify formatting
+    const htmlWithBreaks = linkifyText(text).replace(/\r?\n/g, '<br>');
+    p.innerHTML = htmlWithBreaks;
     return p;
   }
 
@@ -253,7 +300,10 @@ async function loadNoticeboard() {
   function renderNoticeboard(data) {
     newsListContainer.innerHTML = '';
 
-    data.forEach(row => {
+    // Reverse data array so newest publications (bottom rows) appear on top
+    const sortedData = [...data].reverse();
+
+    sortedData.forEach(row => {
       const li = document.createElement('li');
       li.className = 'news-list-item';
 
