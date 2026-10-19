@@ -998,4 +998,26 @@ header nav a.is-active,
   margin: 0;
   text-align: left;
   word-break: break-word;
+}
+
+/* Style all anchor links inside noticeboard text paragraphs */
+.news-list-item-article-text a {
+  display: inline-block;
+  background-color: #6b21a8; /* Deep purple background */
+  color: #ffffff; /* White text for contrast */
+  padding: 3px 10px;
+  border-radius: 6px; /* Rounded corners */
+  text-decoration: none;
+  font-weight: 500;
+  word-break: break-all;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  margin: 2px 0;
+}
+
+/* Hover and Focus state */
+.news-list-item-article-text a:hover,
+.news-list-item-article-text a:focus {
+  background-color: #581c87; /* Darker purple on hover */
+  color: #ffffff;
+  text-decoration: underline;
 }/*# sourceMappingURL=index.css.map */
