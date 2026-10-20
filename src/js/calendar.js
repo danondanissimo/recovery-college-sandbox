@@ -188,7 +188,6 @@
 //   }
 // }
 
-// src/js/calendar.js
 import { Calendar } from 'fullcalendar';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import googleCalendarPlugin from '@fullcalendar/google-calendar';
@@ -244,6 +243,25 @@ export function initCalendar() {
         googleCalendarId: calendarId,
       },
 
+      // Hybrid Click Routing: Form link if available, otherwise Google Calendar event page
+      eventClick: function (info) {
+        info.jsEvent.preventDefault();
+
+        const description = info.event.extendedProps.description || '';
+        const urlMatch = description.match(/(https?:\/\/[^\s]+)/);
+
+        let targetUrl = '';
+        if (urlMatch && urlMatch[0]) {
+          targetUrl = urlMatch[0].replace(/["'<>\)]/g, '');
+        } else if (info.event.url) {
+          targetUrl = info.event.url;
+        }
+
+        if (targetUrl) {
+          window.open(targetUrl, '_blank', 'noopener,noreferrer');
+        }
+      },
+
       windowResize: function (arg) {
         if (window.innerWidth < 768 && calendar.view.type !== 'listMonth') {
           calendar.changeView('listMonth');
@@ -255,16 +273,9 @@ export function initCalendar() {
         }
       },
 
+      // Clean visual rendering without nested <a> tags
       eventContent: function (info) {
         const isListView = info.view.type.startsWith('list');
-
-        // Extract URL from description so we can put it directly in the <a> tag
-        let targetUrl = '#';
-        const description = info.event.extendedProps.description || '';
-        const urlMatch = description.match(/(https?:\/\/[^\s]+)/);
-        if (urlMatch && urlMatch[0]) {
-          targetUrl = urlMatch[0].replace(/["'<>\)]/g, '');
-        }
 
         let timeText = '';
         if (info.event.start && !info.event.allDay) {
@@ -289,25 +300,23 @@ export function initCalendar() {
           }
         }
 
-        // On List View: Return an <a> tag so FullCalendar's querySelector('a') finds it successfully
         if (isListView) {
           return {
-            html: `<a href="${targetUrl}" target="_blank" style="display: block !important; white-space: normal !important; line-height: 1.35; font-weight: 600; color: #1e1b4b; text-decoration: none;">
+            html: `<div style="display: block; white-space: normal; line-height: 1.35; font-weight: 600; color: #1e1b4b; cursor: pointer;">
                     ${info.event.title}
-                   </a>`,
+                   </div>`,
           };
         }
 
-        // On Grid View (Desktop): Return an <a> tag with the time pill
         return {
-          html: `<a href="${targetUrl}" target="_blank" style="display: block !important; white-space: normal !important; overflow: visible !important; word-break: break-word; line-height: 1.35; font-weight: 600; text-decoration: none;">
+          html: `<div style="display: block; white-space: normal; overflow: visible; word-break: break-word; line-height: 1.35; font-weight: 600; cursor: pointer;">
                   ${
                     timeText
                       ? `<span style="display: inline-block; background-color: #6b21a8; color: #ffffff; font-weight: 700; font-size: 0.85em; padding: 2px 6px; border-radius: 4px; margin-bottom: 4px;">${timeText}</span>`
                       : ''
                   }
                   <div style="color: #1e1b4b;">${info.event.title}</div>
-                 </a>`,
+                 </div>`,
         };
       },
 
