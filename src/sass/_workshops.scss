@@ -221,7 +221,7 @@
 // }
 
 @media (max-width: 425px) {
-  /* Force the event row and table elements to expand fully */
+  /* Force the event row into a column flex container */
   .fc-list-event {
     display: flex !important;
     flex-direction: column !important;
@@ -230,23 +230,23 @@
     padding: 10px 12px !important;
   }
 
-  /* Make table cells inside the event row take 100% width */
+  /* Keep cells as blocks */
   .fc-list-event > td {
     display: block !important;
     width: 100% !important;
-    max-width: 100% !important;
     box-sizing: border-box !important;
   }
 
-  /* Completely eliminate the entire graphic cell and all internal dots */
-  .fc-list-event-graphic,
-  .fc-list-event-dot,
-  .fc-list-event-graphic * {
-    display: none !important;
+  /* Visually collapse the graphic cell WITHOUT removing it from DOM */
+  .fc-list-event-graphic {
+    display: block !important;
+    width: 0 !important;
     height: 0 !important;
     padding: 0 !important;
     margin: 0 !important;
+    overflow: hidden !important;
     border: none !important;
+    visibility: hidden !important;
   }
 
   /* Style the time label */
@@ -258,7 +258,7 @@
     border: none !important;
   }
 
-  /* Force title to use 100% width and wrap cleanly */
+  /* Force title to take 100% width */
   .fc-list-event-title {
     padding: 0 !important;
     font-size: 0.95rem !important;
@@ -269,15 +269,22 @@
     border: none !important;
   }
 
-  /* Single inline bullet directly attached to the workshop title */
+  /* Ensure links inside title stretch properly and clicks don't hit the pseudo-element */
+  .fc-list-event-title a {
+    display: inline !important;
+    width: 100% !important;
+  }
+
+  /* Inline bullet attached to title */
   .fc-list-event-title::before {
     content: '•';
-    color: #0073e6; /* Match your theme's blue */
+    color: #0073e6;
     font-size: 1.2rem;
     font-weight: bold;
     margin-right: 6px;
     display: inline-block;
     line-height: 1;
     vertical-align: middle;
+    pointer-events: none; /* Prevents pseudo-element from blocking click targets */
   }
 }
