@@ -899,44 +899,41 @@ header nav a.is-active,
 }
 
 @media (max-width: 425px) {
-  /* Prevent horizontal container overflow */
-  .fc-list-table {
-    width: 100% !important;
-    table-layout: fixed !important;
-  }
-  /* Stack event row contents vertically */
+  /* Force the event row and table elements to expand fully */
   .fc-list-event {
     display: flex !important;
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    width: 100% !important;
     padding: 10px 12px !important;
   }
-  /* Hide the dot on tiny viewports to clean up alignment */
-  .fc-list-event-graphic {
-    display: none !important;
-  }
-  /* Allow time to sit neatly on its own line */
-  .fc-list-event-time {
+  /* Make all table cells inside the event row take 100% width */
+  .fc-list-event > td {
+    display: block !important;
     width: 100% !important;
-    padding: 0 0 4px 0 !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  /* Style the time label */
+  .fc-list-event-time {
+    padding: 0 0 6px 0 !important;
+    font-size: 0.85rem !important;
     font-weight: 600;
-    font-size: 0.85rem;
     color: #4a5568;
   }
-  /* Give the title 100% width and full line wrapping */
+  /* Force title to use 100% of the row width and break properly */
   .fc-list-event-title {
-    width: 100% !important;
     padding: 0 !important;
+    font-size: 0.95rem !important;
+    line-height: 1.35;
     white-space: normal !important;
-    word-break: break-word;
-    font-size: 0.95rem;
+    word-break: normal !important; /* Prevents splitting words like "Wellbein-g" */
+    overflow-wrap: break-word !important;
   }
-  /* Ensure date header text (e.g. Wednesday) doesn't clip off-screen */
-  .fc-list-day-cushion {
-    display: flex !important;
-    justify-content: space-between;
-    width: 100% !important;
-    box-sizing: border-box;
+  /* Remove border lines under individual cells inside the flex container if needed */
+  .fc-list-event-time,
+  .fc-list-event-title {
+    border: none !important;
   }
 }
 .news-list {
