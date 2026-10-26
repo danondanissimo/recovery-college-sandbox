@@ -300,11 +300,19 @@ export function initCalendar() {
           }
         }
 
+        // if (isListView) {
+        //   return {
+        //     html: `<div style="display: block; white-space: normal; line-height: 1.35; font-weight: 600; color: #1e1b4b; cursor: pointer;">
+        //             ${info.event.title}
+        //            </div>`,
+        //   };
+        // }
+
         if (isListView) {
           return {
-            html: `<div style="display: block; white-space: normal; line-height: 1.35; font-weight: 600; color: #1e1b4b; cursor: pointer;">
-                    ${info.event.title}
-                   </div>`,
+            html: `<a href="#" style="display: block; text-decoration: none; white-space: normal; line-height: 1.35; font-weight: 600; color: #1e1b4b; cursor: pointer;">
+            ${info.event.title}
+           </a>`,
           };
         }
 
