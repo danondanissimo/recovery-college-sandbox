@@ -914,7 +914,7 @@ header nav a.is-active,
     width: 100% !important;
     box-sizing: border-box !important;
   }
-  /* Keep graphic cell in the DOM tree for querySelector, but collapse it visually */
+  /* Keep graphic cell in DOM for querySelector, but hide the actual dot inside it */
   .fc-list-event-graphic {
     display: block !important;
     height: 0 !important;
@@ -924,6 +924,10 @@ header nav a.is-active,
     overflow: hidden !important;
     visibility: hidden !important;
     border: none !important;
+  }
+  /* Hide FullCalendar's built-in event dot */
+  .fc-list-event-dot {
+    display: none !important;
   }
   /* Style the time label */
   .fc-list-event-time {
@@ -943,7 +947,7 @@ header nav a.is-active,
     overflow-wrap: break-word !important;
     border: none !important;
   }
-  /* Add inline bullet point */
+  /* Single clean inline bullet point */
   .fc-list-event-title::before {
     content: "•";
     color: #0073e6;
