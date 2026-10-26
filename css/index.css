@@ -908,16 +908,22 @@ header nav a.is-active,
     width: 100% !important;
     padding: 10px 12px !important;
   }
-  /* Make all table cells inside the event row take 100% width */
+  /* Make table cells inside the event row take 100% width */
   .fc-list-event > td {
     display: block !important;
     width: 100% !important;
     max-width: 100% !important;
     box-sizing: border-box !important;
   }
-  /* Hide the separate graphic column cell to prevent floating dot line */
-  .fc-list-event-graphic {
+  /* Completely eliminate the entire graphic cell and all internal dots */
+  .fc-list-event-graphic,
+  .fc-list-event-dot,
+  .fc-list-event-graphic * {
     display: none !important;
+    height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
   }
   /* Style the time label */
   .fc-list-event-time {
@@ -925,30 +931,28 @@ header nav a.is-active,
     font-size: 0.85rem !important;
     font-weight: 600;
     color: #4a5568;
+    border: none !important;
   }
-  /* Force title to use 100% of the row width and break properly */
+  /* Force title to use 100% width and wrap cleanly */
   .fc-list-event-title {
     padding: 0 !important;
     font-size: 0.95rem !important;
     line-height: 1.35;
     white-space: normal !important;
-    word-break: normal !important; /* Prevents splitting words like "Wellbein-g" */
+    word-break: normal !important;
     overflow-wrap: break-word !important;
+    border: none !important;
   }
-  /* Add an inline bullet directly in front of the title */
+  /* Single inline bullet directly attached to the workshop title */
   .fc-list-event-title::before {
     content: "•";
-    color: #0073e6; /* Replace with your theme's primary dot color */
-    font-size: 1.1rem;
+    color: #0073e6; /* Match your theme's blue */
+    font-size: 1.2rem;
     font-weight: bold;
     margin-right: 6px;
     display: inline-block;
     line-height: 1;
-  }
-  /* Remove border lines under individual cells inside the flex container */
-  .fc-list-event-time,
-  .fc-list-event-title {
-    border: none !important;
+    vertical-align: middle;
   }
 }
 .news-list {
