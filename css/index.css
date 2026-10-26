@@ -900,37 +900,50 @@ header nav a.is-active,
 }
 
 @media (max-width: 425px) {
-  /* Keep row hierarchy intact for table event delegation */
+  /* Force row to stack vertically */
   .fc-list-event {
-    display: table-row !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    width: 100% !important;
+    padding: 10px 12px !important;
   }
-  /* Force time and title cells to stack */
-  .fc-list-event-time,
-  .fc-list-event-title {
+  /* Make table cells block elements */
+  .fc-list-event > td {
     display: block !important;
     width: 100% !important;
     box-sizing: border-box !important;
+  }
+  /* Keep graphic cell in the DOM tree for querySelector, but collapse it visually */
+  .fc-list-event-graphic {
+    display: block !important;
+    height: 0 !important;
+    max-height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+    visibility: hidden !important;
     border: none !important;
   }
-  /* Hide original dot graphic cell */
-  .fc-list-event-graphic {
-    display: none !important;
-  }
+  /* Style the time label */
   .fc-list-event-time {
-    padding: 10px 12px 2px 12px !important;
+    padding: 0 0 6px 0 !important;
     font-size: 0.85rem !important;
     font-weight: 600;
     color: #4a5568;
+    border: none !important;
   }
+  /* Style the title cell */
   .fc-list-event-title {
-    padding: 0 12px 10px 12px !important;
+    padding: 0 !important;
     font-size: 0.95rem !important;
     line-height: 1.35;
     white-space: normal !important;
     word-break: normal !important;
     overflow-wrap: break-word !important;
+    border: none !important;
   }
-  /* Single inline bullet on title */
+  /* Add inline bullet point */
   .fc-list-event-title::before {
     content: "•";
     color: #0073e6;
@@ -941,11 +954,6 @@ header nav a.is-active,
     line-height: 1;
     vertical-align: middle;
     pointer-events: none;
-  }
-  /* Ensure the anchor tag inside expands properly */
-  .fc-list-event-title a {
-    display: inline-block !important;
-    width: 100% !important;
   }
 }
 .news-list {

@@ -310,7 +310,7 @@ export function initCalendar() {
 
         if (isListView) {
           return {
-            html: `<a href="#" style="display: block; text-decoration: none; white-space: normal; line-height: 1.35; font-weight: 600; color: #1e1b4b; cursor: pointer;">
+            html: `<a class="fc-event-title fc-list-event-title" href="#" onclick="return false;" style="display: inline-block; white-space: normal; line-height: 1.35; font-weight: 600; color: #1e1b4b; cursor: pointer; text-decoration: none;">
             ${info.event.title}
            </a>`,
           };
