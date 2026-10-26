@@ -1,3 +1,4 @@
+@charset "UTF-8";
 body {
   font-family: "Lexend", sans-serif;
   margin: 0;
@@ -914,6 +915,10 @@ header nav a.is-active,
     max-width: 100% !important;
     box-sizing: border-box !important;
   }
+  /* Hide the separate graphic column cell to prevent floating dot line */
+  .fc-list-event-graphic {
+    display: none !important;
+  }
   /* Style the time label */
   .fc-list-event-time {
     padding: 0 0 6px 0 !important;
@@ -930,7 +935,17 @@ header nav a.is-active,
     word-break: normal !important; /* Prevents splitting words like "Wellbein-g" */
     overflow-wrap: break-word !important;
   }
-  /* Remove border lines under individual cells inside the flex container if needed */
+  /* Add an inline bullet directly in front of the title */
+  .fc-list-event-title::before {
+    content: "•";
+    color: #0073e6; /* Replace with your theme's primary dot color */
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-right: 6px;
+    display: inline-block;
+    line-height: 1;
+  }
+  /* Remove border lines under individual cells inside the flex container */
   .fc-list-event-time,
   .fc-list-event-title {
     border: none !important;
