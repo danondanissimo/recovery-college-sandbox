@@ -757,16 +757,16 @@ header nav a.is-active,
 }
 
 .workshops-counties-list-item {
-  flex: 1 1 150px;
+  width: 100%;
 }
 
 .workshops-counties-list-item-link {
   width: 100%;
-  justify-content: center;
   padding: 10px 20px;
   background-color: #2a7b9b;
   color: white;
   border: solid 1px white;
+  text-align: center;
 }
 
 .workshop-counties-list-item-link-online {
@@ -774,6 +774,13 @@ header nav a.is-active,
   position: relative;
   margin-top: 10px;
   text-align: center;
+}
+@media screen and (max-width: 1200px) {
+  .workshop-counties-list-item-link-online {
+    background-color: white;
+    color: #2a7b9b;
+    border-color: #2a7b9b;
+  }
 }
 @media screen and (min-width: 1200px) {
   .workshop-counties-list-item-link-online {
@@ -786,6 +793,9 @@ header nav a.is-active,
     width: 250px;
     font-size: 40px;
     border-radius: 35px;
+  }
+  .workshop-counties-list-item-link-online:hover {
+    transform: translateX(-50%) scale(1.05); /* Adjust the scale value as needed */
   }
 }
 
@@ -809,10 +819,6 @@ header nav a.is-active,
     position: absolute;
     right: 30px;
   }
-}
-
-.workshop-counties-list-item-link-online:hover {
-  transform: translateX(-50%) scale(1.05); /* Adjust the scale value as needed */
 }
 
 .workshops-counties-list-item:nth-child(even) .workshops-counties-list-item-link {
