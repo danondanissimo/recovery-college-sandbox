@@ -16,32 +16,38 @@
       type="image/svg+xml"
       href="/assets/favicon-DSnE4E7D.svg?v=2"
     />
-    <script type="module" crossorigin src="/assets/index-DEQqLap7.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-Bf3t1sdt.css">
+    <script type="module" crossorigin src="/assets/index-FtWPFC2a.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-CqovA6yv.css">
   </head>
 
   <body>
     <header class="header">
       <div class="container header-container">
-        <nav class="header-navigation">
-          <a href="./index.html" class="logo">
-            <!-- <svg
-              class="logo-icon"
-              aria-label="Sprout Logo"
-              viewBox="0 0 512.001 512.001"
-            >
-              <use
-                href="./images/icons/sprout-tree-svgrepo-com.svg#sprout-icon"
-              ></use>
-            </svg> -->
+        <nav class="header-navigation" aria-label="Main navigation">
+          <a
+            href="./index.html"
+            class="logo"
+            aria-label="Recovery College South East Home"
+          >
             <img
               src="/assets/recovery_college_temp_logo1-DcSdfUVV.png"
-              alt=""
+              alt="Recovery College South East logo"
               class="logo-icon"
             />
           </a>
-          <button class="menu-button-open" id="menu-button-open">
-            <svg class="menu-button-open-icon" viewBox="0 0 24 24">
+          <button
+            class="menu-button-open"
+            id="menu-button-open"
+            aria-label="Open main menu"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+          >
+            <svg
+              class="menu-button-open-icon"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+              focusable="false"
+            >
               <use href="/assets/menu-DJDJvtJo.svg#hamburger"></use>
             </svg>
           </button>
@@ -68,9 +74,15 @@
         </nav>
       </div>
     </header>
-    <div class="mobile-menu">
-      <button class="menu-button-close">
-        <svg class="menu-button-close-icon" viewBox="0 0 800 800">
+
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+      <button class="menu-button-close" aria-label="Close main menu">
+        <svg
+          class="menu-button-close-icon"
+          viewBox="0 0 800 800"
+          aria-hidden="true"
+          focusable="false"
+        >
           <use href="/assets/close-IzeRh7C-.svg#cross"></use>
         </svg>
       </button>
@@ -93,7 +105,10 @@
     </div>
 
     <main>
-      <section class="enrolment-section container">
+      <section
+        class="enrolment-section container"
+        aria-labelledby="calendar-title"
+      >
         <h1 id="calendar-title">Workshops Calendar</h1>
         <div id="calendar" class="calendar"></div>
       </section>
@@ -112,7 +127,7 @@
               >
             </li>
             <li class="footer-list-item footer-list-contacts-item">
-              <a class="footer-list-contacts-item-link" href="tel:086 1746330"
+              <a class="footer-list-contacts-item-link" href="tel:0861746330"
                 >086 1746330</a
               >
             </li>
@@ -128,10 +143,13 @@
                 href="https://www.facebook.com/RecoveryCollegeSouthEast"
                 target="_blank"
                 rel="noreferrer noopener"
+                aria-label="Facebook (opens in a new tab)"
               >
                 <svg
                   class="social-list-item-link-icon social-list-item-link-icon-facebook"
                   viewBox="0 0 455.73 455.73"
+                  aria-hidden="true"
+                  focusable="false"
                 >
                   <use
                     href="/assets/facebook-svgrepo-com-DVk8Uz00.svg#facebook"
@@ -145,10 +163,13 @@
                 href="https://www.instagram.com/recoverycollegesoutheast/"
                 target="_blank"
                 rel="noreferrer noopener"
+                aria-label="Instagram (opens in a new tab)"
               >
                 <svg
                   class="social-list-item-link-icon-insta social-list-item-link-icon"
                   viewBox="0 0 32 32"
+                  aria-hidden="true"
+                  focusable="false"
                 >
                   <use
                     href="/assets/instagram-logo-facebook-svgrepo-com-higLzgp4.svg#instagram"
@@ -162,10 +183,13 @@
                 href="https://x.com/RecoverySe"
                 target="_blank"
                 rel="noreferrer noopener"
+                aria-label="X (opens in a new tab)"
               >
                 <svg
                   class="social-list-item-link-icon-twitter social-list-item-link-icon"
                   viewBox="0 0 16 16"
+                  aria-hidden="true"
+                  focusable="false"
                 >
                   <use
                     href="/assets/Twitter-X--Streamline-Bootstrap-D_ctInC9.svg#twitter"
@@ -190,6 +214,7 @@
                 href="https://maps.app.goo.gl/Utz9yvs2wBUCY9Gx9"
                 target="_blank"
                 rel="noreferrer noopener"
+                aria-label="Open main office location on Google Maps (opens in a new tab)"
                 >Open on maps</a
               >
             </li>
