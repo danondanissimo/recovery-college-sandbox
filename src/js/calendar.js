@@ -1,8 +1,7 @@
-// // src/js/calendar.js
 // import { Calendar } from 'fullcalendar';
 // import dayGridPlugin from '@fullcalendar/daygrid';
 // import googleCalendarPlugin from '@fullcalendar/google-calendar';
-// import listPlugin from '@fullcalendar/list'; // 1. Added List Plugin import
+// import listPlugin from '@fullcalendar/list';
 
 // const calendarIds = {
 //   carlow:
@@ -36,7 +35,6 @@
 //     const urlParams = new URLSearchParams(window.location.search);
 //     const rawCounty = urlParams.get('county');
 
-//     // Explicitly validate county parameter, fallback safely to carlow
 //     const currentSelection =
 //       rawCounty && calendarIds[rawCounty] ? rawCounty : 'carlow';
 
@@ -45,12 +43,9 @@
 //     }
 
 //     const calendarId = calendarIds[currentSelection];
-
-//     // Helper check for mobile/tablet screens (< 768px)
 //     const isMobile = window.innerWidth < 768;
 
 //     const calendar = new Calendar(calendarEl, {
-//       // Switches to list view on mobile/tablets, stays month grid on desktop
 //       initialView: isMobile ? 'listMonth' : 'dayGridMonth',
 //       plugins: [dayGridPlugin, googleCalendarPlugin, listPlugin],
 //       googleCalendarApiKey: 'AIzaSyBLI7yESEMGFmGHwC6n8GG_DZ3V-TULNpY',
@@ -58,7 +53,25 @@
 //         googleCalendarId: calendarId,
 //       },
 
-//       // Automatically adjusts views if a user rotates their device or resizes
+//       // Hybrid Click Routing: Form link if available, otherwise Google Calendar event page
+//       eventClick: function (info) {
+//         info.jsEvent.preventDefault();
+
+//         const description = info.event.extendedProps.description || '';
+//         const urlMatch = description.match(/(https?:\/\/[^\s]+)/);
+
+//         let targetUrl = '';
+//         if (urlMatch && urlMatch[0]) {
+//           targetUrl = urlMatch[0].replace(/["'<>\)]/g, '');
+//         } else if (info.event.url) {
+//           targetUrl = info.event.url;
+//         }
+
+//         if (targetUrl) {
+//           window.open(targetUrl, '_blank', 'noopener,noreferrer');
+//         }
+//       },
+
 //       windowResize: function (arg) {
 //         if (window.innerWidth < 768 && calendar.view.type !== 'listMonth') {
 //           calendar.changeView('listMonth');
@@ -70,53 +83,12 @@
 //         }
 //       },
 
+//       // Clean visual rendering without nested <a> tags
 //       eventContent: function (info) {
-//         let timeText = '';
-
-//         if (info.event.start && !info.event.allDay) {
-//           // Format Start Time
-//           const startHours = String(info.event.start.getHours()).padStart(
-//             2,
-//             '0'
-//           );
-//           const startMinutes = String(info.event.start.getMinutes()).padStart(
-//             2,
-//             '0'
-//           );
-
-//           // Format End Time (if available)
-//           if (info.event.end) {
-//             const endHours = String(info.event.end.getHours()).padStart(2, '0');
-//             const endMinutes = String(info.event.end.getMinutes()).padStart(
-//               2,
-//               '0'
-//             );
-//             timeText = `${startHours}:${startMinutes}-${endHours}:${endMinutes}`;
-//           } else {
-//             timeText = `${startHours}:${startMinutes}`;
-//           }
-//         }
-
-//         return {
-//           html: `<div style="display: block !important; white-space: normal !important; overflow: visible !important; word-break: break-word; line-height: 1.35; font-weight: 600;">
-//                   ${
-//                     timeText
-//                       ? `<span style="display: inline-block; background-color: #6b21a8; color: #ffffff; font-weight: 700; font-size: 0.85em; padding: 2px 6px; border-radius: 4px; margin-bottom: 4px;">${timeText}</span>`
-//                       : ''
-//                   }
-//                   <div style="color: #1e1b4b;">${info.event.title}</div>
-//                  </div>`,
-//         };
-//       },
-
-//       eventContent: function (info) {
-//         // Check if we are currently rendering a List View
 //         const isListView = info.view.type.startsWith('list');
 
 //         let timeText = '';
-
 //         if (info.event.start && !info.event.allDay) {
-//           // Format Start Time
 //           const startHours = String(info.event.start.getHours()).padStart(
 //             2,
 //             '0'
@@ -126,7 +98,6 @@
 //             '0'
 //           );
 
-//           // Format End Time (if available)
 //           if (info.event.end) {
 //             const endHours = String(info.event.end.getHours()).padStart(2, '0');
 //             const endMinutes = String(info.event.end.getMinutes()).padStart(
@@ -139,18 +110,24 @@
 //           }
 //         }
 
-//         // On List View: Don't show the purple time badge (FullCalendar lists time on the left)
+//         // if (isListView) {
+//         //   return {
+//         //     html: `<div style="display: block; white-space: normal; line-height: 1.35; font-weight: 600; color: #1e1b4b; cursor: pointer;">
+//         //             ${info.event.title}
+//         //            </div>`,
+//         //   };
+//         // }
+
 //         if (isListView) {
 //           return {
-//             html: `<div style="display: block !important; white-space: normal !important; line-height: 1.35; font-weight: 600; color: #1e1b4b;">
-//                     ${info.event.title}
-//                    </div>`,
+//             html: `<a class="fc-event-title fc-list-event-title" href="#" onclick="return false;" style="display: inline-block; white-space: normal; line-height: 1.35; font-weight: 600; color: #1e1b4b; cursor: pointer; text-decoration: none;">
+//             ${info.event.title}
+//            </a>`,
 //           };
 //         }
 
-//         // On Grid View (Desktop): Keep the purple time pill
 //         return {
-//           html: `<div style="display: block !important; white-space: normal !important; overflow: visible !important; word-break: break-word; line-height: 1.35; font-weight: 600;">
+//           html: `<div style="display: block; white-space: normal; overflow: visible; word-break: break-word; line-height: 1.35; font-weight: 600; cursor: pointer;">
 //                   ${
 //                     timeText
 //                       ? `<span style="display: inline-block; background-color: #6b21a8; color: #ffffff; font-weight: 700; font-size: 0.85em; padding: 2px 6px; border-radius: 4px; margin-bottom: 4px;">${timeText}</span>`
@@ -166,21 +143,6 @@
 //           info.el.style.backgroundColor = info.event.backgroundColor;
 //         } else if (info.event.color) {
 //           info.el.style.backgroundColor = info.event.color;
-//         }
-
-//         // 1. Extract the URL from the event description
-//         let targetUrl = null;
-//         const description = info.event.extendedProps.description || '';
-//         const urlMatch = description.match(/(https?:\/\/[^\s]+)/);
-
-//         if (urlMatch && urlMatch[0]) {
-//           targetUrl = urlMatch[0].replace(/["'<>\)]/g, '');
-//         }
-
-//         // 2. Override the element's href so hovering and clicking go straight to your link
-//         if (targetUrl) {
-//           info.el.href = targetUrl;
-//           info.el.setAttribute('target', '_blank');
 //         }
 //       },
 //     });
@@ -273,7 +235,7 @@ export function initCalendar() {
         }
       },
 
-      // Clean visual rendering without nested <a> tags
+      // Clean visual rendering without dummy <a> tags
       eventContent: function (info) {
         const isListView = info.view.type.startsWith('list');
 
@@ -300,19 +262,11 @@ export function initCalendar() {
           }
         }
 
-        // if (isListView) {
-        //   return {
-        //     html: `<div style="display: block; white-space: normal; line-height: 1.35; font-weight: 600; color: #1e1b4b; cursor: pointer;">
-        //             ${info.event.title}
-        //            </div>`,
-        //   };
-        // }
-
         if (isListView) {
           return {
-            html: `<a class="fc-event-title fc-list-event-title" href="#" onclick="return false;" style="display: inline-block; white-space: normal; line-height: 1.35; font-weight: 600; color: #1e1b4b; cursor: pointer; text-decoration: none;">
+            html: `<span class="fc-event-title" style="display: inline-block; white-space: normal; line-height: 1.35; font-weight: 600; color: #1e1b4b; cursor: pointer;">
             ${info.event.title}
-           </a>`,
+           </span>`,
           };
         }
 
@@ -334,8 +288,39 @@ export function initCalendar() {
         } else if (info.event.color) {
           info.el.style.backgroundColor = info.event.color;
         }
+
+        // Accessibility Enhancements for Event Element
+        let startStr = '';
+        if (info.event.start) {
+          startStr = info.event.start.toLocaleTimeString([], {
+            hour: '2-digit',
+            minute: '2-digit',
+          });
+        }
+
+        const dateStr = info.event.start
+          ? info.event.start.toLocaleDateString([], {
+              month: 'short',
+              day: 'numeric',
+            })
+          : '';
+
+        const fullLabel = `${info.event.title}, ${dateStr} ${startStr ? 'at ' + startStr : ''}. Opens enrolment form in a new tab.`;
+
+        info.el.setAttribute('aria-label', fullLabel);
+        info.el.setAttribute('role', 'button');
+        info.el.setAttribute('tabindex', '0');
+
+        // Keyboard trigger support for Enter and Space keys
+        info.el.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            info.el.click();
+          }
+        });
       },
     });
+
     calendar.render();
   }
 }

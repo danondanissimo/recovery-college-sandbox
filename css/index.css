@@ -811,7 +811,7 @@ header nav a.is-active,
 @media screen and (max-width: 1200px) {
   .workshops-counties-text {
     margin: 0 auto;
-    margin-top: 20px;
+    margin-bottom: 20px;
   }
 }
 @media screen and (min-width: 1200px) {

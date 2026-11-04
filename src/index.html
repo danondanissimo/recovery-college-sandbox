@@ -11,7 +11,6 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="../css/index.css" />
-    <!-- <link rel="icon" type="img/png" href="./images/icons/favicon.png" /> -->
     <link
       rel="icon"
       type="image/svg+xml"
@@ -29,32 +28,33 @@
   </head>
 
   <body data-body>
-    <!-- ❗️❗️❗️ Add partials like so for every page
-    <include src="./partials/header.html"></include>
-    <include src="./partials/hero.html"></include>
-    <include src="./partials/products.html"></include>
-    <include src="./partials/about.html"></include>
-    <include src="./partials/advantages.html"></include>
-    <include src="./partials/collage.html"></include>
-    <include src="./partials/testimonials.html"></include>
-    <include src="./partials/contacts.html"></include>
-    <include src="./partials/footer.html"></include>
-    <include src="./partials/modal.html"></includde> -->
-    <!-- <include src="./partials/header.html"></include>
-    <include src="./partials/mobile-menu.html"></include> -->
-
     <header class="header">
       <div class="container header-container">
-        <nav class="header-navigation">
-          <a href="./index.html" class="logo"
-            ><img
+        <nav class="header-navigation" aria-label="Main navigation">
+          <a
+            href="./index.html"
+            class="logo"
+            aria-label="Recovery College South East Home"
+          >
+            <img
               src="./images/icons/recovery_college_temp_logo1.png"
-              alt=""
+              alt="Recovery College South East logo"
               class="logo-icon"
             />
           </a>
-          <button class="menu-button-open" id="menu-button-open">
-            <svg class="menu-button-open-icon" viewBox="0 0 24 24">
+          <button
+            class="menu-button-open"
+            id="menu-button-open"
+            aria-label="Open main menu"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+          >
+            <svg
+              class="menu-button-open-icon"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+              focusable="false"
+            >
               <use href="./images/icons/menu.svg#hamburger"></use>
             </svg>
           </button>
@@ -81,9 +81,15 @@
         </nav>
       </div>
     </header>
-    <div class="mobile-menu">
-      <button class="menu-button-close">
-        <svg class="menu-button-close-icon" viewBox="0 0 800 800">
+
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+      <button class="menu-button-close" aria-label="Close main menu">
+        <svg
+          class="menu-button-close-icon"
+          viewBox="0 0 800 800"
+          aria-hidden="true"
+          focusable="false"
+        >
           <use href="./images/icons/close.svg#cross"></use>
         </svg>
       </button>
@@ -110,14 +116,9 @@
         <h1 class="hero-welcome">Welcome</h1>
         <ul class="hero-list">
           <li class="hero-list-item">
-            <!-- <a
-              class="hero-list-item-link-enroll hero-list-item-link"
-              href="https://www.recoverycollegesoutheast.com/uploads/1/1/2/8/112831751/enrolment_form_-_march_2026.pdf"
-              target="_blank"
-              >How to enroll</a
-            > -->
             <button
               class="hero-list-item-button"
+              aria-haspopup="dialog"
               onclick="
                 document.getElementById('enrollment-instructions').showModal()
               "
@@ -134,54 +135,71 @@
           </li>
         </ul>
       </section>
-      <dialog class="enrollment-instructions" id="enrollment-instructions">
+
+      <dialog
+        class="enrollment-instructions"
+        id="enrollment-instructions"
+        aria-labelledby="enrolment-dialog-title"
+      >
         <div class="enrollment-instructions-container">
           <button
             onclick="document.getElementById('enrollment-instructions').close()"
             class="enrollment-instructions-container-button-close"
+            aria-label="Close enrolment instructions modal"
           >
-            <svg class="menu-button-close-icon" viewBox="0 0 800 800">
+            <svg
+              class="menu-button-close-icon"
+              viewBox="0 0 800 800"
+              aria-hidden="true"
+              focusable="false"
+            >
               <use href="./images/icons/close.svg#cross"></use>
             </svg>
           </button>
 
-          <h1 class="enrollment-instructions-container-header">
+          <h2
+            class="enrollment-instructions-container-header"
+            id="enrolment-dialog-title"
+          >
             How to enrol:
-          </h1>
-          <ul class="enrollment-instructions-container-list">
+          </h2>
+          <ol class="enrollment-instructions-container-list">
             <li class="enrollment-instructions-container-list-item">
               <p class="enrollment-instructions-container-list-item-text">
-                1. Click on the Workshops button on the front page.
+                Click on the Workshops button on the front page.
               </p>
             </li>
             <li class="enrollment-instructions-container-list-item">
               <p class="enrollment-instructions-container-list-item-text">
-                2. Click on your county for in-person workshops or click on the
+                Click on your county for in-person workshops or click on the
                 Online button for online workshops.
               </p>
             </li>
             <li class="enrollment-instructions-container-list-item">
               <p class="enrollment-instructions-container-list-item-text">
-                3. Choose the workshop from a calendar.
+                Choose the workshop from a calendar.
               </p>
             </li>
             <li class="enrollment-instructions-container-list-item">
               <p class="enrollment-instructions-container-list-item-text">
-                4. Fill in and submit the form.
+                Fill in and submit the form.
               </p>
             </li>
-            <li class="enrollment-instructions-container-list-item">
-              <p class="enrollment-instructions-container-list-item-text">OR</p>
-            </li>
+          </ol>
+
+          <p class="enrollment-instructions-container-list-item-text">OR</p>
+
+          <ul class="enrollment-instructions-container-list">
             <li class="enrollment-instructions-container-list-item">
               <p class="enrollment-instructions-container-list-item-text">
-                Call us at <a class="" href="tel:086 1746330">086 1746330</a>.
+                Call us at <a href="tel:0861746330">086 1746330</a>.
               </p>
             </li>
           </ul>
-          <h1 class="enrollment-instructions-container-header">
+
+          <h2 class="enrollment-instructions-container-header">
             How to cancel:
-          </h1>
+          </h2>
           <ul class="enrollment-instructions-container-list">
             <li class="enrollment-instructions-container-list-item">
               <p class="enrollment-instructions-container-list-item-text">
@@ -195,13 +213,14 @@
             </li>
             <li class="enrollment-instructions-container-list-item">
               <p class="enrollment-instructions-container-list-item-text">
-                Call us at <a class="" href="tel:086 1746330">086 1746330</a>.
+                Call us at <a href="tel:0861746330">086 1746330</a>.
               </p>
             </li>
           </ul>
         </div>
       </dialog>
-      <section class="about">
+
+      <section class="about" aria-label="About Us">
         <h2>About Us</h2>
 
         <!-- YouTube Video Embed -->
@@ -209,13 +228,17 @@
 
         <!-- Text Paragraph -->
         <p id="about-text" class="about-description"></p>
+
         <!-- Swiper Slider Container -->
-        <div class="about-slider swiper">
+        <div class="about-slider swiper" aria-label="About Us Image Gallery">
           <div id="about-slider-wrapper" class="swiper-wrapper">
-            <!-- Slides will be injected here dynamically -->
+            <!-- Slides dynamically injected -->
           </div>
-          <div class="swiper-button-prev"></div>
-          <div class="swiper-button-next"></div>
+          <button
+            class="swiper-button-prev"
+            aria-label="Previous slide"
+          ></button>
+          <button class="swiper-button-next" aria-label="Next slide"></button>
         </div>
       </section>
     </main>
@@ -233,7 +256,7 @@
               >
             </li>
             <li class="footer-list-item footer-list-contacts-item">
-              <a class="footer-list-contacts-item-link" href="tel:086 1746330"
+              <a class="footer-list-contacts-item-link" href="tel:0861746330"
                 >086 1746330</a
               >
             </li>
@@ -249,10 +272,13 @@
                 href="https://www.facebook.com/RecoveryCollegeSouthEast"
                 target="_blank"
                 rel="noreferrer noopener"
+                aria-label="Facebook (opens in a new tab)"
               >
                 <svg
                   class="social-list-item-link-icon social-list-item-link-icon-facebook"
                   viewBox="0 0 455.73 455.73"
+                  aria-hidden="true"
+                  focusable="false"
                 >
                   <use
                     href="./images/icons/facebook-svgrepo-com.svg#facebook"
@@ -266,10 +292,13 @@
                 href="https://www.instagram.com/recoverycollegesoutheast/"
                 target="_blank"
                 rel="noreferrer noopener"
+                aria-label="Instagram (opens in a new tab)"
               >
                 <svg
                   class="social-list-item-link-icon-insta social-list-item-link-icon"
                   viewBox="0 0 32 32"
+                  aria-hidden="true"
+                  focusable="false"
                 >
                   <use
                     href="./images/icons/instagram-logo-facebook-svgrepo-com.svg#instagram"
@@ -283,10 +312,13 @@
                 href="https://x.com/RecoverySe"
                 target="_blank"
                 rel="noreferrer noopener"
+                aria-label="X (opens in a new tab)"
               >
                 <svg
                   class="social-list-item-link-icon-twitter social-list-item-link-icon"
                   viewBox="0 0 16 16"
+                  aria-hidden="true"
+                  focusable="false"
                 >
                   <use
                     href="./images/icons/Twitter-X--Streamline-Bootstrap.svg#twitter"
@@ -311,6 +343,7 @@
                 href="https://maps.app.goo.gl/Utz9yvs2wBUCY9Gx9"
                 target="_blank"
                 rel="noreferrer noopener"
+                aria-label="Open main office location on Google Maps (opens in a new tab)"
                 >Open on maps</a
               >
             </li>
