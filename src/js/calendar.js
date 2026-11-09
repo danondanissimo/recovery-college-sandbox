@@ -211,7 +211,7 @@ const timetableLinks = {
   wexford:
     'https://drive.google.com/file/d/1MTCkp95iLgk8wMqSxdxShNAAf1Rn264Y/view?usp=sharing',
   'south-tipperary':
-    'https://drive.google.com/file/d/YOUR_SOUTH_TIPPERARY_FILE_ID/view?usp=sharing',
+    'https://drive.google.com/file/d/1uVd7AfSqjtDvY41y_xBVZZ4FVeMYZ3pD/view?usp=sharing',
   waterford:
     'https://drive.google.com/file/d/1whskNGqmtPbD-ps_qh-mWQ7XpslkDbW5/view?usp=sharing',
   online:
