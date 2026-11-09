@@ -321,7 +321,7 @@ header nav a.is-active,
 }
 
 .hero {
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("/src/images/background/Gemini_Generated_Image_1lt7h11lt7h11lt7.jpeg");
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("/images/background/Gemini_Generated_Image_1lt7h11lt7h11lt7.jpeg");
   height: 200px;
   background-position: center;
   background-size: cover;
