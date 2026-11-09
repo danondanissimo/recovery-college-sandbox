@@ -83,7 +83,7 @@
 //         }
 //       },
 
-//       // Clean visual rendering without nested <a> tags
+//       // Clean visual rendering without dummy <a> tags
 //       eventContent: function (info) {
 //         const isListView = info.view.type.startsWith('list');
 
@@ -110,19 +110,11 @@
 //           }
 //         }
 
-//         // if (isListView) {
-//         //   return {
-//         //     html: `<div style="display: block; white-space: normal; line-height: 1.35; font-weight: 600; color: #1e1b4b; cursor: pointer;">
-//         //             ${info.event.title}
-//         //            </div>`,
-//         //   };
-//         // }
-
 //         if (isListView) {
 //           return {
-//             html: `<a class="fc-event-title fc-list-event-title" href="#" onclick="return false;" style="display: inline-block; white-space: normal; line-height: 1.35; font-weight: 600; color: #1e1b4b; cursor: pointer; text-decoration: none;">
+//             html: `<span class="fc-event-title" style="display: inline-block; white-space: normal; line-height: 1.35; font-weight: 600; color: #1e1b4b; cursor: pointer;">
 //             ${info.event.title}
-//            </a>`,
+//            </span>`,
 //           };
 //         }
 
@@ -144,8 +136,39 @@
 //         } else if (info.event.color) {
 //           info.el.style.backgroundColor = info.event.color;
 //         }
+
+//         // Accessibility Enhancements for Event Element
+//         let startStr = '';
+//         if (info.event.start) {
+//           startStr = info.event.start.toLocaleTimeString([], {
+//             hour: '2-digit',
+//             minute: '2-digit',
+//           });
+//         }
+
+//         const dateStr = info.event.start
+//           ? info.event.start.toLocaleDateString([], {
+//               month: 'short',
+//               day: 'numeric',
+//             })
+//           : '';
+
+//         const fullLabel = `${info.event.title}, ${dateStr} ${startStr ? 'at ' + startStr : ''}. Opens enrolment form in a new tab.`;
+
+//         info.el.setAttribute('aria-label', fullLabel);
+//         info.el.setAttribute('role', 'button');
+//         info.el.setAttribute('tabindex', '0');
+
+//         // Keyboard trigger support for Enter and Space keys
+//         info.el.addEventListener('keydown', function (e) {
+//           if (e.key === 'Enter' || e.key === ' ') {
+//             e.preventDefault();
+//             info.el.click();
+//           }
+//         });
 //       },
 //     });
+
 //     calendar.render();
 //   }
 // }
@@ -179,9 +202,26 @@ const calendarTitles = {
   online: 'Online',
 };
 
+// Add Google Drive PDF links mapping here
+const timetableLinks = {
+  carlow:
+    'https://drive.google.com/file/d/1wq-xVnaguf_NJd9xkmexhExj_zEU4l8V/view?usp=sharing',
+  kilkenny:
+    'https://drive.google.com/file/d/1YrFVyXBpQfVmpepQxxNxmZtJYuDc5Q84/view?usp=sharing',
+  wexford:
+    'https://drive.google.com/file/d/1MTCkp95iLgk8wMqSxdxShNAAf1Rn264Y/view?usp=sharing',
+  'south-tipperary':
+    'https://drive.google.com/file/d/YOUR_SOUTH_TIPPERARY_FILE_ID/view?usp=sharing',
+  waterford:
+    'https://drive.google.com/file/d/1whskNGqmtPbD-ps_qh-mWQ7XpslkDbW5/view?usp=sharing',
+  online:
+    'https://drive.google.com/file/d/1fUma6rH0SDJfJEnA2lAzOdohenRYdTpZ/view?usp=sharing',
+};
+
 export function initCalendar() {
   const calendarEl = document.getElementById('calendar');
   const titleEl = document.getElementById('calendar-title');
+  const timetableLinkEl = document.getElementById('timetable-download-link'); // Target the link
 
   if (calendarEl) {
     const urlParams = new URLSearchParams(window.location.search);
@@ -192,6 +232,18 @@ export function initCalendar() {
 
     if (titleEl) {
       titleEl.textContent = `${calendarTitles[currentSelection]} Workshops`;
+    }
+
+    // Set dynamic PDF download link & accessibility label
+    if (timetableLinkEl && timetableLinks[currentSelection]) {
+      timetableLinkEl.href = timetableLinks[currentSelection];
+      timetableLinkEl.setAttribute(
+        'aria-label',
+        `Download ${calendarTitles[currentSelection]} PDF timetable (opens in a new tab)`
+      );
+      timetableLinkEl.style.display = 'inline-block';
+    } else if (timetableLinkEl) {
+      timetableLinkEl.style.display = 'none';
     }
 
     const calendarId = calendarIds[currentSelection];
