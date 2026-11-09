@@ -761,6 +761,8 @@ header nav a.is-active,
 }
 
 .workshops-counties-list-item-link {
+  display: block;
+  box-sizing: border-box;
   width: 100%;
   padding: 10px 20px;
   background-color: #2a7b9b;
