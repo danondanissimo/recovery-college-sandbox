@@ -364,7 +364,8 @@ header nav a.is-active,
 }
 
 .hero-list-item-link,
-.hero-list-item-button {
+.hero-list-item-button,
+.mail-list-link {
   display: flex;
   border: solid gray 1px;
   border-radius: 20px;
@@ -374,13 +375,15 @@ header nav a.is-active,
 }
 @media screen and (min-width: 768px) {
   .hero-list-item-link,
-  .hero-list-item-button {
+  .hero-list-item-button,
+  .mail-list-link {
     border-radius: 25px;
   }
 }
 @media screen and (min-width: 768px) and (max-width: 1199px) {
   .hero-list-item-link,
-  .hero-list-item-button {
+  .hero-list-item-button,
+  .mail-list-link {
     padding: 12px 18px;
   }
 }
@@ -417,16 +420,28 @@ header nav a.is-active,
   border-color: #2a7b9b;
 }
 
-.hero-list-item-link-workshops {
+.hero-list-item-link-workshops,
+.mail-list-link {
   color: #2a7b9b;
   background-color: white;
   border-color: #2a7b9b;
 }
 
-.hero-list-item-link-workshops:active {
+.hero-list-item-link-workshops:active,
+.mail-list-link:active {
   color: white;
   background-color: #2a7b9b;
   border-color: white;
+}
+
+.mail-list {
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6));
+}
+
+.mail-list-link {
+  display: flex;
+  justify-content: center;
+  margin: 0px auto 0px auto;
 }
 
 .about {
