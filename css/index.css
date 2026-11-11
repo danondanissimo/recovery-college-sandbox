@@ -883,6 +883,12 @@ header nav a.is-active,
   }
 }
 
+.btn-timetable:active {
+  color: #2a7b9b;
+  background-color: white;
+  border-color: #2a7b9b;
+}
+
 @media screen and (max-width: 767px) {
   .calendar {
     height: 570px;

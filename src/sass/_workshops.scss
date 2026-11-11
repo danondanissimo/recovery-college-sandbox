@@ -148,6 +148,12 @@
   }
 }
 
+.btn-timetable:active {
+  color: $main-color;
+  background-color: $secondary-color;
+  border-color: $main-color;
+}
+
 .calendar {
   // width: $min-mobile-width;
 
