@@ -45,7 +45,8 @@
 }
 
 .hero-list-item-link,
-.hero-list-item-button {
+.hero-list-item-button,
+.mail-list-link {
   display: flex;
   border: solid $tertiary-color 1px;
   border-radius: 20px;
@@ -93,16 +94,28 @@
   border-color: $main-color;
 }
 
-.hero-list-item-link-workshops {
+.hero-list-item-link-workshops,
+.mail-list-link {
   color: $main-color;
   background-color: $secondary-color;
   border-color: $main-color;
 }
 
-.hero-list-item-link-workshops:active {
+.hero-list-item-link-workshops:active,
+.mail-list-link:active {
   color: $secondary-color;
   background-color: $main-color;
   border-color: $secondary-color;
+}
+
+.mail-list {
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6));
+}
+
+.mail-list-link {
+  display: flex;
+  justify-content: center;
+  margin: 0px auto 0px auto;
 }
 
 .about {
