@@ -132,7 +132,9 @@
 
 .btn-timetable {
   display: flex;
-  border: solid $main-color 1px;
+  border: solid $tertiary-color 1px;
+  color: $secondary-color;
+  background-color: $main-color;
   border-radius: 20px;
   width: auto;
   padding: 10px 15px;

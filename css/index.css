@@ -863,7 +863,9 @@ header nav a.is-active,
 
 .btn-timetable {
   display: flex;
-  border: solid #2a7b9b 1px;
+  border: solid gray 1px;
+  color: white;
+  background-color: #2a7b9b;
   border-radius: 20px;
   width: auto;
   padding: 10px 15px;
