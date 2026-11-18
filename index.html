@@ -22,9 +22,9 @@
       href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
     />
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script type="module" crossorigin src="/assets/main-CrvdYBAo.js"></script>
-    <link rel="modulepreload" crossorigin href="/assets/index-7AakG-eN.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-Cp6h-Im5.css">
+    <script type="module" crossorigin src="/assets/main-D3135Tdq.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/index-BFllYA0-.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-oluUayuK.css">
   </head>
 
   <body data-body>
@@ -232,8 +232,16 @@
       <section class="about" aria-label="About Us">
         <h2>About Us</h2>
 
-        <!-- YouTube Video Embed -->
-        <div id="about-video-container" class="about-video-wrapper"></div>
+        <!-- YouTube Video Swiper Slider Container -->
+        <div class="about-video-slider" id="about-video-slider">
+          <div class="custom-video-track" id="custom-video-track"></div>
+          <button class="video-swiper-button-prev" aria-label="Previous video">
+            &#10094;
+          </button>
+          <button class="video-swiper-button-next" aria-label="Next video">
+            &#10095;
+          </button>
+        </div>
 
         <!-- Text Paragraph -->
         <p id="about-text" class="about-description"></p>
@@ -243,11 +251,15 @@
           <div id="about-slider-wrapper" class="swiper-wrapper">
             <!-- Slides dynamically injected -->
           </div>
+          <!-- Added unique classes for photo buttons -->
           <button
-            class="swiper-button-prev"
+            class="swiper-button-prev photo-swiper-button-prev"
             aria-label="Previous slide"
           ></button>
-          <button class="swiper-button-next" aria-label="Next slide"></button>
+          <button
+            class="swiper-button-next photo-swiper-button-next"
+            aria-label="Next slide"
+          ></button>
         </div>
       </section>
     </main>
