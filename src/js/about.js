@@ -27,7 +27,7 @@
 //       // Only rebuild iframe if source changed to avoid restarting video playback on background updates
 //       const currentIframe = videoContainer.querySelector('iframe');
 //       if (!currentIframe || currentIframe.src !== embedUrl) {
-//         videoContainer.innerHTML = `<iframe src="${embedUrl}" title="About Us Video" allowfullscreen></iframe>`;
+//         videoContainer.innerHTML = `<iframe src="${embedUrl}" title="Recovery College South East Introduction Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
 //       }
 //     }
 
@@ -50,9 +50,9 @@
 //       sliderContainer.style.display = 'block';
 //       sliderWrapper.innerHTML = photoUrls
 //         .map(
-//           url => `
+//           (url, index) => `
 //         <div class="swiper-slide">
-//           <img src="${url}" alt="About Us photo">
+//           <img src="${url}" alt="Recovery College community photo ${index + 1} of ${photoUrls.length}">
 //         </div>
 //       `
 //         )
@@ -140,18 +140,17 @@
 //     }
 //   }
 // })();
-
 function getYouTubeEmbedUrl(url) {
   if (!url) return '';
   const regExp =
     /(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/;
   const match = url.trim().match(regExp);
-  return match ? `https://www.youtube.com/embed/${match[1]}` : '';
+  return match ? `https://www.youtube.com/embed/${match[1]}?enablejsapi=1` : '';
 }
 
 (async function initAboutSection() {
   const aboutSection = document.querySelector('.about');
-  const videoContainer = document.getElementById('about-video-container');
+  const videoSliderContainer = document.getElementById('about-video-slider');
   const textEl = document.getElementById('about-text');
   const sliderContainer = document.querySelector('.about-slider');
 
@@ -163,15 +162,94 @@ function getYouTubeEmbedUrl(url) {
 
   // Helper function to render the data into the DOM
   function renderContent(data) {
-    // 1. Populate and show YouTube Video if available
-    const embedUrl = getYouTubeEmbedUrl(data['youtube_link']);
-    if (videoContainer && embedUrl) {
-      videoContainer.style.display = 'block';
-      // Only rebuild iframe if source changed to avoid restarting video playback on background updates
-      const currentIframe = videoContainer.querySelector('iframe');
-      if (!currentIframe || currentIframe.src !== embedUrl) {
-        videoContainer.innerHTML = `<iframe src="${embedUrl}" title="Recovery College South East Introduction Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+    console.log('[AboutUs] Rendering data object:', data);
+
+    // 1. Collect dynamic YouTube video keys & handle Custom Video Slider
+    const videoUrls = [];
+    Object.keys(data).forEach(key => {
+      if (
+        (key === 'youtube_link' || key.startsWith('youtube_link_')) &&
+        data[key]
+      ) {
+        videoUrls.push(data[key]);
       }
+    });
+
+    console.log('[AboutUs] Extracted video URLs:', videoUrls);
+
+    const track = document.getElementById('custom-video-track');
+    if (videoSliderContainer && track && videoUrls.length > 0) {
+      videoSliderContainer.style.display = 'block';
+
+      track.innerHTML = videoUrls
+        .map((url, index) => {
+          const embedUrl = getYouTubeEmbedUrl(url);
+          console.log(
+            `[AboutUs] Video index ${index}: raw URL="${url}" -> embed URL="${embedUrl}"`
+          );
+          if (!embedUrl) return '';
+          return `
+          <div class="custom-video-slide ${index === 0 ? 'active' : ''}" data-index="${index}">
+            <div class="about-video-wrapper">
+              <iframe src="${embedUrl}" title="Recovery College South East Video ${index + 1} of ${videoUrls.length}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+          </div>
+        `;
+        })
+        .join('');
+
+      // Setup lightweight custom controls
+      const prevBtn = videoSliderContainer.querySelector(
+        '.video-swiper-button-prev'
+      );
+      const nextBtn = videoSliderContainer.querySelector(
+        '.video-swiper-button-next'
+      );
+
+      if (prevBtn && nextBtn) {
+        let currentIndex = 0;
+        const slides = track.querySelectorAll('.custom-video-slide');
+
+        function goToSlide(newIndex) {
+          const activeSlide = track.querySelector('.custom-video-slide.active');
+          if (activeSlide) {
+            const iframe = activeSlide.querySelector('iframe');
+            if (iframe && iframe.contentWindow) {
+              iframe.contentWindow.postMessage(
+                JSON.stringify({
+                  event: 'command',
+                  func: 'pauseVideo',
+                  args: [],
+                }),
+                '*'
+              );
+            }
+            activeSlide.classList.remove('active');
+          }
+
+          if (newIndex < 0) {
+            currentIndex = slides.length - 1;
+          } else if (newIndex >= slides.length) {
+            currentIndex = 0;
+          } else {
+            currentIndex = newIndex;
+          }
+
+          slides[currentIndex].classList.add('active');
+        }
+
+        const newNext = nextBtn.cloneNode(true);
+        const newPrev = prevBtn.cloneNode(true);
+        nextBtn.parentNode.replaceChild(newNext, nextBtn);
+        prevBtn.parentNode.replaceChild(newPrev, prevBtn);
+
+        newNext.addEventListener('click', () => goToSlide(currentIndex + 1));
+        newPrev.addEventListener('click', () => goToSlide(currentIndex - 1));
+      }
+    } else {
+      console.warn(
+        '[AboutUs] Video container, track missing, or zero video URLs found!'
+      );
     }
 
     // 2. Populate and show Text Paragraph if available
@@ -180,7 +258,7 @@ function getYouTubeEmbedUrl(url) {
       textEl.textContent = data['description_text'];
     }
 
-    // 3. Collect dynamic photo keys & handle Swiper
+    // 3. Collect dynamic photo keys & handle Photo Swiper
     const photoUrls = [];
     Object.keys(data).forEach(key => {
       if (key.startsWith('photo_') && data[key]) {
@@ -201,13 +279,14 @@ function getYouTubeEmbedUrl(url) {
         )
         .join('');
 
-      // Initialize or update Swiper
       if (!sliderContainer.swiper) {
         new Swiper(sliderContainer, {
           loop: true,
+          slidesPerView: 1,
+          spaceBetween: 0,
           navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
+            nextEl: '.photo-swiper-button-next',
+            prevEl: '.photo-swiper-button-prev',
           },
           observer: true,
           observeParents: true,
@@ -233,6 +312,7 @@ function getYouTubeEmbedUrl(url) {
   if (cachedData) {
     try {
       const parsedCache = JSON.parse(cachedData);
+      console.log('[AboutUs] Loaded data from localStorage cache.');
       renderContent(parsedCache);
       hasDisplayedCache = true;
     } catch (e) {
@@ -240,18 +320,18 @@ function getYouTubeEmbedUrl(url) {
     }
   }
 
-  // If we don't have a cache yet, show the loading spinner
   if (!hasDisplayedCache) {
-    if (videoContainer) videoContainer.style.display = 'none';
+    if (videoSliderContainer) videoSliderContainer.style.display = 'none';
     if (textEl) textEl.style.display = 'none';
     if (sliderContainer) sliderContainer.style.display = 'none';
     aboutSection.appendChild(loaderWrapper);
   }
 
-  // Fetch fresh data in the background (or foreground if no cache existed)
   try {
+    console.log('[AboutUs] Fetching fresh data from Apps Script...');
     const response = await fetch(sheetApiUrl);
     const rows = await response.json();
+    console.log('[AboutUs] Raw rows received from sheet:', rows);
 
     const data = {};
     rows.forEach(row => {
@@ -264,19 +344,17 @@ function getYouTubeEmbedUrl(url) {
       }
     });
 
-    // Save fresh data to localStorage for next time
+    console.log('[AboutUs] Processed data map:', data);
+
     localStorage.setItem(cacheKey, JSON.stringify(data));
 
-    // Remove loader if it was showing
     if (!hasDisplayedCache) {
       loaderWrapper.remove();
     }
 
-    // Render the fresh data (updates UI seamlessly if anything changed)
     renderContent(data);
   } catch (error) {
     console.error('Failed to load fresh About Us content:', error);
-    // Only show error if we didn't have a cache to fall back on
     if (!hasDisplayedCache) {
       loaderWrapper.innerHTML =
         '<p class="news-error">Could not load About Us section.</p>';

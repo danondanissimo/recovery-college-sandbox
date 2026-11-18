@@ -232,8 +232,16 @@
       <section class="about" aria-label="About Us">
         <h2>About Us</h2>
 
-        <!-- YouTube Video Embed -->
-        <div id="about-video-container" class="about-video-wrapper"></div>
+        <!-- YouTube Video Swiper Slider Container -->
+        <div class="about-video-slider" id="about-video-slider">
+          <div class="custom-video-track" id="custom-video-track"></div>
+          <button class="video-swiper-button-prev" aria-label="Previous video">
+            &#10094;
+          </button>
+          <button class="video-swiper-button-next" aria-label="Next video">
+            &#10095;
+          </button>
+        </div>
 
         <!-- Text Paragraph -->
         <p id="about-text" class="about-description"></p>
@@ -243,11 +251,15 @@
           <div id="about-slider-wrapper" class="swiper-wrapper">
             <!-- Slides dynamically injected -->
           </div>
+          <!-- Added unique classes for photo buttons -->
           <button
-            class="swiper-button-prev"
+            class="swiper-button-prev photo-swiper-button-prev"
             aria-label="Previous slide"
           ></button>
-          <button class="swiper-button-next" aria-label="Next slide"></button>
+          <button
+            class="swiper-button-next photo-swiper-button-next"
+            aria-label="Next slide"
+          ></button>
         </div>
       </section>
     </main>
