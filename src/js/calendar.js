@@ -205,17 +205,17 @@ const calendarTitles = {
 // Add Google Drive PDF links mapping here
 const timetableLinks = {
   carlow:
-    'https://drive.google.com/file/d/1wq-xVnaguf_NJd9xkmexhExj_zEU4l8V/view?usp=sharing',
+    'https://recoverycollegese501-my.sharepoint.com/:b:/g/personal/admin_recoverycollegesoutheast_com/IQAKWFUu47ObS6eiMkD6FCWcARKZknvO7TvWbn8dOwpK-Z0?e=II17vM',
   kilkenny:
-    'https://drive.google.com/file/d/1YrFVyXBpQfVmpepQxxNxmZtJYuDc5Q84/view?usp=sharing',
+    'https://recoverycollegese501-my.sharepoint.com/:b:/g/personal/admin_recoverycollegesoutheast_com/IQBQy2RrDAjKQ58xRym_dRT4ASkMgzHm8N24NrUGUqsxK0w?e=FSDniF',
   wexford:
-    'https://drive.google.com/file/d/1MTCkp95iLgk8wMqSxdxShNAAf1Rn264Y/view?usp=sharing',
+    'https://recoverycollegese501-my.sharepoint.com/:b:/g/personal/admin_recoverycollegesoutheast_com/IQCAnwubRQxdSILwDbm-1WiuASOvxwcQH48b59XO8yM6KCc?e=5Lweh9',
   'south-tipperary':
-    'https://drive.google.com/file/d/1uVd7AfSqjtDvY41y_xBVZZ4FVeMYZ3pD/view?usp=sharing',
+    'https://recoverycollegese501-my.sharepoint.com/:b:/g/personal/admin_recoverycollegesoutheast_com/IQALd2blQfRtSasL8LFe8pU4Ab42u0CyVObkkQkEv-lHmm0?e=vpsjY2',
   waterford:
-    'https://drive.google.com/file/d/1whskNGqmtPbD-ps_qh-mWQ7XpslkDbW5/view?usp=sharing',
+    'https://recoverycollegese501-my.sharepoint.com/:b:/g/personal/admin_recoverycollegesoutheast_com/IQCRArhmWDi2RK98YZ_0AfrlAUOTP5fa6PrMkhsi0R4fX8Q?e=EHfUqa',
   online:
-    'https://drive.google.com/file/d/1fUma6rH0SDJfJEnA2lAzOdohenRYdTpZ/view?usp=sharing',
+    'https://recoverycollegese501-my.sharepoint.com/:b:/g/personal/admin_recoverycollegesoutheast_com/IQBsrTKDbZ-4SZQ3b0Wt8XIHAfd_GLXRPWXAKFchLYOh-Es?e=OAFuIX',
 };
 
 export function initCalendar() {
